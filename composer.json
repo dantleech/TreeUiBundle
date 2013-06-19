@@ -1,0 +1,33 @@
+{
+    "name": "dantleech/tree-ui-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony CMF Tree UI Bundle",
+    "keywords": ["Symfony CMF", "tree", "phpcr"],
+    "homepage": "http://cmf.symfony.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Symfony CMF Community",
+            "homepage": "https://github.com/symfony-cmf/TreeBrowserBundle/contributors"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/framework-bundle": "~2.2",
+    },
+    "require-dev": {
+        "symfony-cmf/testing": "1.0.*"
+    },
+    "autoload":{
+        "psr-0":{
+            "Symfony\\Cmf\\Bundle\\TreeUiBundle": ""
+        }
+    },
+    "target-dir": "Symfony/Cmf/Bundle/TreeUiBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
