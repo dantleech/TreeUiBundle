@@ -6,13 +6,16 @@ use Metadata\ClassMetadata;
 
 class TreeMetadata extends ClassMetadata
 {
-    public function getId()
+    public $idMethod;
+    public $labelMethod;
+
+    public function getId($object)
     {
-        return $this->propertyMetadata['id']->getValue();
+        return $object->{$this->idMethod}();
     }
 
-    public function getLabel()
+    public function getLabel($object)
     {
-        return $this->propertyMetadata['label']->getValue();
+        return $object->{$this->labelMethod}();
     }
 }

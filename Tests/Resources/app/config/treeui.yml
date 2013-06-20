@@ -1,0 +1,9 @@
+cmf_tree_ui:
+    tree:
+        phpcr_odm:
+            model: phpcr_odm
+            view: dynatree
+            default: true
+    mapping:
+        Doctrine\ODM\PHPCR\Document\Folder:
+            label_method: getNodename

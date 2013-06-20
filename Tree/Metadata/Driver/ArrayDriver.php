@@ -25,11 +25,11 @@ class ArrayDriver implements DriverInterface
 
     private function getAndValidateMethod($class, $mapping, $key)
     {
-        if (!isset($mapping['label_method'])) {
+        if (!isset($mapping[$key])) {
             throw new MissingMappingException($class->name, 'label_method');
         }
 
-        $labelMethod = $mapping['label_method'];
+        $labelMethod = $mapping[$key];
 
         if (!$class->hasMethod($labelMethod)) {
             throw new \RuntimeException(sprintf(
@@ -45,13 +45,12 @@ class ArrayDriver implements DriverInterface
     public function loadMetadataForClass(\ReflectionClass $class)
     {
         $mapping = $this->getMapping($class->name);
-
         $idMethod = $this->getAndValidateMethod($mapping, 'id_method');
         $labelMethod = $this->getAndValidateMethod($mapping, 'label_method');
 
         $metadata = new TreeMetadata;
-        $metadata->setIdMethod($IdMethod);
-        $metadata->setLabelMethod($labelMethod);
+        $metadata->idMethod = $idMethod;
+        $metadata->labelMethod = $labelMethod;
 
         return $metadata;
     }

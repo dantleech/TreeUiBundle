@@ -1,0 +1,20 @@
+<div id="cmf_tree_{{ uniqId }}"/>
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        // Attach the dynatree widget to an existing <div id="tree"> element
+        // and pass the tree options as an argument to the dynatree() function:
+        $("#cmf_tree_{{ uniqId }}").dynatree({
+            onActivate: function(node) {
+                // A DynaTreeNode object is passed to the activation handler
+                // Note: we also get this event, if persistence is on, and the page is reloaded.
+                alert("You activated " + node.data.title);
+            },
+            persist: true,
+            children: [ // Pass an array of nodes.
+            ]
+        });
+    });
+
+</script>

@@ -25,8 +25,8 @@ class NodeFactory
         $metadata = $this->getMetadata($object);
 
         $node = new Node;
-        $node->setId($metadata->getId());
-        $node->setLabel($metadata->getLabel());
+        $node->setId($metadata->getId($object));
+        $node->setLabel($metadata->getLabel($object));
 
         return $node;
     }
