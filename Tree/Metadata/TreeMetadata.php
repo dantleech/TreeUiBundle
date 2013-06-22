@@ -13,4 +13,9 @@ class TreeMetadata extends ClassMetadata
     {
         return $object->{$this->labelMethod}();
     }
+
+    public function getId($object)
+    {
+        return $object->{$this->idMethod}();
+    }
 }

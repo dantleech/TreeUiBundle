@@ -5,21 +5,33 @@ namespace Symfony\Cmf\Bundle\TreeUiBundle\Tree\View;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewInterface;
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ModelInterface;
+use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Tree;
+use Symfony\Bundle\TwigBundle\TwigEngine;
 
 class DynatreeView implements ViewInterface
 {
-    protected $model;
+    protected $tree;
+    protected $templating;
 
-    public function setModel(ModelInterface $model)
+    public function __construct(\Twig_Environment $templating)
     {
-        $this->model = $model;
+        $this->templating = $templating;
     }
 
-    public function getViewResponse(Request $request)
+    public function setTree(Tree $tree)
     {
-        $response = new Response;
-        $rootNode = $this->model->getNode('/');
+        $this->tree = $tree;
+    }
+
+    protected function getModel()
+    {
+        return $this->tree->getModel();
+    }
+
+    public function getOutput()
+    {
+        $basePath = $this->tree->getConfig()->getBasePath();
+        $rootNode = $this->getModel()->getNode($basePath);
         $uniqId = uniqid();
 
         $content = $this->templating->render('CmfTreeUiBundle:Dynatree:view.html.twig', array(
@@ -27,9 +39,7 @@ class DynatreeView implements ViewInterface
             'uniqId' => $uniqId,
         ));
 
-        $response->setContent($content);
-
-        return $response;
+        return $content;
     }
 
     public function getChildrenResponse(Request $request)

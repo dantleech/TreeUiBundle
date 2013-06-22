@@ -29,14 +29,14 @@ class PhpcrOdmModel implements ModelInterface
         return $this->mr->getManager($this->managerName);
     }
 
-    public function getDocument($id)
+    public function getDocument($path)
     {
-        $doc = $this->getOm()->find($id);
+        $doc = $this->getOm()->find(null, $path);
 
         if (!$doc) {
             throw new \InvalidArgumentException(sprintf(
-                'Cannot find document with path "%s" when trying to find its children.',
-                $id
+                'Cannot find document with path "%s".',
+                $path
             ));
         }
 
@@ -74,7 +74,7 @@ class PhpcrOdmModel implements ModelInterface
 
     public function getNode($path)
     {
-        $doc = $this->getOm()->find(null, $path);
+        $doc = $this->getDocument($path);
         $node = $this->nf->createNode($doc);
         return $node;
     }

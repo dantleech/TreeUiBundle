@@ -19,7 +19,9 @@
         <service
             id="cmf_tree_ui.metadata.driver.annotation"
             class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\Metadata\Driver\AnnotationDriver"
-        />
+            >
+            <argument type="service" id="annotations.reader"/>
+        </service>
     </services>
 </container>
 

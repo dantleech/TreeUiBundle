@@ -4,6 +4,7 @@ namespace Symfony\Cmf\Bundle\TreeUiBundle\Tree;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ModelInterface;
+use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Tree;
 
 /**
  * This interface will be implemented by classes which
@@ -22,7 +23,7 @@ interface ViewInterface
      *
      * @param ModelInterface $model
      */
-    public function setModel(ModelInterface $model);
+    public function setTree(Tree $tree);
 
     /**
      * Return the response for the view request.
@@ -30,7 +31,7 @@ interface ViewInterface
      * @param Symfony\Component\HttpFoundation\Request $request
      * @return Symfony\Component\HttpFoundation\Response
      */
-    public function getViewResponse(Request $request);
+    public function getOutput();
 
     /**
      * Return the response for a children request.

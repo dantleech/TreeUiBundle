@@ -20,13 +20,19 @@ class TreeController
     protected function getTree(Request $request)
     {
         $name = $request->get('_tree_name') ? : null;
-
         return $this->treeFactory->createTree($name);
     }
 
     public function viewAction(Request $request)
     {
-        return $this->getTree($request)->getView()->getViewResponse($request);
+        $basePath = $request->get('_base_path');
+
+        $tree = $this->getTree($request);
+        $tree->getConfig()->setBasePath($basePath);
+
+        $content = $tree->getView()->getOutput();
+
+        return new Response($content);
     }
 
     public function getChildrenAction(Request $request)

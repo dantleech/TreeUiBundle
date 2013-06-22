@@ -18,7 +18,7 @@ class NodeFactory
     protected function getMetadata($object)
     {
         $classFqn = ClassUtils::getClass($object);
-        return $this->mdf->getMetadataForClass($classFqn);
+        return $this->mdf->getMetadataForClass($classFqn)->getOutsideClassMetadata();
     }
 
     public function createNode($object)

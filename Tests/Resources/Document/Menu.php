@@ -8,11 +8,12 @@ use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Metadata\Annotations as CmfTreeUi;
 /**
  * @PHPCRODM\Document()
  * @CmfTreeUi\Node(
+ *    idMethod="getId",
+ *    labelMethod="getTitle",
  *    validChildren={
- *      "\Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Document\MenuItem"
+ *      "Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Document\MenuItem"
  *    },
- *    icon="bundles/cmftreeuibundle/themes/famfamsilk/directory.png",
- *    titleMethod="getTitle"
+ *    icon="bundles/cmftreeuibundle/themes/famfamsilk/directory.png"
  *  )
  */
 class Menu

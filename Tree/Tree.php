@@ -4,18 +4,32 @@ namespace Symfony\Cmf\Bundle\TreeUiBundle\Tree;
 
 class Tree
 {
+    protected $name;
     protected $view;
     protected $model;
 
-    public function __construct(ModelInterface $model, ViewInterface $view)
+    public function __construct($name, ModelInterface $model, ViewInterface $view)
     {
-        $view->setModel($model);
+        $this->config = new TreeConfiguration;
+
         $this->view = $view;
+        $this->view->setTree($this);
+
         $this->model = $model;
     }
 
     public function getView()
     {
         return $this->view;
+    }
+
+    public function getConfig()
+    {
+        return $this->config;
+    }
+
+    public function getModel()
+    {
+        return $this->model;
     }
 }

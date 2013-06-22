@@ -11,7 +11,7 @@ class LoadTreeData implements FixtureInterface
     public function load(ObjectManager $dm)
     {
         $menu = new Menu;
-        $menu->setId('/test/foobar');
+        $menu->setId('/test/menu');
         $menu->setTitle('Menu 1');
         $dm->persist($menu);
         $dm->flush();

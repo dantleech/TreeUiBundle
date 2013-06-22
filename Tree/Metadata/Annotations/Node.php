@@ -8,7 +8,8 @@ namespace Symfony\Cmf\Bundle\TreeUiBundle\Tree\Metadata\Annotations;
  */
 class Node
 {
+    public $idMethod;
+    public $labelMethod;
     public $validChildren;
     public $icon;
-    public $titleMethod;
 }

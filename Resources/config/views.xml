@@ -7,7 +7,9 @@
         <service
             id="cmf_tree_ui.view.dynatree"
             class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\View\DynatreeView"
-        />
+            >
+            <argument type="service" id="twig"/>
+        </service>
     </services>
 </container>
 
