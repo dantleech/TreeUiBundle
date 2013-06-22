@@ -1,8 +1,10 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\TreeBrowserBundle\Tree\Model;
+namespace Symfony\Cmf\Bundle\TreeUiBundle\Tree\Model;
 
-use Symfony\Cmf\Bundle\TreeBrowserBundle\Tree\ModelInterface;
+use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ModelInterface;
+use Doctrine\Common\Persistence\ManagerRegistry;
+use Symfony\Cmf\Bundle\TreeUiBundle\Tree\NodeFactory;
 
 class PhpcrOdmModel implements ModelInterface
 {
@@ -14,6 +16,7 @@ class PhpcrOdmModel implements ModelInterface
     public function __construct(ManagerRegistry $mr, NodeFactory $nf) 
     {
         $this->mr = $mr;
+        $this->nf = $nf;
     }
     
     public function setManagerName($managerName)
@@ -67,5 +70,12 @@ class PhpcrOdmModel implements ModelInterface
 
         $parentDoc = $this->getDocument($parentId);
         $this->getOm()->reorder($parentDoc, $sourceId, $targetId, $before);
+    }
+
+    public function getNode($path)
+    {
+        $doc = $this->getOm()->find(null, $path);
+        $node = $this->nf->createNode($doc);
+        return $node;
     }
 }

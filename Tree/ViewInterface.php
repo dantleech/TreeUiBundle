@@ -3,7 +3,7 @@
 namespace Symfony\Cmf\Bundle\TreeUiBundle\Tree;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Cmf\Bundle\TreeBrowserBundle\Tree\ModelInterface;
+use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ModelInterface;
 
 /**
  * This interface will be implemented by classes which

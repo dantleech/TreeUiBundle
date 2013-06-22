@@ -1,6 +1,6 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\TreeBrowserBundle\Tree;
+namespace Symfony\Cmf\Bundle\TreeUiBundle\Tree;
 
 interface ModelInterface
 {
@@ -9,5 +9,7 @@ interface ModelInterface
     public function move($sourcePath, $targetPath);
 
     public function reorder($parentId, $sourceId, $targetId, $before = false);
+
+    public function getNode($path);
 }
 

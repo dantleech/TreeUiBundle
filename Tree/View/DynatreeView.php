@@ -1,12 +1,13 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\TreeUiBundle\Tree\Model;
+namespace Symfony\Cmf\Bundle\TreeUiBundle\Tree\View;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Cmf\Bundle\TreeBrowserBundle\Tree\ModelInterface;
+use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewInterface;
+use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ModelInterface;
 
-class DynatreeView
+class DynatreeView implements ViewInterface
 {
     protected $model;
 

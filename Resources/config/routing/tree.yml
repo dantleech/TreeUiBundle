@@ -1,0 +1,4 @@
+_cmf_tree_ui_view:
+    pattern: /_cmf_tree_ui/tree/{_tree_name}/view
+    defaults:
+        _controller: cmf_tree_ui.controller.tree:viewAction

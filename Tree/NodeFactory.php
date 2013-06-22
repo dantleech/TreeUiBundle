@@ -4,6 +4,7 @@ namespace Symfony\Cmf\Bundle\TreeUiBundle\Tree;
 
 use Metadata\MetadataFactory;
 use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Node;
+use Doctrine\Common\Util\ClassUtils;
 
 class NodeFactory
 {
@@ -17,7 +18,7 @@ class NodeFactory
     protected function getMetadata($object)
     {
         $classFqn = ClassUtils::getClass($object);
-        return $this->mdf->getMetadata($classFqn);
+        return $this->mdf->getMetadataForClass($classFqn);
     }
 
     public function createNode($object)

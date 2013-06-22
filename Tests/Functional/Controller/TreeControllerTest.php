@@ -3,6 +3,7 @@
 namespace Symfony\Cmf\Bundle\TreeUiBundle\Tests\Functional\Controller;
 
 use Symfony\Cmf\Component\Testing\Functional\BaseTestCase;
+use Symfony\Component\HttpFoundation\Request;
 
 class TreeControllerTest extends BaseTestCase
 {
@@ -14,8 +15,10 @@ class TreeControllerTest extends BaseTestCase
         ));
     }
 
-    public function testView()
+    public function testController()
     {
-        $client = $this->createClient();
+        $controller = $this->getContainer()->get('cmf_tree_ui.controller.tree');
+        $req = new Request(array(), array());
+        $controller->viewAction($req);
     }
 }

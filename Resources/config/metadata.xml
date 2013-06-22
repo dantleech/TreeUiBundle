@@ -4,16 +4,18 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
+        <!-- Factory -->
         <service 
             id="cmf_tree_ui.metadata.factory"
             class="Metadata\MetadataFactory"
         >
             <argument 
                 type="service" 
-                id="cmf_tree_ui.metadata.annotations_driver"
+                id="cmf_tree_ui.metadata.driver.annotation"
             />
         </service>
 
+        <!-- Annotations Driver -->
         <service
             id="cmf_tree_ui.metadata.driver.annotation"
             class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\Metadata\Driver\AnnotationDriver"

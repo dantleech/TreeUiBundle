@@ -6,28 +6,27 @@ use Symfony\Cmf\Bundle\TreeBrowserBundle\Tree\ModelInterface;
 use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Cmf\Bundle\TreeUiBundle\Tree\TreeFactory;
 
 class TreeController
 {
     protected $treeModel;
-    protected $twig;
 
-    public function __construct(
-        TreeFactory $treeFactory,
-        TwigEngine $twig
-    ) {
+    public function __construct(TreeFactory $treeFactory)
+    {
         $this->treeFactory = $treeFactory;
-        $this->twig = $twig;
     }
 
-    protected function getTree($name = null)
+    protected function getTree(Request $request)
     {
+        $name = $request->get('_tree_name') ? : null;
+
         return $this->treeFactory->createTree($name);
     }
 
     public function viewAction(Request $request)
     {
-        return $this->getTree()->getView()->getViewResponse($request);
+        return $this->getTree($request)->getView()->getViewResponse($request);
     }
 
     public function getChildrenAction(Request $request)

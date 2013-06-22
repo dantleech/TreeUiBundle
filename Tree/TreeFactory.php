@@ -2,20 +2,23 @@
 
 namespace Symfony\Cmf\Bundle\TreeUiBundle\Tree;
 
+use Symfony\Component\DependencyInjection\ContainerInterface;
+
 class TreeFactory
 {
-    protected $model;
-    protected $view;
+    protected $container;
 
-    public function registerTree($name, TreeModel $model, TreeView $view)
+    public function __construct(ContainerInterface $container)
     {
-        $this->model = $model;
-        $this->view = $view;
+        $this->container = $container;
     }
 
-    public function getTree($name)
+    public function createTree($name = null)
     {
-        $tree = new Tree($model, $view);
-        return $tree;
+        if (null === $name) {
+            $name = 'default';
+        }
+
+        return $this->container->get('cmf_tree_ui.tree.'.$name);
     }
 }

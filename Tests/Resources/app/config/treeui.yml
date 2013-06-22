@@ -1,5 +1,5 @@
 cmf_tree_ui:
     tree:
-        phpcr_odm:
-            model: phpcr_odm
-            view: dynatree
+        default:
+            model_service_id: cmf_tree_ui.model.phpcr_odm
+            view_service_id: cmf_tree_ui.view.dynatree

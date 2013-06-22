@@ -10,10 +10,30 @@
     </parameters>
 
     <services>
+        <!-- Tree Factory -->
+        <service 
+            id="cmf_tree_ui.tree_factory" 
+            class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\TreeFactory"
+            >
+            <argument type="service" id="service_container"/>
+        </service>
+
+        <!-- Node Factory -->
         <service 
             id="cmf_tree_ui.node_factory" 
             class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\NodeFactory"
             >
+            <argument type="service" id="cmf_tree_ui.metadata.factory"/>
+        </service>
+
+        <!-- Tree Controller -->
+        <service
+            id="cmf_tree_ui.controller.tree"
+            class="Symfony\Cmf\Bundle\TreeUiBundle\Controller\TreeController">
+            <argument 
+                type="service" 
+                id="cmf_tree_ui.tree_factory"
+                />
         </service>
 
     </services>

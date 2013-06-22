@@ -6,7 +6,7 @@
     <services>
         <service
             id="cmf_tree_ui.view.dynatree"
-            class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\View\Dynatree"
+            class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\View\DynatreeView"
         />
     </services>
 </container>
