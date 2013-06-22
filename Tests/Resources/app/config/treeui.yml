@@ -3,7 +3,3 @@ cmf_tree_ui:
         phpcr_odm:
             model: phpcr_odm
             view: dynatree
-            default: true
-    mapping:
-        Doctrine\ODM\PHPCR\Document\Folder:
-            label_method: getNodename

@@ -20,7 +20,7 @@ class TreeController
         $this->twig = $twig;
     }
 
-    protected function getTree($name)
+    protected function getTree($name = null)
     {
         return $this->treeFactory->createTree($name);
     }

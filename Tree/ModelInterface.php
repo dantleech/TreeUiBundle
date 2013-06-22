@@ -8,6 +8,6 @@ interface ModelInterface
 
     public function move($sourcePath, $targetPath);
 
-    public function reorder($parentPath, $sourcePath, $targetPath, $before = false);
+    public function reorder($parentId, $sourceId, $targetId, $before = false);
 }
 
