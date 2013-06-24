@@ -25,6 +25,7 @@ class CmfTreeUiExtension extends Extension
         $loader->load('models.xml');
         $loader->load('views.xml');
         $loader->load('metadata.xml');
+        $loader->load('twig.xml');
 
         $config = $processor->processConfiguration($configuration, $configs);
 
@@ -49,5 +50,10 @@ class CmfTreeUiExtension extends Extension
             $treeDef->addArgument(new Reference($treeConfig['view_service_id']));
             $container->setDefinition($this->getAlias() . '.tree.'.$name, $treeDef);
         }
+
+        $config['metadata']['mapping_directories']['Doctrine\ODM\PHPCR\Document'] = __DIR__.'/../Resources/config/mapping/DoctrineODMPHPCRDocument';
+
+        $metadataLoader = $container->getDefinition('cmf_tree_ui.metadata.file_locator');
+        $metadataLoader->replaceArgument(0, $config['metadata']['mapping_directories']);
     }
 }

@@ -8,11 +8,30 @@
         <service 
             id="cmf_tree_ui.metadata.factory"
             class="Metadata\MetadataFactory"
-        >
+            >
             <argument 
                 type="service" 
                 id="cmf_tree_ui.metadata.driver.annotation"
-            />
+                />
+        </service>
+
+        <!-- File Locator !-->
+        <service
+            id="cmf_tree_ui.metadata.file_locator"
+            class="Metadata\Driver\FileLocator"
+            >
+            <argument type="collection"/>
+        </service>
+
+        <!-- Chain Driver !-->
+        <service
+            id="cmf_tree_ui.metadata.driver_chain"
+            class="Metadata\Driver\DriverChain"
+            >
+            <argument type="collection">
+                <argument type="service" id="cmf_tree_ui.metadata.driver.annotation"/>
+                <argument type="service" id="cmf_tree_ui.metadata.driver.xml"/>
+            </argument>
         </service>
 
         <!-- Annotations Driver -->
@@ -22,7 +41,13 @@
             >
             <argument type="service" id="annotations.reader"/>
         </service>
+
+        <!-- XML Driver !-->
+        <service
+            id="cmf_tree_ui.metadata.driver.xml"
+            class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\Metadata\Driver\XmlDriver"
+            >
+            <argument type="service" id="cmf_tree_ui.metadata.file_locator"/>
+        </service>
     </services>
 </container>
-
-

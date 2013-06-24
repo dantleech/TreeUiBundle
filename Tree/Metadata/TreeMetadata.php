@@ -6,8 +6,8 @@ use Metadata\ClassMetadata;
 
 class TreeMetadata extends ClassMetadata
 {
-    public $idMethod;
-    public $labelMethod;
+    public $idMethod = 'getId';
+    public $labelMethod = '__toString';
 
     public function getLabel($object)
     {

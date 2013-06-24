@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<cmf-tree-ui-mapping>
+    <tree-object
+        name="Doctrine\ODM\PHPCR\Document\Generic"
+        label-method="getNodename"
+        id-method="getId"
+        />
+</cmf-tree-ui-mapping>

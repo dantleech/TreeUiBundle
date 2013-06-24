@@ -1,0 +1,9 @@
+test_home:
+     pattern: /
+     defaults:
+         _controller: Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Controller\TestController::indexAction
+
+test_phpcr_odm_tree:
+     pattern: /tree/phpcr-odm
+     defaults:
+         _controller: Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Controller\TestController::phpcrOdmTreeAction

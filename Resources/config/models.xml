@@ -15,7 +15,7 @@
             class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\Model\PhpcrOdmModel"
             >
             <argument type="service" id="doctrine_phpcr"/>
-            <argument type="service" id="cmf_tree_ui.node_factory"/>
+            <argument type="service" id="cmf_tree_ui.metadata.factory"/>
         </service>
 
     </services>
