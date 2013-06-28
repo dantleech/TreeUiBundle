@@ -14348,3 +14348,473 @@
 [2013-06-28 18:24:54] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\Security\Http\RememberMe\ResponseListener::onKernelResponse". [] []
 [2013-06-28 18:24:54] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Bundle\FrameworkBundle\EventListener\TestSessionListener::onKernelResponse". [] []
 [2013-06-28 18:24:54] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\StreamedResponseListener::onKernelResponse". [] []
+[2013-06-28 18:49:08] doctrine.DEBUG: SELECT 1 FROM phpcr_workspaces WHERE name = ? ["default"] []
+[2013-06-28 18:49:08] doctrine.DEBUG: SELECT * FROM phpcr_nodes
+            WHERE (path LIKE :pathd OR path = :path)
+                AND workspace_name = :workspace
+                AND depth <= ((SELECT depth FROM phpcr_nodes WHERE path = :path AND workspace_name = :workspace) + :fetchDepth)
+            ORDER BY sort_order ASC {":path":"(binary value)",":pathd":"(binary value)",":workspace":"default",":fetchDepth":0} []
+[2013-06-28 18:49:08] doctrine.DEBUG: SELECT path FROM phpcr_nodes WHERE parent = ? AND workspace_name = ? ORDER BY sort_order ASC ["(binary value)","default"] []
+[2013-06-28 18:49:08] doctrine.DEBUG: SELECT path AS arraykey, id, path, parent, local_name, namespace, workspace_name, identifier, type, props, depth, sort_order
+            FROM phpcr_nodes WHERE workspace_name = :workspace AND ((path LIKE :pathd0 OR path = :path0) AND depth <= ((SELECT depth FROM phpcr_nodes WHERE path = :path0 AND workspace_name = :workspace) + :fetchDepth)) ORDER BY sort_order ASC {":workspace":"default",":fetchDepth":0,":path0":"/test",":pathd0":"/test/%"} []
+[2013-06-28 18:49:08] doctrine.DEBUG: SELECT path FROM phpcr_nodes WHERE parent = ? AND workspace_name = ? ORDER BY sort_order ASC ["/test","default"] []
+[2013-06-28 18:49:08] doctrine.DEBUG: SELECT * FROM phpcr_type_nodes [] []
+[2013-06-28 18:49:08] doctrine.DEBUG: SELECT * FROM phpcr_type_props WHERE node_type_id = ? ["1"] []
+[2013-06-28 18:49:08] doctrine.DEBUG: SELECT * FROM phpcr_type_childs WHERE node_type_id = ? ["1"] []
+[2013-06-28 18:49:08] doctrine.DEBUG: SELECT * FROM phpcr_type_nodes [] []
+[2013-06-28 18:49:08] doctrine.DEBUG: SELECT * FROM phpcr_type_props WHERE node_type_id = ? ["1"] []
+[2013-06-28 18:49:08] doctrine.DEBUG: SELECT * FROM phpcr_type_childs WHERE node_type_id = ? ["1"] []
+[2013-06-28 18:49:08] doctrine.DEBUG: SELECT * FROM phpcr_type_nodes [] []
+[2013-06-28 18:49:08] doctrine.DEBUG: SELECT * FROM phpcr_type_props WHERE node_type_id = ? ["1"] []
+[2013-06-28 18:49:08] doctrine.DEBUG: SELECT * FROM phpcr_type_childs WHERE node_type_id = ? ["1"] []
+[2013-06-28 18:49:08] doctrine.DEBUG: "START TRANSACTION" [] []
+[2013-06-28 18:49:08] doctrine.DEBUG: SELECT id FROM phpcr_nodes WHERE path = ? AND workspace_name = ? ["/test","default"] []
+[2013-06-28 18:49:08] doctrine.DEBUG: SELECT id, path FROM phpcr_nodes WHERE (path = ? OR path LIKE ?) AND workspace_name = ? ["/test","/test/%","default"] []
+[2013-06-28 18:49:08] doctrine.DEBUG: DELETE FROM phpcr_nodes WHERE (path = ? OR path LIKE ?) AND workspace_name = ? ["/test","/test/%","default"] []
+[2013-06-28 18:49:08] doctrine.DEBUG: SELECT fk.target_id
+            FROM phpcr_nodes_foreignkeys fk
+                LEFT OUTER JOIN phpcr_nodes n ON fk.target_id = n.id
+            WHERE fk.type = ?
+              AND fk.target_id IN (?)
+              AND fk.source_id NOT IN (?) [9,[2,3],[2,3]] []
+[2013-06-28 18:49:08] doctrine.DEBUG: DELETE FROM phpcr_nodes_foreignkeys WHERE target_id IN (?) [[2,3]] []
+[2013-06-28 18:49:08] doctrine.DEBUG: "COMMIT" [] []
+[2013-06-28 18:49:08] doctrine.DEBUG: "START TRANSACTION" [] []
+[2013-06-28 18:49:08] doctrine.DEBUG: SELECT * FROM phpcr_namespaces [] []
+[2013-06-28 18:49:08] doctrine.DEBUG: INSERT INTO phpcr_nodes (identifier, type, path, local_name, namespace, parent, workspace_name, props, depth, sort_order) SELECT :identifier, :type, :path, :local_name, :namespace, :parent, :workspace_name, :props, :depth, COALESCE(MAX(n.sort_order), 0) + 1 FROM phpcr_nodes n WHERE n.parent = :parent_a {"identifier":"41e0784d-0e9f-423a-822e-3a [...]","type":"nt:unstructured","path":"/test","local_name":"test","namespace":"(binary value)","parent":"(binary value)","workspace_name":"default","props":"<?xml version=\"1.0\" encodi [...]","depth":1,"parent_a":"(binary value)"} []
+[2013-06-28 18:49:08] doctrine.DEBUG: "COMMIT" [] []
+[2013-06-28 18:49:09] doctrine.DEBUG: SELECT * FROM phpcr_nodes
+            WHERE (path LIKE :pathd OR path = :path)
+                AND workspace_name = :workspace
+                AND depth <= ((SELECT depth FROM phpcr_nodes WHERE path = :path AND workspace_name = :workspace) + :fetchDepth)
+            ORDER BY sort_order ASC {":path":"/test/menu",":pathd":"/test/menu/%",":workspace":"default",":fetchDepth":0} []
+[2013-06-28 18:49:09] doctrine.DEBUG: "START TRANSACTION" [] []
+[2013-06-28 18:49:09] doctrine.DEBUG: SELECT * FROM phpcr_nodes
+            WHERE (path LIKE :pathd OR path = :path)
+                AND workspace_name = :workspace
+                AND depth <= ((SELECT depth FROM phpcr_nodes WHERE path = :path AND workspace_name = :workspace) + :fetchDepth)
+            ORDER BY sort_order ASC {":path":"/test",":pathd":"/test/%",":workspace":"default",":fetchDepth":0} []
+[2013-06-28 18:49:09] doctrine.DEBUG: SELECT path FROM phpcr_nodes WHERE parent = ? AND workspace_name = ? ORDER BY sort_order ASC ["/test","default"] []
+[2013-06-28 18:49:09] doctrine.DEBUG: INSERT INTO phpcr_nodes (identifier, type, path, local_name, namespace, parent, workspace_name, props, depth, sort_order) SELECT :identifier, :type, :path, :local_name, :namespace, :parent, :workspace_name, :props, :depth, COALESCE(MAX(n.sort_order), 0) + 1 FROM phpcr_nodes n WHERE n.parent = :parent_a {"identifier":"167b3bf3-4d4b-432e-9ac5-c0 [...]","type":"nt:unstructured","path":"/test/menu","local_name":"menu","namespace":"(binary value)","parent":"/test","workspace_name":"default","props":"<?xml version=\"1.0\" encodi [...]","depth":2,"parent_a":"/test"} []
+[2013-06-28 18:49:09] doctrine.DEBUG: "COMMIT" [] []
+[2013-06-28 18:49:09] doctrine.DEBUG: SELECT 1 FROM phpcr_workspaces WHERE name = ? ["default"] []
+[2013-06-28 18:49:09] doctrine.DEBUG: SELECT * FROM phpcr_nodes
+            WHERE (path LIKE :pathd OR path = :path)
+                AND workspace_name = :workspace
+                AND depth <= ((SELECT depth FROM phpcr_nodes WHERE path = :path AND workspace_name = :workspace) + :fetchDepth)
+            ORDER BY sort_order ASC {":path":"/test/menu",":pathd":"/test/menu/%",":workspace":"default",":fetchDepth":0} []
+[2013-06-28 18:49:09] doctrine.DEBUG: SELECT path FROM phpcr_nodes WHERE parent = ? AND workspace_name = ? ORDER BY sort_order ASC ["/test/menu","default"] []
+[2013-06-28 18:49:09] doctrine.DEBUG: SELECT * FROM phpcr_type_nodes [] []
+[2013-06-28 18:49:09] doctrine.DEBUG: SELECT * FROM phpcr_type_props WHERE node_type_id = ? ["1"] []
+[2013-06-28 18:49:09] doctrine.DEBUG: SELECT * FROM phpcr_type_childs WHERE node_type_id = ? ["1"] []
+[2013-06-28 18:49:09] doctrine.DEBUG: SELECT * FROM phpcr_type_nodes [] []
+[2013-06-28 18:49:09] doctrine.DEBUG: SELECT * FROM phpcr_type_props WHERE node_type_id = ? ["1"] []
+[2013-06-28 18:49:09] doctrine.DEBUG: SELECT * FROM phpcr_type_childs WHERE node_type_id = ? ["1"] []
+[2013-06-28 18:49:11] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Bundle\FrameworkBundle\EventListener\TestSessionListener::onKernelRequest". [] []
+[2013-06-28 18:49:11] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Bundle\FrameworkBundle\EventListener\SessionListener::onKernelRequest". [] []
+[2013-06-28 18:49:11] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\RouterListener::onKernelRequest". [] []
+[2013-06-28 18:49:11] request.INFO: Matched route "test_phpcr_odm_tree" (parameters: "_controller": "Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Controller\TestController::phpcrOdmTreeAction", "_route": "test_phpcr_odm_tree") [] []
+[2013-06-28 18:49:11] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\LocaleListener::onKernelRequest". [] []
+[2013-06-28 18:49:11] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\Security\Http\Firewall::onKernelRequest". [] []
+[2013-06-28 18:49:12] security.INFO: Populated SecurityContext with an anonymous Token [] []
+[2013-06-28 18:49:12] event.DEBUG: Notified event "kernel.request" to listener "Doctrine\Bundle\PHPCRBundle\EventListener\LocaleListener::onKernelRequest". [] []
+[2013-06-28 18:49:12] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\ErrorsLoggerListener::injectLogger". [] []
+[2013-06-28 18:49:12] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\ErrorsLoggerListener::injectLogger". [] []
+[2013-06-28 18:49:12] doctrine.DEBUG: SELECT 1 FROM phpcr_workspaces WHERE name = ? ["default"] []
+[2013-06-28 18:49:12] doctrine.DEBUG: SELECT * FROM phpcr_nodes
+            WHERE (path LIKE :pathd OR path = :path)
+                AND workspace_name = :workspace
+                AND depth <= ((SELECT depth FROM phpcr_nodes WHERE path = :path AND workspace_name = :workspace) + :fetchDepth)
+            ORDER BY sort_order ASC {":path":"(binary value)",":pathd":"(binary value)",":workspace":"default",":fetchDepth":0} []
+[2013-06-28 18:49:12] doctrine.DEBUG: SELECT path FROM phpcr_nodes WHERE parent = ? AND workspace_name = ? ORDER BY sort_order ASC ["(binary value)","default"] []
+[2013-06-28 18:49:12] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\Security\Http\Firewall\ContextListener::onKernelResponse". [] []
+[2013-06-28 18:49:12] security.DEBUG: Write SecurityContext in the session [] []
+[2013-06-28 18:49:12] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\ResponseListener::onKernelResponse". [] []
+[2013-06-28 18:49:12] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\Security\Http\RememberMe\ResponseListener::onKernelResponse". [] []
+[2013-06-28 18:49:12] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Bundle\FrameworkBundle\EventListener\TestSessionListener::onKernelResponse". [] []
+[2013-06-28 18:49:12] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\StreamedResponseListener::onKernelResponse". [] []
+[2013-06-28 18:53:47] doctrine.DEBUG: SELECT 1 FROM phpcr_workspaces WHERE name = ? ["default"] []
+[2013-06-28 18:53:47] doctrine.DEBUG: SELECT * FROM phpcr_nodes
+            WHERE (path LIKE :pathd OR path = :path)
+                AND workspace_name = :workspace
+                AND depth <= ((SELECT depth FROM phpcr_nodes WHERE path = :path AND workspace_name = :workspace) + :fetchDepth)
+            ORDER BY sort_order ASC {":path":"(binary value)",":pathd":"(binary value)",":workspace":"default",":fetchDepth":0} []
+[2013-06-28 18:53:47] doctrine.DEBUG: SELECT path FROM phpcr_nodes WHERE parent = ? AND workspace_name = ? ORDER BY sort_order ASC ["(binary value)","default"] []
+[2013-06-28 18:53:47] doctrine.DEBUG: SELECT path AS arraykey, id, path, parent, local_name, namespace, workspace_name, identifier, type, props, depth, sort_order
+            FROM phpcr_nodes WHERE workspace_name = :workspace AND ((path LIKE :pathd0 OR path = :path0) AND depth <= ((SELECT depth FROM phpcr_nodes WHERE path = :path0 AND workspace_name = :workspace) + :fetchDepth)) ORDER BY sort_order ASC {":workspace":"default",":fetchDepth":0,":path0":"/test",":pathd0":"/test/%"} []
+[2013-06-28 18:53:47] doctrine.DEBUG: SELECT path FROM phpcr_nodes WHERE parent = ? AND workspace_name = ? ORDER BY sort_order ASC ["/test","default"] []
+[2013-06-28 18:53:47] doctrine.DEBUG: SELECT * FROM phpcr_type_nodes [] []
+[2013-06-28 18:53:47] doctrine.DEBUG: SELECT * FROM phpcr_type_props WHERE node_type_id = ? ["1"] []
+[2013-06-28 18:53:47] doctrine.DEBUG: SELECT * FROM phpcr_type_childs WHERE node_type_id = ? ["1"] []
+[2013-06-28 18:53:47] doctrine.DEBUG: SELECT * FROM phpcr_type_nodes [] []
+[2013-06-28 18:53:47] doctrine.DEBUG: SELECT * FROM phpcr_type_props WHERE node_type_id = ? ["1"] []
+[2013-06-28 18:53:47] doctrine.DEBUG: SELECT * FROM phpcr_type_childs WHERE node_type_id = ? ["1"] []
+[2013-06-28 18:53:47] doctrine.DEBUG: SELECT * FROM phpcr_type_nodes [] []
+[2013-06-28 18:53:47] doctrine.DEBUG: SELECT * FROM phpcr_type_props WHERE node_type_id = ? ["1"] []
+[2013-06-28 18:53:47] doctrine.DEBUG: SELECT * FROM phpcr_type_childs WHERE node_type_id = ? ["1"] []
+[2013-06-28 18:53:47] doctrine.DEBUG: "START TRANSACTION" [] []
+[2013-06-28 18:53:47] doctrine.DEBUG: SELECT id FROM phpcr_nodes WHERE path = ? AND workspace_name = ? ["/test","default"] []
+[2013-06-28 18:53:47] doctrine.DEBUG: SELECT id, path FROM phpcr_nodes WHERE (path = ? OR path LIKE ?) AND workspace_name = ? ["/test","/test/%","default"] []
+[2013-06-28 18:53:47] doctrine.DEBUG: DELETE FROM phpcr_nodes WHERE (path = ? OR path LIKE ?) AND workspace_name = ? ["/test","/test/%","default"] []
+[2013-06-28 18:53:47] doctrine.DEBUG: SELECT fk.target_id
+            FROM phpcr_nodes_foreignkeys fk
+                LEFT OUTER JOIN phpcr_nodes n ON fk.target_id = n.id
+            WHERE fk.type = ?
+              AND fk.target_id IN (?)
+              AND fk.source_id NOT IN (?) [9,[2,3],[2,3]] []
+[2013-06-28 18:53:47] doctrine.DEBUG: DELETE FROM phpcr_nodes_foreignkeys WHERE target_id IN (?) [[2,3]] []
+[2013-06-28 18:53:47] doctrine.DEBUG: "COMMIT" [] []
+[2013-06-28 18:53:47] doctrine.DEBUG: "START TRANSACTION" [] []
+[2013-06-28 18:53:47] doctrine.DEBUG: SELECT * FROM phpcr_namespaces [] []
+[2013-06-28 18:53:47] doctrine.DEBUG: INSERT INTO phpcr_nodes (identifier, type, path, local_name, namespace, parent, workspace_name, props, depth, sort_order) SELECT :identifier, :type, :path, :local_name, :namespace, :parent, :workspace_name, :props, :depth, COALESCE(MAX(n.sort_order), 0) + 1 FROM phpcr_nodes n WHERE n.parent = :parent_a {"identifier":"41e0784d-0e9f-423a-822e-3a [...]","type":"nt:unstructured","path":"/test","local_name":"test","namespace":"(binary value)","parent":"(binary value)","workspace_name":"default","props":"<?xml version=\"1.0\" encodi [...]","depth":1,"parent_a":"(binary value)"} []
+[2013-06-28 18:53:47] doctrine.DEBUG: "COMMIT" [] []
+[2013-06-28 18:53:47] doctrine.DEBUG: SELECT * FROM phpcr_nodes
+            WHERE (path LIKE :pathd OR path = :path)
+                AND workspace_name = :workspace
+                AND depth <= ((SELECT depth FROM phpcr_nodes WHERE path = :path AND workspace_name = :workspace) + :fetchDepth)
+            ORDER BY sort_order ASC {":path":"/test/menu",":pathd":"/test/menu/%",":workspace":"default",":fetchDepth":0} []
+[2013-06-28 18:53:47] doctrine.DEBUG: "START TRANSACTION" [] []
+[2013-06-28 18:53:47] doctrine.DEBUG: SELECT * FROM phpcr_nodes
+            WHERE (path LIKE :pathd OR path = :path)
+                AND workspace_name = :workspace
+                AND depth <= ((SELECT depth FROM phpcr_nodes WHERE path = :path AND workspace_name = :workspace) + :fetchDepth)
+            ORDER BY sort_order ASC {":path":"/test",":pathd":"/test/%",":workspace":"default",":fetchDepth":0} []
+[2013-06-28 18:53:47] doctrine.DEBUG: SELECT path FROM phpcr_nodes WHERE parent = ? AND workspace_name = ? ORDER BY sort_order ASC ["/test","default"] []
+[2013-06-28 18:53:47] doctrine.DEBUG: INSERT INTO phpcr_nodes (identifier, type, path, local_name, namespace, parent, workspace_name, props, depth, sort_order) SELECT :identifier, :type, :path, :local_name, :namespace, :parent, :workspace_name, :props, :depth, COALESCE(MAX(n.sort_order), 0) + 1 FROM phpcr_nodes n WHERE n.parent = :parent_a {"identifier":"dda437fd-d926-487d-bbf3-69 [...]","type":"nt:unstructured","path":"/test/menu","local_name":"menu","namespace":"(binary value)","parent":"/test","workspace_name":"default","props":"<?xml version=\"1.0\" encodi [...]","depth":2,"parent_a":"/test"} []
+[2013-06-28 18:53:47] doctrine.DEBUG: "COMMIT" [] []
+[2013-06-28 18:53:59] doctrine.DEBUG: SELECT 1 FROM phpcr_workspaces WHERE name = ? ["default"] []
+[2013-06-28 18:53:59] doctrine.DEBUG: SELECT * FROM phpcr_nodes
+            WHERE (path LIKE :pathd OR path = :path)
+                AND workspace_name = :workspace
+                AND depth <= ((SELECT depth FROM phpcr_nodes WHERE path = :path AND workspace_name = :workspace) + :fetchDepth)
+            ORDER BY sort_order ASC {":path":"(binary value)",":pathd":"(binary value)",":workspace":"default",":fetchDepth":0} []
+[2013-06-28 18:53:59] doctrine.DEBUG: SELECT path FROM phpcr_nodes WHERE parent = ? AND workspace_name = ? ORDER BY sort_order ASC ["(binary value)","default"] []
+[2013-06-28 18:53:59] doctrine.DEBUG: SELECT path AS arraykey, id, path, parent, local_name, namespace, workspace_name, identifier, type, props, depth, sort_order
+            FROM phpcr_nodes WHERE workspace_name = :workspace AND ((path LIKE :pathd0 OR path = :path0) AND depth <= ((SELECT depth FROM phpcr_nodes WHERE path = :path0 AND workspace_name = :workspace) + :fetchDepth)) ORDER BY sort_order ASC {":workspace":"default",":fetchDepth":0,":path0":"/test",":pathd0":"/test/%"} []
+[2013-06-28 18:53:59] doctrine.DEBUG: SELECT path FROM phpcr_nodes WHERE parent = ? AND workspace_name = ? ORDER BY sort_order ASC ["/test","default"] []
+[2013-06-28 18:53:59] doctrine.DEBUG: SELECT * FROM phpcr_type_nodes [] []
+[2013-06-28 18:53:59] doctrine.DEBUG: SELECT * FROM phpcr_type_props WHERE node_type_id = ? ["1"] []
+[2013-06-28 18:53:59] doctrine.DEBUG: SELECT * FROM phpcr_type_childs WHERE node_type_id = ? ["1"] []
+[2013-06-28 18:53:59] doctrine.DEBUG: SELECT * FROM phpcr_type_nodes [] []
+[2013-06-28 18:53:59] doctrine.DEBUG: SELECT * FROM phpcr_type_props WHERE node_type_id = ? ["1"] []
+[2013-06-28 18:53:59] doctrine.DEBUG: SELECT * FROM phpcr_type_childs WHERE node_type_id = ? ["1"] []
+[2013-06-28 18:53:59] doctrine.DEBUG: SELECT * FROM phpcr_type_nodes [] []
+[2013-06-28 18:53:59] doctrine.DEBUG: SELECT * FROM phpcr_type_props WHERE node_type_id = ? ["1"] []
+[2013-06-28 18:53:59] doctrine.DEBUG: SELECT * FROM phpcr_type_childs WHERE node_type_id = ? ["1"] []
+[2013-06-28 18:53:59] doctrine.DEBUG: "START TRANSACTION" [] []
+[2013-06-28 18:53:59] doctrine.DEBUG: SELECT id FROM phpcr_nodes WHERE path = ? AND workspace_name = ? ["/test","default"] []
+[2013-06-28 18:53:59] doctrine.DEBUG: SELECT id, path FROM phpcr_nodes WHERE (path = ? OR path LIKE ?) AND workspace_name = ? ["/test","/test/%","default"] []
+[2013-06-28 18:53:59] doctrine.DEBUG: DELETE FROM phpcr_nodes WHERE (path = ? OR path LIKE ?) AND workspace_name = ? ["/test","/test/%","default"] []
+[2013-06-28 18:53:59] doctrine.DEBUG: SELECT fk.target_id
+            FROM phpcr_nodes_foreignkeys fk
+                LEFT OUTER JOIN phpcr_nodes n ON fk.target_id = n.id
+            WHERE fk.type = ?
+              AND fk.target_id IN (?)
+              AND fk.source_id NOT IN (?) [9,[2,3],[2,3]] []
+[2013-06-28 18:53:59] doctrine.DEBUG: DELETE FROM phpcr_nodes_foreignkeys WHERE target_id IN (?) [[2,3]] []
+[2013-06-28 18:53:59] doctrine.DEBUG: "COMMIT" [] []
+[2013-06-28 18:54:00] doctrine.DEBUG: "START TRANSACTION" [] []
+[2013-06-28 18:54:00] doctrine.DEBUG: SELECT * FROM phpcr_namespaces [] []
+[2013-06-28 18:54:00] doctrine.DEBUG: INSERT INTO phpcr_nodes (identifier, type, path, local_name, namespace, parent, workspace_name, props, depth, sort_order) SELECT :identifier, :type, :path, :local_name, :namespace, :parent, :workspace_name, :props, :depth, COALESCE(MAX(n.sort_order), 0) + 1 FROM phpcr_nodes n WHERE n.parent = :parent_a {"identifier":"41e0784d-0e9f-423a-822e-3a [...]","type":"nt:unstructured","path":"/test","local_name":"test","namespace":"(binary value)","parent":"(binary value)","workspace_name":"default","props":"<?xml version=\"1.0\" encodi [...]","depth":1,"parent_a":"(binary value)"} []
+[2013-06-28 18:54:00] doctrine.DEBUG: "COMMIT" [] []
+[2013-06-28 18:54:00] doctrine.DEBUG: SELECT * FROM phpcr_nodes
+            WHERE (path LIKE :pathd OR path = :path)
+                AND workspace_name = :workspace
+                AND depth <= ((SELECT depth FROM phpcr_nodes WHERE path = :path AND workspace_name = :workspace) + :fetchDepth)
+            ORDER BY sort_order ASC {":path":"/test/menu",":pathd":"/test/menu/%",":workspace":"default",":fetchDepth":0} []
+[2013-06-28 18:54:00] doctrine.DEBUG: "START TRANSACTION" [] []
+[2013-06-28 18:54:00] doctrine.DEBUG: SELECT * FROM phpcr_nodes
+            WHERE (path LIKE :pathd OR path = :path)
+                AND workspace_name = :workspace
+                AND depth <= ((SELECT depth FROM phpcr_nodes WHERE path = :path AND workspace_name = :workspace) + :fetchDepth)
+            ORDER BY sort_order ASC {":path":"/test",":pathd":"/test/%",":workspace":"default",":fetchDepth":0} []
+[2013-06-28 18:54:00] doctrine.DEBUG: SELECT path FROM phpcr_nodes WHERE parent = ? AND workspace_name = ? ORDER BY sort_order ASC ["/test","default"] []
+[2013-06-28 18:54:00] doctrine.DEBUG: INSERT INTO phpcr_nodes (identifier, type, path, local_name, namespace, parent, workspace_name, props, depth, sort_order) SELECT :identifier, :type, :path, :local_name, :namespace, :parent, :workspace_name, :props, :depth, COALESCE(MAX(n.sort_order), 0) + 1 FROM phpcr_nodes n WHERE n.parent = :parent_a {"identifier":"1a598024-d779-4741-aad9-7e [...]","type":"nt:unstructured","path":"/test/menu","local_name":"menu","namespace":"(binary value)","parent":"/test","workspace_name":"default","props":"<?xml version=\"1.0\" encodi [...]","depth":2,"parent_a":"/test"} []
+[2013-06-28 18:54:00] doctrine.DEBUG: "COMMIT" [] []
+[2013-06-28 18:54:00] doctrine.DEBUG: SELECT 1 FROM phpcr_workspaces WHERE name = ? ["default"] []
+[2013-06-28 18:54:00] doctrine.DEBUG: SELECT * FROM phpcr_nodes
+            WHERE (path LIKE :pathd OR path = :path)
+                AND workspace_name = :workspace
+                AND depth <= ((SELECT depth FROM phpcr_nodes WHERE path = :path AND workspace_name = :workspace) + :fetchDepth)
+            ORDER BY sort_order ASC {":path":"/test/menu",":pathd":"/test/menu/%",":workspace":"default",":fetchDepth":0} []
+[2013-06-28 18:54:00] doctrine.DEBUG: SELECT path FROM phpcr_nodes WHERE parent = ? AND workspace_name = ? ORDER BY sort_order ASC ["/test/menu","default"] []
+[2013-06-28 18:54:00] doctrine.DEBUG: SELECT * FROM phpcr_type_nodes [] []
+[2013-06-28 18:54:00] doctrine.DEBUG: SELECT * FROM phpcr_type_props WHERE node_type_id = ? ["1"] []
+[2013-06-28 18:54:00] doctrine.DEBUG: SELECT * FROM phpcr_type_childs WHERE node_type_id = ? ["1"] []
+[2013-06-28 18:54:00] doctrine.DEBUG: SELECT * FROM phpcr_type_nodes [] []
+[2013-06-28 18:54:00] doctrine.DEBUG: SELECT * FROM phpcr_type_props WHERE node_type_id = ? ["1"] []
+[2013-06-28 18:54:00] doctrine.DEBUG: SELECT * FROM phpcr_type_childs WHERE node_type_id = ? ["1"] []
+[2013-06-28 18:54:23] doctrine.DEBUG: SELECT 1 FROM phpcr_workspaces WHERE name = ? ["default"] []
+[2013-06-28 18:54:23] doctrine.DEBUG: SELECT * FROM phpcr_nodes
+            WHERE (path LIKE :pathd OR path = :path)
+                AND workspace_name = :workspace
+                AND depth <= ((SELECT depth FROM phpcr_nodes WHERE path = :path AND workspace_name = :workspace) + :fetchDepth)
+            ORDER BY sort_order ASC {":path":"(binary value)",":pathd":"(binary value)",":workspace":"default",":fetchDepth":0} []
+[2013-06-28 18:54:23] doctrine.DEBUG: SELECT path FROM phpcr_nodes WHERE parent = ? AND workspace_name = ? ORDER BY sort_order ASC ["(binary value)","default"] []
+[2013-06-28 18:54:23] doctrine.DEBUG: SELECT path AS arraykey, id, path, parent, local_name, namespace, workspace_name, identifier, type, props, depth, sort_order
+            FROM phpcr_nodes WHERE workspace_name = :workspace AND ((path LIKE :pathd0 OR path = :path0) AND depth <= ((SELECT depth FROM phpcr_nodes WHERE path = :path0 AND workspace_name = :workspace) + :fetchDepth)) ORDER BY sort_order ASC {":workspace":"default",":fetchDepth":0,":path0":"/test",":pathd0":"/test/%"} []
+[2013-06-28 18:54:23] doctrine.DEBUG: SELECT path FROM phpcr_nodes WHERE parent = ? AND workspace_name = ? ORDER BY sort_order ASC ["/test","default"] []
+[2013-06-28 18:54:23] doctrine.DEBUG: SELECT * FROM phpcr_type_nodes [] []
+[2013-06-28 18:54:23] doctrine.DEBUG: SELECT * FROM phpcr_type_props WHERE node_type_id = ? ["1"] []
+[2013-06-28 18:54:23] doctrine.DEBUG: SELECT * FROM phpcr_type_childs WHERE node_type_id = ? ["1"] []
+[2013-06-28 18:54:23] doctrine.DEBUG: SELECT * FROM phpcr_type_nodes [] []
+[2013-06-28 18:54:23] doctrine.DEBUG: SELECT * FROM phpcr_type_props WHERE node_type_id = ? ["1"] []
+[2013-06-28 18:54:23] doctrine.DEBUG: SELECT * FROM phpcr_type_childs WHERE node_type_id = ? ["1"] []
+[2013-06-28 18:54:23] doctrine.DEBUG: SELECT * FROM phpcr_type_nodes [] []
+[2013-06-28 18:54:23] doctrine.DEBUG: SELECT * FROM phpcr_type_props WHERE node_type_id = ? ["1"] []
+[2013-06-28 18:54:23] doctrine.DEBUG: SELECT * FROM phpcr_type_childs WHERE node_type_id = ? ["1"] []
+[2013-06-28 18:54:23] doctrine.DEBUG: "START TRANSACTION" [] []
+[2013-06-28 18:54:23] doctrine.DEBUG: SELECT id FROM phpcr_nodes WHERE path = ? AND workspace_name = ? ["/test","default"] []
+[2013-06-28 18:54:23] doctrine.DEBUG: SELECT id, path FROM phpcr_nodes WHERE (path = ? OR path LIKE ?) AND workspace_name = ? ["/test","/test/%","default"] []
+[2013-06-28 18:54:23] doctrine.DEBUG: DELETE FROM phpcr_nodes WHERE (path = ? OR path LIKE ?) AND workspace_name = ? ["/test","/test/%","default"] []
+[2013-06-28 18:54:23] doctrine.DEBUG: SELECT fk.target_id
+            FROM phpcr_nodes_foreignkeys fk
+                LEFT OUTER JOIN phpcr_nodes n ON fk.target_id = n.id
+            WHERE fk.type = ?
+              AND fk.target_id IN (?)
+              AND fk.source_id NOT IN (?) [9,[2,3],[2,3]] []
+[2013-06-28 18:54:23] doctrine.DEBUG: DELETE FROM phpcr_nodes_foreignkeys WHERE target_id IN (?) [[2,3]] []
+[2013-06-28 18:54:23] doctrine.DEBUG: "COMMIT" [] []
+[2013-06-28 18:54:23] doctrine.DEBUG: "START TRANSACTION" [] []
+[2013-06-28 18:54:23] doctrine.DEBUG: SELECT * FROM phpcr_namespaces [] []
+[2013-06-28 18:54:23] doctrine.DEBUG: INSERT INTO phpcr_nodes (identifier, type, path, local_name, namespace, parent, workspace_name, props, depth, sort_order) SELECT :identifier, :type, :path, :local_name, :namespace, :parent, :workspace_name, :props, :depth, COALESCE(MAX(n.sort_order), 0) + 1 FROM phpcr_nodes n WHERE n.parent = :parent_a {"identifier":"41e0784d-0e9f-423a-822e-3a [...]","type":"nt:unstructured","path":"/test","local_name":"test","namespace":"(binary value)","parent":"(binary value)","workspace_name":"default","props":"<?xml version=\"1.0\" encodi [...]","depth":1,"parent_a":"(binary value)"} []
+[2013-06-28 18:54:23] doctrine.DEBUG: "COMMIT" [] []
+[2013-06-28 18:54:24] doctrine.DEBUG: SELECT * FROM phpcr_nodes
+            WHERE (path LIKE :pathd OR path = :path)
+                AND workspace_name = :workspace
+                AND depth <= ((SELECT depth FROM phpcr_nodes WHERE path = :path AND workspace_name = :workspace) + :fetchDepth)
+            ORDER BY sort_order ASC {":path":"/test/menu",":pathd":"/test/menu/%",":workspace":"default",":fetchDepth":0} []
+[2013-06-28 18:54:24] doctrine.DEBUG: "START TRANSACTION" [] []
+[2013-06-28 18:54:24] doctrine.DEBUG: SELECT * FROM phpcr_nodes
+            WHERE (path LIKE :pathd OR path = :path)
+                AND workspace_name = :workspace
+                AND depth <= ((SELECT depth FROM phpcr_nodes WHERE path = :path AND workspace_name = :workspace) + :fetchDepth)
+            ORDER BY sort_order ASC {":path":"/test",":pathd":"/test/%",":workspace":"default",":fetchDepth":0} []
+[2013-06-28 18:54:24] doctrine.DEBUG: SELECT path FROM phpcr_nodes WHERE parent = ? AND workspace_name = ? ORDER BY sort_order ASC ["/test","default"] []
+[2013-06-28 18:54:24] doctrine.DEBUG: INSERT INTO phpcr_nodes (identifier, type, path, local_name, namespace, parent, workspace_name, props, depth, sort_order) SELECT :identifier, :type, :path, :local_name, :namespace, :parent, :workspace_name, :props, :depth, COALESCE(MAX(n.sort_order), 0) + 1 FROM phpcr_nodes n WHERE n.parent = :parent_a {"identifier":"a991d586-4fc4-4abd-9b02-1c [...]","type":"nt:unstructured","path":"/test/menu","local_name":"menu","namespace":"(binary value)","parent":"/test","workspace_name":"default","props":"<?xml version=\"1.0\" encodi [...]","depth":2,"parent_a":"/test"} []
+[2013-06-28 18:54:24] doctrine.DEBUG: "COMMIT" [] []
+[2013-06-28 18:54:24] doctrine.DEBUG: SELECT 1 FROM phpcr_workspaces WHERE name = ? ["default"] []
+[2013-06-28 18:54:24] doctrine.DEBUG: SELECT * FROM phpcr_nodes
+            WHERE (path LIKE :pathd OR path = :path)
+                AND workspace_name = :workspace
+                AND depth <= ((SELECT depth FROM phpcr_nodes WHERE path = :path AND workspace_name = :workspace) + :fetchDepth)
+            ORDER BY sort_order ASC {":path":"/test/menu",":pathd":"/test/menu/%",":workspace":"default",":fetchDepth":0} []
+[2013-06-28 18:54:24] doctrine.DEBUG: SELECT path FROM phpcr_nodes WHERE parent = ? AND workspace_name = ? ORDER BY sort_order ASC ["/test/menu","default"] []
+[2013-06-28 18:54:24] doctrine.DEBUG: SELECT * FROM phpcr_type_nodes [] []
+[2013-06-28 18:54:24] doctrine.DEBUG: SELECT * FROM phpcr_type_props WHERE node_type_id = ? ["1"] []
+[2013-06-28 18:54:24] doctrine.DEBUG: SELECT * FROM phpcr_type_childs WHERE node_type_id = ? ["1"] []
+[2013-06-28 18:54:24] doctrine.DEBUG: SELECT * FROM phpcr_type_nodes [] []
+[2013-06-28 18:54:24] doctrine.DEBUG: SELECT * FROM phpcr_type_props WHERE node_type_id = ? ["1"] []
+[2013-06-28 18:54:24] doctrine.DEBUG: SELECT * FROM phpcr_type_childs WHERE node_type_id = ? ["1"] []
+[2013-06-28 19:23:00] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Bundle\FrameworkBundle\EventListener\TestSessionListener::onKernelRequest". [] []
+[2013-06-28 19:23:00] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Bundle\FrameworkBundle\EventListener\SessionListener::onKernelRequest". [] []
+[2013-06-28 19:23:00] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\RouterListener::onKernelRequest". [] []
+[2013-06-28 19:23:00] request.INFO: Matched route "test_phpcr_odm_tree" (parameters: "_controller": "Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Controller\TestController::phpcrOdmTreeAction", "_route": "test_phpcr_odm_tree") [] []
+[2013-06-28 19:23:00] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\LocaleListener::onKernelRequest". [] []
+[2013-06-28 19:23:00] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\Security\Http\Firewall::onKernelRequest". [] []
+[2013-06-28 19:23:00] security.INFO: Populated SecurityContext with an anonymous Token [] []
+[2013-06-28 19:23:01] event.DEBUG: Notified event "kernel.request" to listener "Doctrine\Bundle\PHPCRBundle\EventListener\LocaleListener::onKernelRequest". [] []
+[2013-06-28 19:23:01] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\ErrorsLoggerListener::injectLogger". [] []
+[2013-06-28 19:23:01] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\ErrorsLoggerListener::injectLogger". [] []
+[2013-06-28 19:23:01] doctrine.DEBUG: SELECT 1 FROM phpcr_workspaces WHERE name = ? ["default"] []
+[2013-06-28 19:23:01] doctrine.DEBUG: SELECT * FROM phpcr_nodes
+            WHERE (path LIKE :pathd OR path = :path)
+                AND workspace_name = :workspace
+                AND depth <= ((SELECT depth FROM phpcr_nodes WHERE path = :path AND workspace_name = :workspace) + :fetchDepth)
+            ORDER BY sort_order ASC {":path":"(binary value)",":pathd":"(binary value)",":workspace":"default",":fetchDepth":0} []
+[2013-06-28 19:23:01] doctrine.DEBUG: SELECT path FROM phpcr_nodes WHERE parent = ? AND workspace_name = ? ORDER BY sort_order ASC ["(binary value)","default"] []
+[2013-06-28 19:23:01] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\Security\Http\Firewall\ContextListener::onKernelResponse". [] []
+[2013-06-28 19:23:01] security.DEBUG: Write SecurityContext in the session [] []
+[2013-06-28 19:23:01] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\ResponseListener::onKernelResponse". [] []
+[2013-06-28 19:23:01] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\Security\Http\RememberMe\ResponseListener::onKernelResponse". [] []
+[2013-06-28 19:23:01] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Bundle\FrameworkBundle\EventListener\TestSessionListener::onKernelResponse". [] []
+[2013-06-28 19:23:01] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\StreamedResponseListener::onKernelResponse". [] []
+[2013-06-28 19:25:01] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Bundle\FrameworkBundle\EventListener\TestSessionListener::onKernelRequest". [] []
+[2013-06-28 19:25:01] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Bundle\FrameworkBundle\EventListener\SessionListener::onKernelRequest". [] []
+[2013-06-28 19:25:01] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\RouterListener::onKernelRequest". [] []
+[2013-06-28 19:25:01] request.INFO: Matched route "test_phpcr_odm_tree" (parameters: "_controller": "Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Controller\TestController::phpcrOdmTreeAction", "_route": "test_phpcr_odm_tree") [] []
+[2013-06-28 19:25:01] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\LocaleListener::onKernelRequest". [] []
+[2013-06-28 19:25:01] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\Security\Http\Firewall::onKernelRequest". [] []
+[2013-06-28 19:25:01] security.INFO: Populated SecurityContext with an anonymous Token [] []
+[2013-06-28 19:25:01] event.DEBUG: Notified event "kernel.request" to listener "Doctrine\Bundle\PHPCRBundle\EventListener\LocaleListener::onKernelRequest". [] []
+[2013-06-28 19:25:01] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\ErrorsLoggerListener::injectLogger". [] []
+[2013-06-28 19:25:01] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\ErrorsLoggerListener::injectLogger". [] []
+[2013-06-28 19:25:01] doctrine.DEBUG: SELECT 1 FROM phpcr_workspaces WHERE name = ? ["default"] []
+[2013-06-28 19:25:01] doctrine.DEBUG: SELECT * FROM phpcr_nodes
+            WHERE (path LIKE :pathd OR path = :path)
+                AND workspace_name = :workspace
+                AND depth <= ((SELECT depth FROM phpcr_nodes WHERE path = :path AND workspace_name = :workspace) + :fetchDepth)
+            ORDER BY sort_order ASC {":path":"(binary value)",":pathd":"(binary value)",":workspace":"default",":fetchDepth":0} []
+[2013-06-28 19:25:01] doctrine.DEBUG: SELECT path FROM phpcr_nodes WHERE parent = ? AND workspace_name = ? ORDER BY sort_order ASC ["(binary value)","default"] []
+[2013-06-28 19:25:01] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\Security\Http\Firewall\ContextListener::onKernelResponse". [] []
+[2013-06-28 19:25:01] security.DEBUG: Write SecurityContext in the session [] []
+[2013-06-28 19:25:01] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\ResponseListener::onKernelResponse". [] []
+[2013-06-28 19:25:01] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\Security\Http\RememberMe\ResponseListener::onKernelResponse". [] []
+[2013-06-28 19:25:01] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Bundle\FrameworkBundle\EventListener\TestSessionListener::onKernelResponse". [] []
+[2013-06-28 19:25:01] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\StreamedResponseListener::onKernelResponse". [] []
+[2013-06-28 19:25:02] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Bundle\FrameworkBundle\EventListener\TestSessionListener::onKernelRequest". [] []
+[2013-06-28 19:25:02] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Bundle\FrameworkBundle\EventListener\SessionListener::onKernelRequest". [] []
+[2013-06-28 19:25:02] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\RouterListener::onKernelRequest". [] []
+[2013-06-28 19:25:02] event.DEBUG: Notified event "kernel.exception" to listener "Symfony\Component\HttpKernel\EventListener\ExceptionListener::onKernelException". [] []
+[2013-06-28 19:25:02] request.ERROR: Uncaught PHP Exception Symfony\Component\HttpKernel\Exception\NotFoundHttpException: "No route found for "GET /bundles/cmftreeui/components/fancytree/src/jquery.fancytree.js"" at /home/daniel/www/TreeUiBundle/Tests/Resources/app/cache/classes.php line 2743 {"exception":"[object] (Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException: No route found for \"GET /bundles/cmftreeui/components/fancytree/src/jquery.fancytree.js\" at /home/daniel/www/TreeUiBundle/Tests/Resources/app/cache/classes.php:2743, Symfony\\Component\\Routing\\Exception\\ResourceNotFoundException:  at /home/daniel/www/TreeUiBundle/Tests/Resources/app/cache/appTestUrlMatcher.php:47)"} []
+[2013-06-28 19:25:02] event.DEBUG: Notified event "kernel.request" to listener "closure". [] []
+[2013-06-28 19:25:02] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Bundle\FrameworkBundle\EventListener\TestSessionListener::onKernelRequest". [] []
+[2013-06-28 19:25:02] event.DEBUG: Notified event "kernel.request" to listener "closure". [] []
+[2013-06-28 19:25:02] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Bundle\FrameworkBundle\EventListener\SessionListener::onKernelRequest". [] []
+[2013-06-28 19:25:02] event.DEBUG: Notified event "kernel.request" to listener "closure". [] []
+[2013-06-28 19:25:02] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\RouterListener::onKernelRequest". [] []
+[2013-06-28 19:25:02] event.DEBUG: Notified event "kernel.request" to listener "closure". [] []
+[2013-06-28 19:25:02] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\LocaleListener::onKernelRequest". [] []
+[2013-06-28 19:25:02] event.DEBUG: Notified event "kernel.request" to listener "closure". [] []
+[2013-06-28 19:25:02] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\Security\Http\Firewall::onKernelRequest". [] []
+[2013-06-28 19:25:02] event.DEBUG: Notified event "kernel.request" to listener "closure". [] []
+[2013-06-28 19:25:02] event.DEBUG: Notified event "kernel.request" to listener "Doctrine\Bundle\PHPCRBundle\EventListener\LocaleListener::onKernelRequest". [] []
+[2013-06-28 19:25:02] event.DEBUG: Notified event "kernel.request" to listener "closure". [] []
+[2013-06-28 19:25:02] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\ErrorsLoggerListener::injectLogger". [] []
+[2013-06-28 19:25:02] event.DEBUG: Notified event "kernel.request" to listener "closure". [] []
+[2013-06-28 19:25:02] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\ErrorsLoggerListener::injectLogger". [] []
+[2013-06-28 19:25:04] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\ResponseListener::onKernelResponse". [] []
+[2013-06-28 19:25:04] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\Security\Http\RememberMe\ResponseListener::onKernelResponse". [] []
+[2013-06-28 19:25:04] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Bundle\FrameworkBundle\EventListener\TestSessionListener::onKernelResponse". [] []
+[2013-06-28 19:25:04] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\StreamedResponseListener::onKernelResponse". [] []
+[2013-06-28 19:25:04] event.DEBUG: Listener "Symfony\Component\HttpKernel\EventListener\ExceptionListener::onKernelException" stopped propagation of the event "kernel.exception". [] []
+[2013-06-28 19:25:04] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\ResponseListener::onKernelResponse". [] []
+[2013-06-28 19:25:04] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\Security\Http\RememberMe\ResponseListener::onKernelResponse". [] []
+[2013-06-28 19:25:04] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Bundle\FrameworkBundle\EventListener\TestSessionListener::onKernelResponse". [] []
+[2013-06-28 19:25:04] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\StreamedResponseListener::onKernelResponse". [] []
+[2013-06-28 19:25:04] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Bundle\FrameworkBundle\EventListener\TestSessionListener::onKernelRequest". [] []
+[2013-06-28 19:25:04] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Bundle\FrameworkBundle\EventListener\SessionListener::onKernelRequest". [] []
+[2013-06-28 19:25:04] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\RouterListener::onKernelRequest". [] []
+[2013-06-28 19:25:04] event.DEBUG: Notified event "kernel.exception" to listener "Symfony\Component\HttpKernel\EventListener\ExceptionListener::onKernelException". [] []
+[2013-06-28 19:25:04] request.ERROR: Uncaught PHP Exception Symfony\Component\HttpKernel\Exception\NotFoundHttpException: "No route found for "GET /bundles/cmftreeui/components/fancytree/src/jquery.fancytree.js"" at /home/daniel/www/TreeUiBundle/Tests/Resources/app/cache/classes.php line 2743 {"exception":"[object] (Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException: No route found for \"GET /bundles/cmftreeui/components/fancytree/src/jquery.fancytree.js\" at /home/daniel/www/TreeUiBundle/Tests/Resources/app/cache/classes.php:2743, Symfony\\Component\\Routing\\Exception\\ResourceNotFoundException:  at /home/daniel/www/TreeUiBundle/Tests/Resources/app/cache/appTestUrlMatcher.php:47)"} []
+[2013-06-28 19:25:04] event.DEBUG: Notified event "kernel.request" to listener "closure". [] []
+[2013-06-28 19:25:04] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Bundle\FrameworkBundle\EventListener\TestSessionListener::onKernelRequest". [] []
+[2013-06-28 19:25:04] event.DEBUG: Notified event "kernel.request" to listener "closure". [] []
+[2013-06-28 19:25:04] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Bundle\FrameworkBundle\EventListener\SessionListener::onKernelRequest". [] []
+[2013-06-28 19:25:04] event.DEBUG: Notified event "kernel.request" to listener "closure". [] []
+[2013-06-28 19:25:04] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\RouterListener::onKernelRequest". [] []
+[2013-06-28 19:25:04] event.DEBUG: Notified event "kernel.request" to listener "closure". [] []
+[2013-06-28 19:25:04] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\LocaleListener::onKernelRequest". [] []
+[2013-06-28 19:25:04] event.DEBUG: Notified event "kernel.request" to listener "closure". [] []
+[2013-06-28 19:25:04] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\Security\Http\Firewall::onKernelRequest". [] []
+[2013-06-28 19:25:04] event.DEBUG: Notified event "kernel.request" to listener "closure". [] []
+[2013-06-28 19:25:04] event.DEBUG: Notified event "kernel.request" to listener "Doctrine\Bundle\PHPCRBundle\EventListener\LocaleListener::onKernelRequest". [] []
+[2013-06-28 19:25:04] event.DEBUG: Notified event "kernel.request" to listener "closure". [] []
+[2013-06-28 19:25:04] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\ErrorsLoggerListener::injectLogger". [] []
+[2013-06-28 19:25:04] event.DEBUG: Notified event "kernel.request" to listener "closure". [] []
+[2013-06-28 19:25:04] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\ErrorsLoggerListener::injectLogger". [] []
+[2013-06-28 19:25:05] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\ResponseListener::onKernelResponse". [] []
+[2013-06-28 19:25:05] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\Security\Http\RememberMe\ResponseListener::onKernelResponse". [] []
+[2013-06-28 19:25:05] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Bundle\FrameworkBundle\EventListener\TestSessionListener::onKernelResponse". [] []
+[2013-06-28 19:25:05] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\StreamedResponseListener::onKernelResponse". [] []
+[2013-06-28 19:25:05] event.DEBUG: Listener "Symfony\Component\HttpKernel\EventListener\ExceptionListener::onKernelException" stopped propagation of the event "kernel.exception". [] []
+[2013-06-28 19:25:05] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\ResponseListener::onKernelResponse". [] []
+[2013-06-28 19:25:05] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\Security\Http\RememberMe\ResponseListener::onKernelResponse". [] []
+[2013-06-28 19:25:05] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Bundle\FrameworkBundle\EventListener\TestSessionListener::onKernelResponse". [] []
+[2013-06-28 19:25:05] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\StreamedResponseListener::onKernelResponse". [] []
+[2013-06-28 19:25:51] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Bundle\FrameworkBundle\EventListener\TestSessionListener::onKernelRequest". [] []
+[2013-06-28 19:25:51] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Bundle\FrameworkBundle\EventListener\SessionListener::onKernelRequest". [] []
+[2013-06-28 19:25:51] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\RouterListener::onKernelRequest". [] []
+[2013-06-28 19:25:51] request.INFO: Matched route "test_phpcr_odm_tree" (parameters: "_controller": "Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Controller\TestController::phpcrOdmTreeAction", "_route": "test_phpcr_odm_tree") [] []
+[2013-06-28 19:25:51] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\LocaleListener::onKernelRequest". [] []
+[2013-06-28 19:25:51] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\Security\Http\Firewall::onKernelRequest". [] []
+[2013-06-28 19:25:51] security.INFO: Populated SecurityContext with an anonymous Token [] []
+[2013-06-28 19:25:51] event.DEBUG: Notified event "kernel.request" to listener "Doctrine\Bundle\PHPCRBundle\EventListener\LocaleListener::onKernelRequest". [] []
+[2013-06-28 19:25:51] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\ErrorsLoggerListener::injectLogger". [] []
+[2013-06-28 19:25:51] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\ErrorsLoggerListener::injectLogger". [] []
+[2013-06-28 19:25:52] doctrine.DEBUG: SELECT 1 FROM phpcr_workspaces WHERE name = ? ["default"] []
+[2013-06-28 19:25:52] doctrine.DEBUG: SELECT * FROM phpcr_nodes
+            WHERE (path LIKE :pathd OR path = :path)
+                AND workspace_name = :workspace
+                AND depth <= ((SELECT depth FROM phpcr_nodes WHERE path = :path AND workspace_name = :workspace) + :fetchDepth)
+            ORDER BY sort_order ASC {":path":"(binary value)",":pathd":"(binary value)",":workspace":"default",":fetchDepth":0} []
+[2013-06-28 19:25:52] doctrine.DEBUG: SELECT path FROM phpcr_nodes WHERE parent = ? AND workspace_name = ? ORDER BY sort_order ASC ["(binary value)","default"] []
+[2013-06-28 19:25:52] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\Security\Http\Firewall\ContextListener::onKernelResponse". [] []
+[2013-06-28 19:25:52] security.DEBUG: Write SecurityContext in the session [] []
+[2013-06-28 19:25:52] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\ResponseListener::onKernelResponse". [] []
+[2013-06-28 19:25:52] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\Security\Http\RememberMe\ResponseListener::onKernelResponse". [] []
+[2013-06-28 19:25:52] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Bundle\FrameworkBundle\EventListener\TestSessionListener::onKernelResponse". [] []
+[2013-06-28 19:25:52] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\StreamedResponseListener::onKernelResponse". [] []
+[2013-06-28 19:25:52] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Bundle\FrameworkBundle\EventListener\TestSessionListener::onKernelRequest". [] []
+[2013-06-28 19:25:52] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Bundle\FrameworkBundle\EventListener\SessionListener::onKernelRequest". [] []
+[2013-06-28 19:25:52] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\RouterListener::onKernelRequest". [] []
+[2013-06-28 19:25:52] event.DEBUG: Notified event "kernel.exception" to listener "Symfony\Component\HttpKernel\EventListener\ExceptionListener::onKernelException". [] []
+[2013-06-28 19:25:52] request.ERROR: Uncaught PHP Exception Symfony\Component\HttpKernel\Exception\NotFoundHttpException: "No route found for "GET /bundles/cmftreeui/components/fancytree/src/jquery.fancytree.js"" at /home/daniel/www/TreeUiBundle/Tests/Resources/app/cache/classes.php line 2743 {"exception":"[object] (Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException: No route found for \"GET /bundles/cmftreeui/components/fancytree/src/jquery.fancytree.js\" at /home/daniel/www/TreeUiBundle/Tests/Resources/app/cache/classes.php:2743, Symfony\\Component\\Routing\\Exception\\ResourceNotFoundException:  at /home/daniel/www/TreeUiBundle/Tests/Resources/app/cache/appTestUrlMatcher.php:47)"} []
+[2013-06-28 19:25:52] event.DEBUG: Notified event "kernel.request" to listener "closure". [] []
+[2013-06-28 19:25:52] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Bundle\FrameworkBundle\EventListener\TestSessionListener::onKernelRequest". [] []
+[2013-06-28 19:25:52] event.DEBUG: Notified event "kernel.request" to listener "closure". [] []
+[2013-06-28 19:25:52] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Bundle\FrameworkBundle\EventListener\SessionListener::onKernelRequest". [] []
+[2013-06-28 19:25:52] event.DEBUG: Notified event "kernel.request" to listener "closure". [] []
+[2013-06-28 19:25:52] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\RouterListener::onKernelRequest". [] []
+[2013-06-28 19:25:52] event.DEBUG: Notified event "kernel.request" to listener "closure". [] []
+[2013-06-28 19:25:52] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\LocaleListener::onKernelRequest". [] []
+[2013-06-28 19:25:52] event.DEBUG: Notified event "kernel.request" to listener "closure". [] []
+[2013-06-28 19:25:52] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\Security\Http\Firewall::onKernelRequest". [] []
+[2013-06-28 19:25:52] event.DEBUG: Notified event "kernel.request" to listener "closure". [] []
+[2013-06-28 19:25:52] event.DEBUG: Notified event "kernel.request" to listener "Doctrine\Bundle\PHPCRBundle\EventListener\LocaleListener::onKernelRequest". [] []
+[2013-06-28 19:25:52] event.DEBUG: Notified event "kernel.request" to listener "closure". [] []
+[2013-06-28 19:25:52] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\ErrorsLoggerListener::injectLogger". [] []
+[2013-06-28 19:25:52] event.DEBUG: Notified event "kernel.request" to listener "closure". [] []
+[2013-06-28 19:25:52] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\ErrorsLoggerListener::injectLogger". [] []
+[2013-06-28 19:25:53] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\ResponseListener::onKernelResponse". [] []
+[2013-06-28 19:25:53] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\Security\Http\RememberMe\ResponseListener::onKernelResponse". [] []
+[2013-06-28 19:25:53] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Bundle\FrameworkBundle\EventListener\TestSessionListener::onKernelResponse". [] []
+[2013-06-28 19:25:53] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\StreamedResponseListener::onKernelResponse". [] []
+[2013-06-28 19:25:53] event.DEBUG: Listener "Symfony\Component\HttpKernel\EventListener\ExceptionListener::onKernelException" stopped propagation of the event "kernel.exception". [] []
+[2013-06-28 19:25:53] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\ResponseListener::onKernelResponse". [] []
+[2013-06-28 19:25:53] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\Security\Http\RememberMe\ResponseListener::onKernelResponse". [] []
+[2013-06-28 19:25:53] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Bundle\FrameworkBundle\EventListener\TestSessionListener::onKernelResponse". [] []
+[2013-06-28 19:25:53] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\StreamedResponseListener::onKernelResponse". [] []
+[2013-06-28 19:26:18] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Bundle\FrameworkBundle\EventListener\TestSessionListener::onKernelRequest". [] []
+[2013-06-28 19:26:18] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Bundle\FrameworkBundle\EventListener\SessionListener::onKernelRequest". [] []
+[2013-06-28 19:26:18] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\RouterListener::onKernelRequest". [] []
+[2013-06-28 19:26:18] request.INFO: Matched route "test_phpcr_odm_tree" (parameters: "_controller": "Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Controller\TestController::phpcrOdmTreeAction", "_route": "test_phpcr_odm_tree") [] []
+[2013-06-28 19:26:18] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\LocaleListener::onKernelRequest". [] []
+[2013-06-28 19:26:18] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\Security\Http\Firewall::onKernelRequest". [] []
+[2013-06-28 19:26:18] security.INFO: Populated SecurityContext with an anonymous Token [] []
+[2013-06-28 19:26:18] event.DEBUG: Notified event "kernel.request" to listener "Doctrine\Bundle\PHPCRBundle\EventListener\LocaleListener::onKernelRequest". [] []
+[2013-06-28 19:26:18] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\ErrorsLoggerListener::injectLogger". [] []
+[2013-06-28 19:26:18] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\ErrorsLoggerListener::injectLogger". [] []
+[2013-06-28 19:26:18] doctrine.DEBUG: SELECT 1 FROM phpcr_workspaces WHERE name = ? ["default"] []
+[2013-06-28 19:26:18] doctrine.DEBUG: SELECT * FROM phpcr_nodes
+            WHERE (path LIKE :pathd OR path = :path)
+                AND workspace_name = :workspace
+                AND depth <= ((SELECT depth FROM phpcr_nodes WHERE path = :path AND workspace_name = :workspace) + :fetchDepth)
+            ORDER BY sort_order ASC {":path":"(binary value)",":pathd":"(binary value)",":workspace":"default",":fetchDepth":0} []
+[2013-06-28 19:26:18] doctrine.DEBUG: SELECT path FROM phpcr_nodes WHERE parent = ? AND workspace_name = ? ORDER BY sort_order ASC ["(binary value)","default"] []
+[2013-06-28 19:26:18] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\Security\Http\Firewall\ContextListener::onKernelResponse". [] []
+[2013-06-28 19:26:18] security.DEBUG: Write SecurityContext in the session [] []
+[2013-06-28 19:26:18] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\ResponseListener::onKernelResponse". [] []
+[2013-06-28 19:26:18] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\Security\Http\RememberMe\ResponseListener::onKernelResponse". [] []
+[2013-06-28 19:26:18] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Bundle\FrameworkBundle\EventListener\TestSessionListener::onKernelResponse". [] []
+[2013-06-28 19:26:18] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\StreamedResponseListener::onKernelResponse". [] []
+[2013-06-28 19:26:19] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Bundle\FrameworkBundle\EventListener\TestSessionListener::onKernelRequest". [] []
+[2013-06-28 19:26:19] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Bundle\FrameworkBundle\EventListener\SessionListener::onKernelRequest". [] []
+[2013-06-28 19:26:19] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\RouterListener::onKernelRequest". [] []
+[2013-06-28 19:26:19] event.DEBUG: Notified event "kernel.exception" to listener "Symfony\Component\HttpKernel\EventListener\ExceptionListener::onKernelException". [] []
+[2013-06-28 19:26:19] request.ERROR: Uncaught PHP Exception Symfony\Component\HttpKernel\Exception\NotFoundHttpException: "No route found for "GET /bundles/cmftreeui/components/fancytree/src/jquery.fancytree.js"" at /home/daniel/www/TreeUiBundle/Tests/Resources/app/cache/classes.php line 2743 {"exception":"[object] (Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException: No route found for \"GET /bundles/cmftreeui/components/fancytree/src/jquery.fancytree.js\" at /home/daniel/www/TreeUiBundle/Tests/Resources/app/cache/classes.php:2743, Symfony\\Component\\Routing\\Exception\\ResourceNotFoundException:  at /home/daniel/www/TreeUiBundle/Tests/Resources/app/cache/appTestUrlMatcher.php:47)"} []
+[2013-06-28 19:26:19] event.DEBUG: Notified event "kernel.request" to listener "closure". [] []
+[2013-06-28 19:26:19] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Bundle\FrameworkBundle\EventListener\TestSessionListener::onKernelRequest". [] []
+[2013-06-28 19:26:19] event.DEBUG: Notified event "kernel.request" to listener "closure". [] []
+[2013-06-28 19:26:19] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Bundle\FrameworkBundle\EventListener\SessionListener::onKernelRequest". [] []
+[2013-06-28 19:26:19] event.DEBUG: Notified event "kernel.request" to listener "closure". [] []
+[2013-06-28 19:26:19] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\RouterListener::onKernelRequest". [] []
+[2013-06-28 19:26:19] event.DEBUG: Notified event "kernel.request" to listener "closure". [] []
+[2013-06-28 19:26:19] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\LocaleListener::onKernelRequest". [] []
+[2013-06-28 19:26:19] event.DEBUG: Notified event "kernel.request" to listener "closure". [] []
+[2013-06-28 19:26:19] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\Security\Http\Firewall::onKernelRequest". [] []
+[2013-06-28 19:26:19] event.DEBUG: Notified event "kernel.request" to listener "closure". [] []
+[2013-06-28 19:26:19] event.DEBUG: Notified event "kernel.request" to listener "Doctrine\Bundle\PHPCRBundle\EventListener\LocaleListener::onKernelRequest". [] []
+[2013-06-28 19:26:19] event.DEBUG: Notified event "kernel.request" to listener "closure". [] []
+[2013-06-28 19:26:19] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\ErrorsLoggerListener::injectLogger". [] []
+[2013-06-28 19:26:19] event.DEBUG: Notified event "kernel.request" to listener "closure". [] []
+[2013-06-28 19:26:19] event.DEBUG: Notified event "kernel.request" to listener "Symfony\Component\HttpKernel\EventListener\ErrorsLoggerListener::injectLogger". [] []
+[2013-06-28 19:26:20] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\ResponseListener::onKernelResponse". [] []
+[2013-06-28 19:26:20] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\Security\Http\RememberMe\ResponseListener::onKernelResponse". [] []
+[2013-06-28 19:26:20] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Bundle\FrameworkBundle\EventListener\TestSessionListener::onKernelResponse". [] []
+[2013-06-28 19:26:20] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\StreamedResponseListener::onKernelResponse". [] []
+[2013-06-28 19:26:20] event.DEBUG: Listener "Symfony\Component\HttpKernel\EventListener\ExceptionListener::onKernelException" stopped propagation of the event "kernel.exception". [] []
+[2013-06-28 19:26:20] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\ResponseListener::onKernelResponse". [] []
+[2013-06-28 19:26:20] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\Security\Http\RememberMe\ResponseListener::onKernelResponse". [] []
+[2013-06-28 19:26:20] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Bundle\FrameworkBundle\EventListener\TestSessionListener::onKernelResponse". [] []
+[2013-06-28 19:26:20] event.DEBUG: Notified event "kernel.response" to listener "Symfony\Component\HttpKernel\EventListener\StreamedResponseListener::onKernelResponse". [] []

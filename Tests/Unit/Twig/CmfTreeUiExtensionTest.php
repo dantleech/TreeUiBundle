@@ -42,7 +42,7 @@ class CmfTreeUiExtensionTest extends \PHPUnit_Framework_Testcase
     public function testRenderTree()
     {
         $this->factory->expects($this->once())
-            ->method('createTree')
+            ->method('getTree')
             ->with('foo')
             ->will($this->returnValue($this->tree));
         $this->tree->expects($this->once())

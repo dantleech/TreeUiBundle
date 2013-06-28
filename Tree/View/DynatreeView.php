@@ -66,7 +66,9 @@ class DynatreeView implements ViewInterface
 
     public function getJavascripts()
     {
-        return array();
+        return array(
+            'bundles/cmftreeui/components/fancytree/src/jquery.fancytree.js'
+        );
     }
 
     public function getStylesheets()

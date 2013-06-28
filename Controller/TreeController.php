@@ -20,7 +20,7 @@ class TreeController
     protected function getTree(Request $request)
     {
         $name = $request->get('_tree_name') ? : null;
-        return $this->treeFactory->createTree($name);
+        return $this->treeFactory->getTree($name);
     }
 
     public function viewAction(Request $request)

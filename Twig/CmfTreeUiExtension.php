@@ -52,7 +52,7 @@ class CmfTreeUiExtension extends \Twig_Extension
 
     public function renderTree($name, $options = array())
     {
-        $tree = $this->tf->createTree($name);
+        $tree = $this->tf->getTree($name);
         return $tree->getView()->getOutput();
     }
 
