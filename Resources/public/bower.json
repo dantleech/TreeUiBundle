@@ -1,0 +1,10 @@
+{
+  "name": "TreeUiBundle",
+  "version": "0.0.1",
+  "directory": "Resources/public/bower",
+  "dependencies": {
+      "jquery": "latest",
+      "fancytree": "latest",
+      "requirejs": "latest"
+  }
+}

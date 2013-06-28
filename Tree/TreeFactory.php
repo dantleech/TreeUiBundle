@@ -13,6 +13,10 @@ class TreeFactory
         $this->container = $container;
     }
 
+    public function registerTreeServiceId($name, $serviceId)
+    {
+    }
+
     public function createTree($name = null)
     {
         if (null === $name) {
@@ -20,5 +24,13 @@ class TreeFactory
         }
 
         return $this->container->get('cmf_tree_ui.tree.'.$name);
+    }
+
+    public function getStylesheets()
+    {
+    }
+
+    public function getJavascripts()
+    {
     }
 }

@@ -24,8 +24,15 @@ class PhpcrOdmModel implements ModelInterface
     protected function getMetadata($object)
     {
         $classFqn = ClassUtils::getClass($object);
+        $meta = $this->mdf->getMetadataForClass($classFqn);
 
-        $this->mdf->getMetadataForClass($classFqn);
+        if (null === $meta) {
+            throw new \Exception(sprintf(
+                'Cannot get metadata for class "%s"',
+                $classFqn
+            ));
+        }
+
         return $meta->getOutsideClassMetadata();
     }
 

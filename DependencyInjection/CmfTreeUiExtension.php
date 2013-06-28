@@ -28,6 +28,7 @@ class CmfTreeUiExtension extends Extension
         $loader->load('twig.xml');
 
         $config = $processor->processConfiguration($configuration, $configs);
+        $factory = $container->getDefinition('cmf_tree_ui.tree_factory');
 
         foreach ($config['tree'] as $name => $treeConfig) {
             if (!$container->hasDefinition($treeConfig['model_service_id'])) {
@@ -48,7 +49,9 @@ class CmfTreeUiExtension extends Extension
             $treeDef->addArgument($name);
             $treeDef->addArgument(new Reference($treeConfig['model_service_id']));
             $treeDef->addArgument(new Reference($treeConfig['view_service_id']));
-            $container->setDefinition($this->getAlias() . '.tree.'.$name, $treeDef);
+            $serviceId = $this->getAlias() . '.tree.'.$name;
+            $container->setDefinition($serviceId, $treeDef);
+            $factory->addMethodCall('registerTreeServiceId', array($name, $serviceId));
         }
 
         $config['metadata']['mapping_directories']['Doctrine\ODM\PHPCR\Document'] = __DIR__.'/../Resources/config/mapping/DoctrineODMPHPCRDocument';

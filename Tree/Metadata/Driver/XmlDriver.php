@@ -15,9 +15,7 @@ class XmlDriver extends AbstractFileDriver implements DriverInterface
 
     public function loadMetadataFromFile(\ReflectionClass $class, $file)
     {
-        $meta = new TreeMetadata($class);
-
-
+        $meta = new TreeMetadata($class->name);
         $xml = simplexml_load_file($file);
 
         if (count($xml->children()) > 1) {
@@ -34,8 +32,8 @@ class XmlDriver extends AbstractFileDriver implements DriverInterface
         $xmlMapping = $xml->children();
         $xmlMapping = $xmlMapping->{'tree-object'};
 
-        $meta->labelMethod = $xmlMapping['label-method'][0];
-        $meta->idMethod = $xmlMapping['id-method'][0];
+        $meta->labelMethod = (string) $xmlMapping['label-method'][0];
+        $meta->idMethod = (string) $xmlMapping['id-method'][0];
 
         return $meta;
     }

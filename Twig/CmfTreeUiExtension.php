@@ -24,10 +24,17 @@ class CmfTreeUiExtension extends \Twig_Extension
             'cmf_tree_ui_render' => new \Twig_Function_Method(
                 $this, 'renderTree', array(
                     'is_safe' => array(
-                        'raw'
+                        'html',
+                        'javascript',
                     )
                 )
-            )
+            ),
+            'cmf_tree_ui_javascripts' => new \Twig_Function_Method(
+                $this, 'getJavascripts'
+            ),
+            'cmf_tree_ui_stylesheets' => new \Twig_Function_Method(
+                $this, 'getStylesheets'
+            ),
         );
 
         return $functions;
@@ -47,5 +54,15 @@ class CmfTreeUiExtension extends \Twig_Extension
     {
         $tree = $this->tf->createTree($name);
         return $tree->getView()->getOutput();
+    }
+
+    public function getStylesheets()
+    {
+        return $this->tf->getStylesheets();
+    }
+
+    public function getJavascripts()
+    {
+        return $this->tf->getJavascripts();
     }
 }

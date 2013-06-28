@@ -1,3 +1,15 @@
+<html>
+<head>
+    <title>CMFTreeUiBundle Test Application</title>
+    {% for javascript in cmf_tree_ui_javascripts() %}
+        <script type="text/javascript" src="{{ asset(javascript) }}"></script>
+    {% endfor %}
+    {% for stylesheet in cmf_tree_ui_javascripts() %}
+        <link rel="stylesheet" href="{{ asset(stylesheet) }}"/>
+    {% endfor %}
+</head>
+
 <h1><a href="{{ path("test_home") }}">CmfTreeUiBundle Test Application</a></h1>
 {% block content %}
 {% endblock %}
+</html>

@@ -11,7 +11,7 @@
             >
             <argument 
                 type="service" 
-                id="cmf_tree_ui.metadata.driver.annotation"
+                id="cmf_tree_ui.metadata.driver.chain"
                 />
         </service>
 
@@ -25,12 +25,12 @@
 
         <!-- Chain Driver !-->
         <service
-            id="cmf_tree_ui.metadata.driver_chain"
+            id="cmf_tree_ui.metadata.driver.chain"
             class="Metadata\Driver\DriverChain"
             >
             <argument type="collection">
-                <argument type="service" id="cmf_tree_ui.metadata.driver.annotation"/>
                 <argument type="service" id="cmf_tree_ui.metadata.driver.xml"/>
+                <argument type="service" id="cmf_tree_ui.metadata.driver.annotation"/>
             </argument>
         </service>
 
