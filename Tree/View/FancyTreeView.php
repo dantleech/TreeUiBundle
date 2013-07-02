@@ -8,17 +8,28 @@ use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewInterface;
 use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Tree;
 use Symfony\Bundle\TwigBundle\TwigEngine;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Cmf\Bundle\TreeUiBundle\Tree\TreeViewOptionsResolver;
 
+/**
+ * STATUS: Cannot seem to get nodes to be auto-expanded and selected.
+ *         Going to try implementing Dynatree also.
+ */
 class FancyTreeView implements ViewInterface
 {
     protected $tree;
     protected $templating;
     protected $urlGenerator;
+    protected $optionsResolver;
 
-    public function __construct(\Twig_Environment $templating, UrlGeneratorInterface $urlGenerator)
+    public function __construct(
+        \Twig_Environment $templating, 
+        UrlGeneratorInterface $urlGenerator,
+        TreeViewOptionsResolver $resolver
+    )
     {
         $this->templating = $templating;
         $this->urlGenerator = $urlGenerator;
+        $this->optionsResolver = $resolver;
     }
 
     public function setTree(Tree $tree)
@@ -31,8 +42,11 @@ class FancyTreeView implements ViewInterface
         return $this->tree->getModel();
     }
 
-    public function getOutput()
+    public function getOutput($options = array())
     {
+        $options = $this->optionsResolver->resolve($options);
+        $options['select_node'] = md5($options['select_node']);
+
         $basePath = $this->tree->getConfig()->getBasePath();
         $rootNode = $this->getModel()->getNode($basePath);
         $uniqId = uniqid();
@@ -41,6 +55,7 @@ class FancyTreeView implements ViewInterface
             'rootNode' => $rootNode,
             'tree' => $this->tree,
             'uniqId' => $uniqId,
+            'options' => $options,
         ));
 
         return $content;
@@ -58,7 +73,7 @@ class FancyTreeView implements ViewInterface
 
         foreach ($children as $child) {
             $aNode['title'] = $child->getLabel();
-            $aNode['key'] = $child->getId();
+            $aNode['key'] = md5($child->getId());
             $aNode['lazy'] = $child->hasChildren();
             $aNode['folder'] = $child->hasChildren();
             $aNode['children_url'] = $this->urlGenerator->generate('_cmf_tree_ui_children', array(
@@ -83,7 +98,7 @@ class FancyTreeView implements ViewInterface
     public function getStylesheets()
     {
         return array(
-            'bundles/cmftreeui/components/fancytree/src/skin-lion/ui.fancytree.css',
+            'bundles/cmftreeui/components/fancytree/src/skin-xp/ui.fancytree.css',
         );
     }
 }

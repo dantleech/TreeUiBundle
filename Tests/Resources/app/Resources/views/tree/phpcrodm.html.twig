@@ -1,6 +1,14 @@
 {% extends "::layout.html.twig" %}
 {% block content %}
-<h2>PHPCR ODM Implentation Test</h2>
+<h2>Fancy Tree Implentation Test</h2>
+<h3>Browse</h3>
 {{ cmf_tree_ui_render('default') }}
+
+<h3>Pre selecting node</h3>
+<p>Selecting "/test/menu/item1"</p>
+{{ cmf_tree_ui_render('default', {
+    'select_node': '/test'
+}) }}
+
 {% endblock %}
 

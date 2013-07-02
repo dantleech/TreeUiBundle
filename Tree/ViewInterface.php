@@ -17,6 +17,10 @@ use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Tree;
  */
 interface ViewInterface
 {
+    const FEATURE_BROWSE = 'can_browse';
+    const FEATURE_FORM_ELEMENT_SINGLE = 'can_form_element';
+    const FEATURE_FORM_ELEMENT_MULTIPLE = 'can_form_element';
+
     /**
      * Set the model from which the view should get
      * its data.
@@ -31,7 +35,7 @@ interface ViewInterface
      * @param Symfony\Component\HttpFoundation\Request $request
      * @return Symfony\Component\HttpFoundation\Response
      */
-    public function getOutput();
+    public function getOutput($options = array());
 
     /**
      * Return the response for a children request.

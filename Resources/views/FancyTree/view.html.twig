@@ -2,18 +2,30 @@
 
 <script type="text/javascript">
 $(document).ready(function () {
-    $('#cmf_tree_{{ uniqId }}').fancytree({
+    var options = {
         source: {
             url: "{{ path('_cmf_tree_ui_children', {'tree_name': tree.name}) }}"
         },
+        checkbox: false,
+        selectMode: 3,
         lazyload: function (e, data) {
             var childrenUrl = data.node.data.children_url;
             data.result = $.ajax({
                 url: childrenUrl,
                 dataType: "json"
             });
-        }
-    });
+        },
+    };
+
+    $('#cmf_tree_{{ uniqId }}').fancytree(options);
+    var tree = $('#cmf_tree_{{ uniqId }}').fancytree('getTree');
+
+    {% if options.select_node != '/' %}
+        tree.loadKeyPath('/{{ options.select_node }}', function (e, status) {
+            console.log(status);
+        });
+    {% endif %}
+
 });
 
 </script>
