@@ -2,12 +2,12 @@
 {% block content %}
 <h2>Fancy Tree Implentation Test</h2>
 <h3>Browse</h3>
-{{ cmf_tree_ui_render('default') }}
+{{ cmf_tree_ui_render(name) }}
 
 <h3>Pre selecting node</h3>
 <p>Selecting "/test/menu/item1"</p>
-{{ cmf_tree_ui_render('default', {
-    'select_node': '/test'
+{{ cmf_tree_ui_render(name, {
+    'select_node': '/test/menu/item1'
 }) }}
 
 {% endblock %}

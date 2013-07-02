@@ -5,6 +5,7 @@
   "dependencies": {
       "jquery": "latest",
       "jquery-ui": "latest",
-      "fancytree": "latest"
+      "fancytree": "latest",
+      "dynatree": "latest"
   }
 }

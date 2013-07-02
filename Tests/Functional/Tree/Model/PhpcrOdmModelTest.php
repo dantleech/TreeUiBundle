@@ -28,6 +28,19 @@ class PhpcrOdmModelTest extends BaseTestCase
         $nodes = $this->model->getChildren('/test/menu');
         $this->assertCount(4, $nodes);
     }
+
+    public function testGetAncestors()
+    {
+        $ancestors = $this->model->getAncestors('/test/menu/item2/subitem1');
+
+        foreach (array(
+            '/', 
+            '/test', 
+            '/test/menu', 
+            '/test/menu/item2') as $name) 
+        {
+            $ancestor = array_shift($ancestors);
+            $this->assertEquals($name, $ancestor->getId());
+        }
+    }
 }
-
-

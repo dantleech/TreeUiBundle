@@ -88,6 +88,28 @@ class PhpcrOdmModel implements ModelInterface
         return $nodes;
     }
 
+    public function getAncestors($id)
+    {
+        $elements = explode('/', $id);
+        array_shift($elements);
+        $path = '';
+        $pathStack = array();
+        $ancestors = array();
+        $ancestors[] = $this->createNode(
+            $this->getDocument($path)
+        );
+
+        foreach ($elements as $element) {
+            $pathStack[] = $element;
+            $path = implode('/', $pathStack);
+            $ancestors[] = $this->createNode(
+                $this->getDocument($path)
+            );
+        }
+
+        return $ancestors;
+    }
+
     public function move($sourceId, $targetId)
     {
         $rootDoc = $this->getDocument($sourceId);

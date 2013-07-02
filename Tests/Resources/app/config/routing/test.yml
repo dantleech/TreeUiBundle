@@ -3,7 +3,7 @@ test_home:
      defaults:
          _controller: Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Controller\TestController::indexAction
 
-test_phpcr_odm_tree:
-     pattern: /tree/phpcr-odm
+test_tree:
+     pattern: /tree/{tree_name}
      defaults:
-         _controller: Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Controller\TestController::phpcrOdmTreeAction
+         _controller: Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Controller\TestController::treeAction

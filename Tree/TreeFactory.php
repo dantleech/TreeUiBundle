@@ -19,6 +19,16 @@ class TreeFactory
         $this->treeServiceMap[$name] = $serviceId;
     }
 
+    public function getTrees()
+    {
+        $trees = array();
+        foreach ($this->treeServiceMap as $name => $id) {
+            $trees[] = $this->container->get($id);
+        }
+
+        return $trees;
+    }
+
     public function getTree($name = null)
     {
         if (null === $name) {
@@ -27,7 +37,8 @@ class TreeFactory
 
         if (!isset($this->treeServiceMap[$name])) {
             throw new \InvalidArgumentException(sprintf(
-                'Tree with name "%s" has not been registered'
+                'Tree with name "%s" has not been registered',
+                $name
             ));
         }
 

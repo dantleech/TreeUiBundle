@@ -2,6 +2,10 @@
 {% block content %}
 <h2>Tree View Implementations (using PHPCR-ODM)</h2>
 <ul>
-    <li><a href="{{ path('test_phpcr_odm_tree') }}">Fancy Tree</a>: https://github.com/mar10/fancytree</li>
+    {% for tree in trees %}
+    <li>
+    <a href="{{ path('test_tree', {'tree_name': tree.name}) }}">{{ tree.name }}</a>
+    </li>
+    {% endfor %}
 </ul>
 {% endblock %}

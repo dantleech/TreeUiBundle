@@ -10,12 +10,18 @@ class TestController extends Controller
 {
     public function indexAction(Request $request)
     {
-        return $this->render('::index.html.twig');
+        $tf = $this->get('cmf_tree_ui.tree_factory');
+        return $this->render('::index.html.twig', array(
+            'trees' => $tf->getTrees()
+        ));
     }
 
-    public function phpcrOdmTreeAction(Request $request)
+    public function treeAction(Request $request)
     {
-        return $this->render('::tree/phpcrodm.html.twig');
+        $name = $request->get('tree_name');
+        return $this->render('::tree/phpcrodm.html.twig', array(
+            'name' => $name
+        ));
     }
 }
 
