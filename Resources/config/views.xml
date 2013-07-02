@@ -5,10 +5,11 @@
 
     <services>
         <service
-            id="cmf_tree_ui.view.dynatree"
-            class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\View\DynatreeView"
+            id="cmf_tree_ui.view.fancy_tree"
+            class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\View\FancyTreeView"
             >
             <argument type="service" id="twig"/>
+            <argument type="service" id="router"/>
         </service>
     </services>
 </container>

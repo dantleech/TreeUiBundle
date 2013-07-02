@@ -4,7 +4,7 @@
   "directory": "Resources/public/bower",
   "dependencies": {
       "jquery": "latest",
-      "fancytree": "latest",
-      "requirejs": "latest"
+      "jquery-ui": "latest",
+      "fancytree": "latest"
   }
 }

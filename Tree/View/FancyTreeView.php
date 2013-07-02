@@ -7,15 +7,18 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewInterface;
 use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Tree;
 use Symfony\Bundle\TwigBundle\TwigEngine;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
-class DynatreeView implements ViewInterface
+class FancyTreeView implements ViewInterface
 {
     protected $tree;
     protected $templating;
+    protected $urlGenerator;
 
-    public function __construct(\Twig_Environment $templating)
+    public function __construct(\Twig_Environment $templating, UrlGeneratorInterface $urlGenerator)
     {
         $this->templating = $templating;
+        $this->urlGenerator = $urlGenerator;
     }
 
     public function setTree(Tree $tree)
@@ -34,8 +37,9 @@ class DynatreeView implements ViewInterface
         $rootNode = $this->getModel()->getNode($basePath);
         $uniqId = uniqid();
 
-        $content = $this->templating->render('CmfTreeUiBundle:Dynatree:view.html.twig', array(
+        $content = $this->templating->render('CmfTreeUiBundle:FancyTree:view.html.twig', array(
             'rootNode' => $rootNode,
+            'tree' => $this->tree,
             'uniqId' => $uniqId,
         ));
 
@@ -46,16 +50,21 @@ class DynatreeView implements ViewInterface
     {
         $response = new Response;
 
-        $id = $requets->get('key');
-        $parentNode = $this->model->getNode($key);
-        $children = $this->model->getChildren($parentNode);
+        $id = $request->get('node_id', '/');
+        $children = $this->getModel()->getChildren($id);
 
         $out = array();
+        $treeName = $this->tree->getName();
 
         foreach ($children as $child) {
-            $aNode['label'] = $child->getLabel();
+            $aNode['title'] = $child->getLabel();
             $aNode['key'] = $child->getId();
-            $aNode['isLazy'] = true;
+            $aNode['lazy'] = $child->hasChildren();
+            $aNode['folder'] = $child->hasChildren();
+            $aNode['children_url'] = $this->urlGenerator->generate('_cmf_tree_ui_children', array(
+                'tree_name' => $treeName,
+                'node_id' => $child->getId(),
+            ));
             $out[] = $aNode;
         }
 
@@ -67,11 +76,14 @@ class DynatreeView implements ViewInterface
     public function getJavascripts()
     {
         return array(
-            'bundles/cmftreeui/components/fancytree/src/jquery.fancytree.js'
+            'bundles/cmftreeui/components/fancytree/src/jquery.fancytree.js',
         );
     }
 
     public function getStylesheets()
     {
+        return array(
+            'bundles/cmftreeui/components/fancytree/src/skin-lion/ui.fancytree.css',
+        );
     }
 }

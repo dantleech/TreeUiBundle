@@ -9,9 +9,9 @@ class TreeControllerTest extends BaseTestCase
 {
     public function setUp()
     {
+        parent::setUp();
         $this->db('PHPCR')->loadFixtures(array(
-            'Symfony\Cmf\Component\Testing\DataFixtures\PHPCR\LoadBaseData',
-            'Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\DataFixtures\LoadTreeData',
+            'Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\DataFixtures\LoadTreeData'
         ));
     }
 

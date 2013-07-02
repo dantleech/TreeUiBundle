@@ -2,4 +2,4 @@ cmf_tree_ui:
     tree:
         default:
             model_service_id: cmf_tree_ui.model.phpcr_odm
-            view_service_id: cmf_tree_ui.view.dynatree
+            view_service_id: cmf_tree_ui.view.fancy_tree

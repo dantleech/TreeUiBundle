@@ -39,10 +39,12 @@ class PhpcrOdmModel implements ModelInterface
     protected function createNode($object)
     {
         $metadata = $this->getMetadata($object);
+        $phpcrNode = $this->getDm()->getNodeForDocument($object);
 
         $node = new Node;
         $node->setId($metadata->getId($object));
         $node->setLabel($metadata->getLabel($object));
+        $node->setHasChildren($phpcrNode->hasNodes());
 
         return $node;
     }
@@ -78,11 +80,12 @@ class PhpcrOdmModel implements ModelInterface
         $rootDoc = $this->getDocument($id);
         $children = $this->getDm()->getChildren($rootDoc);
 
+        $nodes = array();
         foreach ($children as $child) {
-            $children[] = $this->createNode($child);
+            $nodes[] = $this->createNode($child);
         }
 
-        return $children;
+        return $nodes;
     }
 
     public function move($sourceId, $targetId)

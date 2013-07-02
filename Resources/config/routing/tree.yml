@@ -1,4 +1,11 @@
 _cmf_tree_ui_view:
-    pattern: /_cmf_tree_ui/tree/{_tree_name}/view
+    pattern: /_cmf_tree_ui/tree/{tree_name}/view
     defaults:
         _controller: cmf_tree_ui.controller.tree:viewAction
+
+_cmf_tree_ui_children:
+    pattern: /_cmf_tree_ui/children/{tree_name}/{node_id}/children
+    defaults:
+        _controller: cmf_tree_ui.controller.tree:childrenAction
+        node_id: /
+    requirements: { node_id: .* }

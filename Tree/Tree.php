@@ -14,8 +14,8 @@ class Tree
 
         $this->view = $view;
         $this->view->setTree($this);
-
         $this->model = $model;
+        $this->name = $name;
     }
 
     public function getView()
@@ -31,5 +31,10 @@ class Tree
     public function getModel()
     {
         return $this->model;
+    }
+
+    public function getName()
+    {
+        return $this->name;
     }
 }

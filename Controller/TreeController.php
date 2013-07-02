@@ -19,7 +19,7 @@ class TreeController
 
     protected function getTree(Request $request)
     {
-        $name = $request->get('_tree_name') ? : null;
+        $name = $request->get('tree_name') ? : null;
         return $this->treeFactory->getTree($name);
     }
 
@@ -35,8 +35,8 @@ class TreeController
         return new Response($content);
     }
 
-    public function getChildrenAction(Request $request)
+    public function childrenAction(Request $request)
     {
-        return $this->getTree()->getView()->getChildrenResponse($request);
+        return $this->getTree($request)->getView()->getChildrenResponse($request);
     }
 }

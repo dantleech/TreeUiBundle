@@ -13,6 +13,8 @@ class Node
     protected $id;
     protected $label;
 
+    protected $hasChildren;
+
     public function getId() 
     {
         return $this->id;
@@ -32,4 +34,15 @@ class Node
     {
         $this->label = $label;
     }
+
+    public function hasChildren() 
+    {
+        return $this->hasChildren;
+    }
+    
+    public function setHasChildren($hasChildren)
+    {
+        $this->hasChildren = $hasChildren;
+    }
+    
 }
