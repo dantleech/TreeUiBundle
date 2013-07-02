@@ -17,9 +17,20 @@ use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Tree;
  */
 interface ViewInterface
 {
-    const FEATURE_BROWSE = 'can_browse';
-    const FEATURE_FORM_ELEMENT_SINGLE = 'can_form_element';
-    const FEATURE_FORM_ELEMENT_MULTIPLE = 'can_form_element';
+    /**
+     * Ability to browse the tree
+     */
+    const FEATURE_BROWSE = 'browse';
+
+    /**
+     * Ability to pre-select a node
+     */
+    const FEATURE_PRE_SELECT_NODE = 'pre_select_node';
+
+    /**
+     * Return the set of supported features
+     */
+    public function getFeatures();
 
     /**
      * Set the model from which the view should get

@@ -1,6 +1,6 @@
 cmf_tree_ui:
     tree:
-        phpcrodm:
+        fancytree:
             model_service_id: cmf_tree_ui.model.phpcr_odm
             view_service_id: cmf_tree_ui.view.fancy_tree
         dynatree:

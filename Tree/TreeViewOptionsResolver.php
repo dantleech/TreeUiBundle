@@ -9,6 +9,7 @@ class TreeViewOptionsResolver extends OptionsResolver
     public function __construct()
     {
         parent::__construct();
+
         $this->setDefaults(array(
             'select_node' => '/',
         ));

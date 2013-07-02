@@ -32,6 +32,14 @@ class FancyTreeView implements ViewInterface
         $this->optionsResolver = $resolver;
     }
 
+    public function getFeatures()
+    {
+        return array(
+            ViewInterface::FEATURE_BROWSE,
+            ViewInterface::FEATURE_PRE_SELECT_NODE,
+        );
+    }
+
     public function setTree(Tree $tree)
     {
         $this->tree = $tree;
@@ -45,17 +53,28 @@ class FancyTreeView implements ViewInterface
     public function getOutput($options = array())
     {
         $options = $this->optionsResolver->resolve($options);
-        $options['select_node'] = md5($options['select_node']);
 
         $basePath = $this->tree->getConfig()->getBasePath();
         $rootNode = $this->getModel()->getNode($basePath);
         $uniqId = uniqid();
+
+        // sort out key path
+        $keyPath = '';
+        if ($options['select_node'] != '/') {
+            $ancestors = $this->getModel()->getAncestors($options['select_node']);
+            // we don't like the root element ...
+            array_shift($ancestors);
+            foreach ($ancestors as $ancestor) {
+                $keyPath .= '&'.$ancestor->getId();
+            }
+        }
 
         $content = $this->templating->render('CmfTreeUiBundle:FancyTree:view.html.twig', array(
             'rootNode' => $rootNode,
             'tree' => $this->tree,
             'uniqId' => $uniqId,
             'options' => $options,
+            'keyPath' => $keyPath,
         ));
 
         return $content;
@@ -73,7 +92,7 @@ class FancyTreeView implements ViewInterface
 
         foreach ($children as $child) {
             $aNode['title'] = $child->getLabel();
-            $aNode['key'] = md5($child->getId());
+            $aNode['key'] = $child->getId();
             $aNode['lazy'] = $child->hasChildren();
             $aNode['folder'] = $child->hasChildren();
             $aNode['children_url'] = $this->urlGenerator->generate('_cmf_tree_ui_children', array(

@@ -4,7 +4,7 @@
     <script type="text/javascript" src="{{ asset('bundles/cmftreeui/components/jquery/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('bundles/cmftreeui/components/jquery-ui/ui/jquery-ui.js') }}"></script>
     {% for javascript in cmf_tree_ui_javascripts() %}
-        <script type="text/javascript" src="{{ asset(javascript) }}"></script>
+    <script type="text/javascript" src="{{ asset(javascript) }}?asd"></script>
     {% endfor %}
     {% for stylesheet in cmf_tree_ui_stylesheets() %}
         <link rel="stylesheet" href="{{ asset(stylesheet) }}"/>

@@ -28,6 +28,14 @@ class DynatreeView implements ViewInterface
         $this->optionsResolver = $resolver;
     }
 
+    public function getFeatures()
+    {
+        return array(
+            ViewInterface::FEATURE_BROWSE,
+            ViewInterface::FEATURE_PRE_SELECT_NODE,
+        );
+    }
+
     public function setTree(Tree $tree)
     {
         $this->tree = $tree;
@@ -56,7 +64,6 @@ class DynatreeView implements ViewInterface
                 $keyPath .= '&'.$ancestor->getId();
             }
         }
-        
 
         $content = $this->templating->render('CmfTreeUiBundle:Dynatree:view.html.twig', array(
             'rootNode' => $rootNode,
