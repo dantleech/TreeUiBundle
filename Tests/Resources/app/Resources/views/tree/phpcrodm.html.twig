@@ -1,14 +1,13 @@
 {% extends "::layout.html.twig" %}
 {% block content %}
-<h2>Fancy Tree Implentation Test</h2>
-<h3>Browse</h3>
-{{ cmf_tree_ui_render(name) }}
+<h2>{{ tree.name|capitalize }} Implentation Test</h2>
 
-<h3>Pre selecting node</h3>
-<p>Selecting "/test/menu/item1"</p>
-{{ cmf_tree_ui_render(name, {
-    'select_node': '/test/menu/item1'
-}) }}
-
+{% for feature in validator.allFeatures %}
+    <h3>{{ feature|capitalize }}</h3>
+    {% if validator.viewHasFeature(tree.view, feature) %}
+        {% include "::tree/feature_" ~ feature ~ ".html.twig" %}
+    {% else %}
+        <i>Not supported</i>
+    {% endif %}
+{% endfor %}
 {% endblock %}
-

@@ -12,15 +12,20 @@ class TestController extends Controller
     {
         $tf = $this->get('cmf_tree_ui.tree_factory');
         return $this->render('::index.html.twig', array(
-            'trees' => $tf->getTrees()
+            'trees' => $tf->getTrees(),
         ));
     }
 
     public function treeAction(Request $request)
     {
         $name = $request->get('tree_name');
+        $validator = $this->get('cmf_tree_ui.view_validator');
+        $tf = $this->get('cmf_tree_ui.tree_factory');
+        $tree = $tf->getTree($name);
+
         return $this->render('::tree/phpcrodm.html.twig', array(
-            'name' => $name
+            'tree' => $tree,
+            'validator' => $validator,
         ));
     }
 }
