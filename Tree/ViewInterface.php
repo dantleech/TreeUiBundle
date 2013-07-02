@@ -18,14 +18,24 @@ use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Tree;
 interface ViewInterface
 {
     /**
-     * Ability to browse the tree
+     * Ability to browse the tree.
      */
     const FEATURE_BROWSE = 'browse';
 
     /**
-     * Ability to pre-select a node
+     * Ability to pre-select a node.
      */
     const FEATURE_PRE_SELECT_NODE = 'pre_select_node';
+
+    /**
+     * Will act as a form input.
+     */
+    const FEATURE_FORM_INPUT = 'form_input';
+
+    /**
+     * Will act as a form input multiple
+     */
+    const FEATURE_FORM_INPUT_MULTIPLE = 'form_input_multiple';
 
     /**
      * Return the set of supported features

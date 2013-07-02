@@ -8,12 +8,17 @@ class Tree
     protected $view;
     protected $model;
 
-    public function __construct($name, ModelInterface $model, ViewInterface $view)
+    public function __construct(
+        $name, 
+        ModelInterface $model, 
+        ViewInterface $view
+    ) 
     {
         $this->config = new TreeConfiguration;
 
         $this->view = $view;
         $this->view->setTree($this);
+
         $this->model = $model;
         $this->name = $name;
     }

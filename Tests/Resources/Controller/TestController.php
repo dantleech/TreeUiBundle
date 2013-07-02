@@ -18,6 +18,9 @@ class TestController extends Controller
 
     public function treeAction(Request $request)
     {
+        if (count($_POST)) {
+            var_dump($_POST);
+        }
         $name = $request->get('tree_name');
         $validator = $this->get('cmf_tree_ui.view_validator');
         $tf = $this->get('cmf_tree_ui.tree_factory');

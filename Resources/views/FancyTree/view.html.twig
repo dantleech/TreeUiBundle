@@ -2,13 +2,15 @@
 
 <script type="text/javascript">
 $(document).ready(function () {
+    var treeEl = $('#cmf_tree_{{ uniqId }}');
+
     var options = {
         source: {
             url: "{{ path('_cmf_tree_ui_children', {'tree_name': tree.name}) }}"
         },
         init: function () {
             {% if keyPath %}
-                var tree = $('#cmf_tree_{{ uniqId }}').fancytree('getTree');
+                var tree = treeEl.fancytree('getTree');
                 tree.loadKeyPath('{{ keyPath|raw }}', function (node, state) {
                     if(state == "loaded") {
                     } else if (state == "ok") {
@@ -29,8 +31,48 @@ $(document).ready(function () {
         keyPathSeparator: "&"
     };
 
-    $('#cmf_tree_{{ uniqId }}').fancytree(options);
+    {% if options.form_input %}
+        {% if options.form_input_multiple %}
+            options.selectMode = 2;
+        {% else %}
+            options.selectMode = 1;
+        {% endif %}
 
+        options.checkbox = true;
+        var form = treeEl.closest('form');
+        form.submit(function() {
+            var tree = treeEl.fancytree('getTree');
+            var id = 'cmf_ui_tree_widget_' + tree._id;
+            var inputs = tree.$container.find("div#" + id);
+
+            if(inputs.length){
+                inputs.empty();
+            } else {
+                inputs = $("<div>", {
+                    id: id
+                }).hide().appendTo(tree.$container);
+            }
+
+			var nodeList = tree.getSelectedNodes( tree.options.selectMode === 3 );
+
+            var inputName = "{{ options.form_input_name }}";
+
+            if (options.selectMode = 2) {
+                inputName += "[]";
+            }
+
+			$.each(nodeList, function(idx, node){
+				inputs.append($("<input>", {
+					type: "checkbox",
+                    name: inputName,
+					value: node.key,
+					checked: true
+				}));
+			});
+        });
+    {% endif %}
+
+    $('#cmf_tree_{{ uniqId }}').fancytree(options);
 });
 
 </script>

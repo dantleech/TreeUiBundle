@@ -37,6 +37,8 @@ class FancyTreeView implements ViewInterface
         return array(
             ViewInterface::FEATURE_BROWSE,
             ViewInterface::FEATURE_PRE_SELECT_NODE,
+            ViewInterface::FEATURE_FORM_INPUT,
+            ViewInterface::FEATURE_FORM_INPUT_MULTIPLE,
         );
     }
 

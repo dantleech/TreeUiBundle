@@ -12,6 +12,9 @@ class TreeViewOptionsResolver extends OptionsResolver
 
         $this->setDefaults(array(
             'select_node' => '/',
+            'form_input' => false,
+            'form_input_multiple' => false,
+            'form_input_name' => 'cmf_tree_ui',
         ));
     }
 }

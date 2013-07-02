@@ -1,0 +1,9 @@
+<form method="post" action="#">
+{{ cmf_tree_ui_render(tree.name, {
+    'select_node': '/test/menu/item1',
+    'form_input': true,
+    'form_input_name': 'my_form[asdf]',
+    'form_input_multiple': true,
+}) }}
+<input type="submit"/>
+</form>
