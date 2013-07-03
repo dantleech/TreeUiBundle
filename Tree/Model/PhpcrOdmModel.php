@@ -96,7 +96,7 @@ class PhpcrOdmModel implements ModelInterface
         $pathStack = array();
         $ancestors = array();
         $ancestors[] = $this->createNode(
-            $this->getDocument($path)
+            $this->getDocument($path) // this doesn't work (path is ""!)
         );
 
         foreach ($elements as $element) {

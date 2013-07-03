@@ -5,17 +5,27 @@
 
     <parameters>
 
-        <parameter key="cmf_tree_ui.phpcrodm_auto_route_listener_class">Symfony\Cmf\Bundle\RoutingAutoBundle\EventListener\AutoRouteListener</parameter>
+        <parameter key="cmf_tree_ui.model.filesystem.root_path">%kernel.root_dir%</parameter>
 
     </parameters>
 
     <services>
+        <!-- PhpcrOdm Model !-->
         <service 
             id="cmf_tree_ui.model.phpcr_odm" 
             class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\Model\PhpcrOdmModel"
             >
             <argument type="service" id="doctrine_phpcr"/>
             <argument type="service" id="cmf_tree_ui.metadata.factory"/>
+        </service>
+
+        <!-- Filesystem Model !-->
+        <service 
+            id="cmf_tree_ui.model.filesystem" 
+            class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\Model\FilesystemModel"
+            >
+            <argument>%cmf_tree_ui.model.filesystem.root_path%</argument>
+            <argument type="service" id="filesystem"/>
         </service>
 
     </services>

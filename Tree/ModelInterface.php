@@ -6,6 +6,8 @@ interface ModelInterface
 {
     public function getChildren($path);
 
+    public function getAncestors($path);
+
     public function move($sourcePath, $targetPath);
 
     public function reorder($parentId, $sourceId, $targetId, $before = false);

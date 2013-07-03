@@ -12,6 +12,7 @@
         <service
             id="cmf_tree_ui.view.fancy_tree"
             class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\View\FancyTreeView"
+            scope="prototype"
             >
             <argument type="service" id="twig"/>
             <argument type="service" id="router"/>
@@ -21,6 +22,7 @@
         <service
             id="cmf_tree_ui.view.dynatree"
             class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\View\DynatreeView"
+            scope="prototype"
             >
             <argument type="service" id="twig"/>
             <argument type="service" id="router"/>

@@ -46,6 +46,7 @@ class CmfTreeUiExtension extends Extension
             }
 
             $treeDef = new Definition('Symfony\Cmf\Bundle\TreeUiBundle\Tree\Tree');
+            $treeDef->setScope('prototype');
             $treeDef->addArgument($name);
             $treeDef->addArgument(new Reference($treeConfig['model_service_id']));
             $treeDef->addArgument(new Reference($treeConfig['view_service_id']));
