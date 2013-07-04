@@ -1,11 +1,20 @@
 cmf_tree_ui:
     tree:
+        # Model: PHPCR-ODM
         fancytree_phpcrodm:
             model_service_id: cmf_tree_ui.model.phpcr_odm
             view_service_id: cmf_tree_ui.view.fancy_tree
+
         dynatree_phpcrodm:
             model_service_id: cmf_tree_ui.model.phpcr_odm
             view_service_id: cmf_tree_ui.view.dynatree
+
+        # Model: Filesystem
         fancytree_filesystem:
             model_service_id: cmf_tree_ui.model.filesystem
+            view_service_id: cmf_tree_ui.view.fancy_tree
+
+        # Model: Phpcr
+        fancytree_phpcr:
+            model_service_id: cmf_tree_ui.model.phpcr
             view_service_id: cmf_tree_ui.view.fancy_tree

@@ -44,5 +44,4 @@ class Node
     {
         $this->hasChildren = $hasChildren;
     }
-    
 }

@@ -10,6 +10,14 @@
     </parameters>
 
     <services>
+        <!-- Phpcr Model !-->
+        <service 
+            id="cmf_tree_ui.model.phpcr" 
+            class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\Model\PhpcrModel"
+            >
+            <argument type="service" id="doctrine_phpcr.session"/>
+        </service>
+
         <!-- PhpcrOdm Model !-->
         <service 
             id="cmf_tree_ui.model.phpcr_odm" 
