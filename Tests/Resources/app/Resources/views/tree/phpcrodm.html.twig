@@ -2,9 +2,9 @@
 {% block content %}
 <h2>{{ tree.name|capitalize }} Implentation Test</h2>
 
-{% for feature in validator.allFeatures %}
+{% for feature in factory.viewFeatures %}
     <h3>{{ feature|capitalize }}</h3>
-    {% if validator.viewHasFeature(tree.view, feature) %}
+    {% if feature in tree.view.features %}
         {% include "::tree/feature_" ~ feature ~ ".html.twig" %}
     {% else %}
         <i>Not supported</i>

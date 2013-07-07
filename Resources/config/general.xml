@@ -27,13 +27,6 @@
             <argument type="service" id="cmf_tree_ui.metadata.factory"/>
         </service>
 
-        <!-- View Validator -->
-        <service 
-            id="cmf_tree_ui.view_validator" 
-            class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\TreeViewValidator"
-            >
-        </service>
-
         <!-- Tree Controller -->
         <service
             id="cmf_tree_ui.controller.tree"

@@ -22,13 +22,12 @@ class TestController extends Controller
             var_dump($_POST);
         }
         $name = $request->get('tree_name');
-        $validator = $this->get('cmf_tree_ui.view_validator');
         $tf = $this->get('cmf_tree_ui.tree_factory');
         $tree = $tf->getTree($name);
 
         return $this->render('::tree/phpcrodm.html.twig', array(
             'tree' => $tree,
-            'validator' => $validator,
+            'factory' => $tf,
         ));
     }
 }

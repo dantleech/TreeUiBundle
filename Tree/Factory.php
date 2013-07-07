@@ -75,4 +75,18 @@ class Factory
 
         return array_values($ret);
     }
+
+    public function getViewFeatures()
+    {
+        $features = array();
+        $trees = $this->getTrees();
+        foreach ($trees as $tree) {
+            $features = array_merge($features, array_combine(
+                array_keys($tree->getView()->getFeatures()),
+                $tree->getView()->getFeatures()
+            ));
+        }
+
+        return array_values($features);
+    }
 }

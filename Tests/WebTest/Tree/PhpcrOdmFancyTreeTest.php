@@ -18,7 +18,7 @@ class PhpcrOdmFancyTreeTest extends BaseTestCase
     public function testTree()
     {
         $client = $this->createClient();
-        $client->request('get', '/tree/phpcr-odm');
+        $client->request('get', '/tree/fancytree_phpcrodm');
         $res = $client->getResponse();
         $this->assertEquals(200, $res->getStatusCode());
     }
