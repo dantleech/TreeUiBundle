@@ -8,28 +8,35 @@ use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewInterface;
 use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Tree;
 use Symfony\Bundle\TwigBundle\TwigEngine;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\TreeViewOptionsResolver;
+use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewConfig;
 
-/**
- * STATUS: Cannot seem to get nodes to be auto-expanded and selected.
- *         Going to try implementing Dynatree also.
- */
 class FancyTreeView implements ViewInterface
 {
     protected $tree;
     protected $templating;
     protected $urlGenerator;
-    protected $optionsResolver;
+    protected $config;
 
     public function __construct(
         \Twig_Environment $templating, 
-        UrlGeneratorInterface $urlGenerator,
-        TreeViewOptionsResolver $resolver
+        UrlGeneratorInterface $urlGenerator
     )
     {
         $this->templating = $templating;
         $this->urlGenerator = $urlGenerator;
-        $this->optionsResolver = $resolver;
+    }
+
+    public function configure(ViewConfig $config)
+    {
+        $config->setDefaults(array(
+            'root_path' => '/',
+        ));
+
+        $config->setRequired(array(
+            'root_path'
+        ));
+
+        $this->config = $config;
     }
 
     public function getFeatures()
@@ -54,9 +61,9 @@ class FancyTreeView implements ViewInterface
 
     public function getOutput($options = array())
     {
-        $options = $this->optionsResolver->resolve($options);
+        $options = $this->config->getOptions($options);
 
-        $basePath = $this->tree->getConfig()->getBasePath();
+        $basePath = $options['root_path'];
         $rootNode = $this->getModel()->getNode($basePath);
         $uniqId = uniqid();
 

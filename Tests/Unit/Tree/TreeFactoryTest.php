@@ -25,20 +25,63 @@ class TreeFactoryTest extends \PHPUnit_Framework_Testcase
         $this->tree2View = $this->getMock(
             'Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewInterface'
         );
+        $this->tree2Model = $this->getMock(
+            'Symfony\Cmf\Bundle\TreeUiBundle\Tree\ModelInterface'
+        );
 
         $this->factory = new TreeFactory($this->container);
     }
 
-    public function testGetTree()
+    public function provideGetTree()
+    {
+        return array(
+            array(null, null),
+            array(
+                array('viewOpt1' => 'one'),
+                null
+            ),
+            array(
+                null,
+                array('modelOpt1' => 'one')
+            ),
+            array(
+                array('viewOpt1' => 'one'),
+                array('modelOpt1' => 'one')
+            ),
+        );
+    }
+
+    /**
+     * @dataProvider provideGetTree
+     */
+    public function testGetTree($modelOptions, $viewOptions)
     {
         $this->container->expects($this->once())
             ->method('get')
             ->with('foo.bar')
-            ->will($this->returnValue('test'));
+            ->will($this->returnValue($this->tree2));
+        $this->tree2->expects($this->once())
+            ->method('getModel')
+            ->will($this->returnValue($this->tree2Model));
+        $this->tree2->expects($this->once())
+            ->method('getView')
+            ->will($this->returnValue($this->tree2View));
+
+        if ($viewOptions !== null) {
+            $this->tree2View->expects($this->once())
+                ->method('mergeOptions')
+                ->with($viewOptions === null ? array() : $viewOptions);
+        }
+
+        if ($modelOptions !== null) {
+            $this->tree2Model->expects($this->once())
+                ->method('mergeOptions')
+                ->with($modelOptions === null ? array() : $modelOptions);
+        }
 
         $this->factory->registerTreeServiceId('foobar', 'foo.bar');
-        $res = $this->factory->getTree('foobar');
-        $this->assertEquals('test', $res);
+        $res = $this->factory->getTree('foobar', $modelOptions, $viewOptions);
+        $this->assertSame($this->tree2, $res);
     }
 
     public function provideGetAssets()

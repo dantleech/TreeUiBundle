@@ -6,7 +6,7 @@ use Symfony\Cmf\Component\Testing\Functional\BaseTestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ODM\PHPCR\Document\Generic;
 
-class PhpcrOdmModelTest extends BaseTestCase
+class FilesystemModelTest extends BaseTestCase
 {
     public function setUp()
     {

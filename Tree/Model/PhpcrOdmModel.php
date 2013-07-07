@@ -7,6 +7,7 @@ use Metadata\MetadataFactory;
 use Doctrine\Common\Util\ClassUtils;
 use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Node;
 use Doctrine\Bundle\PHPCRBundle\ManagerRegistry;
+use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ModelConfig;
 
 class PhpcrOdmModel implements ModelInterface
 {
@@ -19,6 +20,18 @@ class PhpcrOdmModel implements ModelInterface
     {
         $this->mr = $mr;
         $this->mdf = $mdf;
+    }
+
+    public function configure(ModelConfig $config)
+    {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getFeatures()
+    {
+        return array();
     }
 
     protected function getMetadata($object)

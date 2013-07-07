@@ -8,6 +8,7 @@ class CmfTreeUiExtensionTest extends \PHPUnit_Framework_Testcase
 {
     public function setUp()
     {
+        /** @var \PHPUnit_Framework_MockObject_MockObject */
         $this->factory = $this->getMockBuilder(
             'Symfony\Cmf\Bundle\TreeUiBundle\Tree\TreeFactory'
         )->disableOriginalConstructor()->getMock();

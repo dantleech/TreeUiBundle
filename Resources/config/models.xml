@@ -16,6 +16,7 @@
             class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\Model\PhpcrModel"
             >
             <argument type="service" id="doctrine_phpcr.session"/>
+            <tag name="cmf_tree_ui.model" alias="phpcr_odm"/>
         </service>
 
         <!-- PhpcrOdm Model !-->
@@ -25,6 +26,7 @@
             >
             <argument type="service" id="doctrine_phpcr"/>
             <argument type="service" id="cmf_tree_ui.metadata.factory"/>
+            <tag name="cmf_tree_ui.model" alias="phpcr_odm"/>
         </service>
 
         <!-- Filesystem Model !-->
@@ -34,6 +36,7 @@
             >
             <argument>%cmf_tree_ui.model.filesystem.root_path%</argument>
             <argument type="service" id="filesystem"/>
+            <tag name="cmf_tree_ui.model" alias="filesystem"/>
         </service>
 
     </services>

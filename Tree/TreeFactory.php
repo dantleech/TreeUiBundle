@@ -42,7 +42,9 @@ class TreeFactory
             ));
         }
 
-        return $this->container->get($this->treeServiceMap[$name]);
+        $tree = $this->container->get($this->treeServiceMap[$name]);
+
+        return $tree;
     }
 
     public function getStylesheets()

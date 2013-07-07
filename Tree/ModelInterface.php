@@ -2,7 +2,9 @@
 
 namespace Symfony\Cmf\Bundle\TreeUiBundle\Tree;
 
-interface ModelInterface
+use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ModelConfig;
+
+interface ModelInterface extends FeaturableInterface
 {
     public function getChildren($path);
 
@@ -13,5 +15,7 @@ interface ModelInterface
     public function reorder($parentId, $sourceId, $targetId, $before = false);
 
     public function getNode($path);
+
+    public function configure(ModelConfig $config);
 }
 

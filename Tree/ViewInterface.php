@@ -5,6 +5,7 @@ namespace Symfony\Cmf\Bundle\TreeUiBundle\Tree;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ModelInterface;
 use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Tree;
+use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewConfig;
 
 /**
  * This interface will be implemented by classes which
@@ -15,7 +16,7 @@ use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Tree;
  *
  * @author Daniel Leech <daniel@dantleech.com>
  */
-interface ViewInterface
+interface ViewInterface extends FeaturableInterface
 {
     /**
      * Ability to browse the tree.
@@ -43,20 +44,15 @@ interface ViewInterface
     public function getFeatures();
 
     /**
-     * Set the model from which the view should get
-     * its data.
-     *
-     * @param ModelInterface $model
      */
     public function setTree(Tree $tree);
 
     /**
      * Return the response for the view request.
      *
-     * @param Symfony\Component\HttpFoundation\Request $request
      * @return Symfony\Component\HttpFoundation\Response
      */
-    public function getOutput($options = array());
+    public function getOutput();
 
     /**
      * Return the response for a children request.
@@ -81,5 +77,13 @@ interface ViewInterface
      * @return array
      */
     public function getStylesheets();
-}
 
+    /**
+     * Configure the class
+     *
+     * @param array $options
+     *
+     * @return void
+     */
+    public function configure(ViewConfig $config);
+}

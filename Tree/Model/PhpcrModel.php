@@ -8,6 +8,7 @@ use PHPCR\SessionInterface;
 use PHPCR\NodeInterface;
 use PHPCR\Util\PathHelper;
 use PHPCR\PropertyInterface;
+use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ModelConfig;
 
 class PhpcrModel implements ModelInterface
 {
@@ -16,6 +17,18 @@ class PhpcrModel implements ModelInterface
     public function __construct(SessionInterface $session) 
     {
         $this->session = $session;
+    }
+
+    public function configure(ModelConfig $config)
+    {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getFeatures()
+    {
+        return array();
     }
 
     protected function createNode(NodeInterface $phpcrNode)

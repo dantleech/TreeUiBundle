@@ -38,6 +38,21 @@ class FilesystemModel implements ModelInterface
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public function configure(ModelConfig $config)
+    {
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getFeatures()
+    {
+        return array();
+    }
+
+    /**
      * Returns an array representation of children nodes of a node
      *
      * @param string $path The path of any PHPCR node

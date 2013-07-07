@@ -14,8 +14,6 @@ class Tree
         ViewInterface $view
     ) 
     {
-        $this->config = new TreeConfiguration;
-
         $this->view = $view;
         $this->view->setTree($this);
 
@@ -26,11 +24,6 @@ class Tree
     public function getView()
     {
         return $this->view;
-    }
-
-    public function getConfig()
-    {
-        return $this->config;
     }
 
     public function getModel()

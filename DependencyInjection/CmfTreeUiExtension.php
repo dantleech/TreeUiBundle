@@ -10,6 +10,7 @@ use Symfony\Component\DependencyInjection\Reference;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\Definition;
+use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 
 class CmfTreeUiExtension extends Extension
 {
@@ -28,36 +29,71 @@ class CmfTreeUiExtension extends Extension
         $loader->load('twig.xml');
 
         $config = $processor->processConfiguration($configuration, $configs);
+
+        $this->registerTrees($container, $config);
+        $this->setupMetadata($container, $config);
+        $this->setupConfig('model', $container, $config);
+        $this->setupConfig('view', $container, $config);
+    }
+
+    protected function registerTrees($container, $config)
+    {
         $factory = $container->getDefinition('cmf_tree_ui.tree_factory');
 
         foreach ($config['tree'] as $name => $treeConfig) {
-            if (!$container->hasDefinition($treeConfig['model_service_id'])) {
-                throw new \Exception(sprintf(
-                    'Tree model_service_id service "%s" not found',
-                    $treeConfig['model_service_id']
-                ));
-            }
-
-            if (!$container->hasDefinition($treeConfig['view_service_id'])) {
-                throw new \Exception(sprintf(
-                    'Tree view_service_id service "%s" not found',
-                    $treeConfig['view_service_id']
-                ));
-            }
-
             $treeDef = new Definition('Symfony\Cmf\Bundle\TreeUiBundle\Tree\Tree');
             $treeDef->setScope('prototype');
             $treeDef->addArgument($name);
-            $treeDef->addArgument(new Reference($treeConfig['model_service_id']));
-            $treeDef->addArgument(new Reference($treeConfig['view_service_id']));
+
+            $modelServiceId = $this->getMVServiceId($container, 'model', $treeConfig['model']);
+            $viewServiceId = $this->getMVServiceId($container, 'view', $treeConfig['view']);
+
+            $treeDef->addArgument(new Reference($modelServiceId));
+            $treeDef->addArgument(new Reference($viewServiceId));
             $serviceId = $this->getAlias() . '.tree.'.$name;
             $container->setDefinition($serviceId, $treeDef);
             $factory->addMethodCall('registerTreeServiceId', array($name, $serviceId));
         }
+    }
 
+    protected function getMVServiceId($container, $type, $alias) 
+    {
+        $serviceIds = $container->findTaggedServiceIds(
+            $this->getAlias().'.'.$type
+        );
+
+        foreach ($serviceIds as $serviceId => $tags) {
+            $sAlias = $tags[0]['alias'];
+            if ($sAlias = $alias) {
+                return $serviceId;
+            }
+        }
+
+        throw new InvalidArgumentException(sprintf(
+            '%s alias "%s" not registered', $type, $alias
+        ));
+    }
+
+    protected function setupMetadata($container, $config)
+    {
         $config['metadata']['mapping_directories']['Doctrine\ODM\PHPCR\Document'] = __DIR__.'/../Resources/config/mapping/DoctrineODMPHPCRDocument';
 
         $metadataLoader = $container->getDefinition('cmf_tree_ui.metadata.file_locator');
         $metadataLoader->replaceArgument(0, $config['metadata']['mapping_directories']);
+    }
+
+    protected function setupConfig($type, $container, $config)
+    {
+        $serviceIds = $container->findTaggedServiceIds(
+            $this->getAlias().'.'.$type
+        );
+
+        foreach ($serviceIds as $serviceId => $tags) {
+            $sAlias = $tags[0]['alias'];
+            $container->setParameter(
+                $this->getAlias() . '.config.' . $type . '.' . $sAlias,
+                isset($config[$type][$sAlias]) ? $config[$type][$sAlias] : array()
+            );
+        }
     }
 }

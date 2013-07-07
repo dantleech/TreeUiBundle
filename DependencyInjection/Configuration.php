@@ -15,15 +15,32 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $treeBuilder->root('cmf_tree_ui')
-            ->children()
+
+        /** @var $builder \Symfony\Component\Config\Definition\Builder\NodeBuilder */
+        $builder = $treeBuilder->root('cmf_tree_ui');
+
+        $builder->children()
+            ->arrayNode('model')
+                ->useAttributeAsKey('alias')
+                ->prototype('array')
+                    ->useAttributeAsKey('key')
+                    ->prototype('scalar')->end()
+                ->end()
+            ->end()
+            ->arrayNode('view')
+                ->useAttributeAsKey('alias')
+                ->prototype('array')
+                    ->useAttributeAsKey('key')
+                    ->prototype('scalar')->end()
+                ->end()
+            ->end()
             ->arrayNode('tree')
                 ->isRequired()
                 ->useAttributeAsKey('name')
                 ->prototype('array')
                     ->children()
-                        ->scalarNode('model_service_id')->isRequired()->end()
-                        ->scalarNode('view_service_id')->isRequired()->end()
+                        ->scalarNode('model')->isRequired()->end()
+                        ->scalarNode('view')->isRequired()->end()
                     ->end()
                 ->end()
             ->end()
