@@ -6,13 +6,13 @@ use Symfony\Cmf\Bundle\TreeBrowserBundle\Tree\ModelInterface;
 use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\TreeFactory;
+use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Factory;
 
 class TreeController
 {
     protected $treeModel;
 
-    public function __construct(TreeFactory $treeFactory)
+    public function __construct(Factory $treeFactory)
     {
         $this->treeFactory = $treeFactory;
     }
@@ -25,11 +25,7 @@ class TreeController
 
     public function viewAction(Request $request)
     {
-        $basePath = $request->get('_base_path');
-
         $tree = $this->getTree($request);
-        $tree->getConfig()->setBasePath($basePath);
-
         $content = $tree->getView()->getOutput();
 
         return new Response($content);

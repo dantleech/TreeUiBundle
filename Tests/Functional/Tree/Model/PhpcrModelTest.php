@@ -20,13 +20,13 @@ class PhpcrModelTest extends BaseTestCase
     public function testGetChildren()
     {
         $nodes = $this->model->getChildren('/');
-        $this->assertCount(1, $nodes);
+        $this->assertCount(2, $nodes);
 
         $nodes = $this->model->getChildren('/test');
-        $this->assertCount(1, $nodes);
+        $this->assertCount(3, $nodes);
 
         $nodes = $this->model->getChildren('/test/menu');
-        $this->assertCount(4, $nodes);
+        $this->assertCount(9, $nodes);
     }
 
     public function testGetAncestors()

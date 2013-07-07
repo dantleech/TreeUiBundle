@@ -14,7 +14,7 @@
         <!-- Tree Factory -->
         <service 
             id="cmf_tree_ui.tree_factory" 
-            class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\TreeFactory"
+            class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\Factory"
             >
             <argument type="service" id="service_container"/>
         </service>

@@ -6,6 +6,7 @@ use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ModelInterface;
 use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Node;
+use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ModelConfig;
 
 /**
  * A TreeInterface implementation for the file system

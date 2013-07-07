@@ -4,7 +4,7 @@ namespace Symfony\Cmf\Bundle\TreeUiBundle\Tree;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class TreeFactory
+class Factory
 {
     protected $container;
     protected $treeServiceMap = array();
@@ -32,7 +32,10 @@ class TreeFactory
     public function getTree($name = null)
     {
         if (null === $name) {
-            $name = 'default';
+            throw new \InvalidArgumentException(sprintf(
+                'No tree name passed to getTree(). Pass one of the registered tree names "%s"',
+                implode(',', array_keys($this->treeServiceMap))
+            ));
         }
 
         if (!isset($this->treeServiceMap[$name])) {

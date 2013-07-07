@@ -2,13 +2,13 @@
 
 namespace Symfony\Cmf\Bundle\TreeUiBundle\Twig;
 
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\TreeFactory;
+use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Factory;
 
 class CmfTreeUiExtension extends \Twig_Extension
 {
     protected $tf;
 
-    public function __construct(TreeFactory $tf)
+    public function __construct(Factory $tf)
     {
         $this->tf = $tf;
     }

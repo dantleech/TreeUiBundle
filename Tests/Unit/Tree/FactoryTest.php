@@ -2,9 +2,9 @@
 
 namespace Symfony\Cmf\Bundle\TreeUiBundle\Tests\Unit\Tree;
 
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\TreeFactory;
+use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Factory;
 
-class TreeFactoryTest extends \PHPUnit_Framework_Testcase
+class FactoryTest extends \PHPUnit_Framework_Testcase
 {
     public function setUp()
     {
@@ -29,58 +29,18 @@ class TreeFactoryTest extends \PHPUnit_Framework_Testcase
             'Symfony\Cmf\Bundle\TreeUiBundle\Tree\ModelInterface'
         );
 
-        $this->factory = new TreeFactory($this->container);
+        $this->factory = new Factory($this->container);
     }
 
-    public function provideGetTree()
-    {
-        return array(
-            array(null, null),
-            array(
-                array('viewOpt1' => 'one'),
-                null
-            ),
-            array(
-                null,
-                array('modelOpt1' => 'one')
-            ),
-            array(
-                array('viewOpt1' => 'one'),
-                array('modelOpt1' => 'one')
-            ),
-        );
-    }
-
-    /**
-     * @dataProvider provideGetTree
-     */
-    public function testGetTree($modelOptions, $viewOptions)
+    public function testGetTree()
     {
         $this->container->expects($this->once())
             ->method('get')
             ->with('foo.bar')
             ->will($this->returnValue($this->tree2));
-        $this->tree2->expects($this->once())
-            ->method('getModel')
-            ->will($this->returnValue($this->tree2Model));
-        $this->tree2->expects($this->once())
-            ->method('getView')
-            ->will($this->returnValue($this->tree2View));
-
-        if ($viewOptions !== null) {
-            $this->tree2View->expects($this->once())
-                ->method('mergeOptions')
-                ->with($viewOptions === null ? array() : $viewOptions);
-        }
-
-        if ($modelOptions !== null) {
-            $this->tree2Model->expects($this->once())
-                ->method('mergeOptions')
-                ->with($modelOptions === null ? array() : $modelOptions);
-        }
 
         $this->factory->registerTreeServiceId('foobar', 'foo.bar');
-        $res = $this->factory->getTree('foobar', $modelOptions, $viewOptions);
+        $res = $this->factory->getTree('foobar');
         $this->assertSame($this->tree2, $res);
     }
 

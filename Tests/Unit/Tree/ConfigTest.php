@@ -8,28 +8,40 @@ class ConfigTest extends \PHPUnit_Framework_Testcase
 {
     public function setUp()
     {
-        $this->config = new Config;
+        $this->featurable = $this->getMock('Symfony\Cmf\Bundle\TreeUiBundle\Tree\FeaturableInterface');
     }
 
-    public function testArrayAccess()
+    protected function getConfig($userOptions = array())
     {
-        $this->config->setDefaults(array(
-            'foobar' => 'car'
-        ));
-        $this->config['foobar'] = 'bar';
-        $this->assertEquals('bar', $this->config['foobar']);
+        return new Config($userOptions, $this->featurable);
     }
 
-    /**
-     * @depends testArrayAccess
-     */
-    public function testOptionsResolverDefaults()
+    public function testOptionDefaults()
     {
-        $this->config->setDefaults(array(
+        $config = $this->getConfig();
+
+        $config->setDefaults(array(
             'foobar' => 'barfoo',
             'barfoo' => 'foobar',
         ));
 
-        $this->assertEquals('foobar', $this->config['barfoo']);
+        $options = $config->getOptions();
+        $this->assertEquals('foobar', $options['barfoo']);
+    }
+
+    public function testOptionUserOptions()
+    {
+        $config = $this->getConfig();
+
+        $config->setDefaults(array(
+            'foobar' => 'barfoo',
+            'barfoo' => 'foobar',
+        ));
+
+        $options = $config->getOptions(array(
+            'foobar' => 'zzzzz',
+        ));
+
+        $this->assertEquals('zzzzz', $options['foobar']);
     }
 }
