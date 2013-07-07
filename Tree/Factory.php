@@ -82,9 +82,9 @@ class Factory
         $trees = $this->getTrees();
         foreach ($trees as $tree) {
             $features = array_merge($features, array_combine(
-                array_keys($tree->getView()->getFeatures()),
+                $tree->getView()->getFeatures(),
                 $tree->getView()->getFeatures()
-            ));
+            ), $features);
         }
 
         return array_values($features);

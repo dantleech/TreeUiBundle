@@ -5,7 +5,7 @@ namespace Symfony\Cmf\Bundle\TreeUiBundle\Tests\WebTest\Trees;
 use Symfony\Cmf\Component\Testing\Functional\BaseTestCase;
 use Symfony\Component\HttpFoundation\Request;
 
-class PhpcrOdmFancyTreeTest extends BaseTestCase
+class AllTreeTest extends BaseTestCase
 {
     public function setUp()
     {
@@ -15,15 +15,30 @@ class PhpcrOdmFancyTreeTest extends BaseTestCase
         ));
     }
 
-    public function testTree()
+    public function provideTree()
+    {
+        return array(
+            array('fancytree_phpcrodm'),
+            array('dynatree_phpcrodm'),
+            array('elfinder_filesystem'),
+        );
+    }
+
+    /**
+     * @dataProvider provideTree
+     */
+    public function testTree($treeName)
     {
         $client = $this->createClient();
-        $client->request('get', '/tree/fancytree_phpcrodm');
+        $client->request('get', '/tree/'.$treeName);
         $res = $client->getResponse();
         $this->assertEquals(200, $res->getStatusCode());
     }
 
-    public function testTreeChildren()
+    /**
+     * @dataProvider provideTree
+     */
+    public function testTreeChildren($treeName)
     {
         $client = $this->createClient();
         $client->request('get', '/_cmf_tree_ui/children/fancytree_phpcrodm///children');
@@ -31,4 +46,3 @@ class PhpcrOdmFancyTreeTest extends BaseTestCase
         $this->assertEquals(200, $res->getStatusCode());
     }
 }
-

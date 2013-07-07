@@ -4,6 +4,7 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
+        <!-- Fancytree -->
         <service
             id="cmf_tree_ui.view.fancy_tree"
             class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\View\FancyTreeView"
@@ -13,6 +14,7 @@
             <tag name="cmf_tree_ui.view" alias="fancy_tree"/>
         </service>
 
+        <!-- Dynatree -->
         <service
             id="cmf_tree_ui.view.dynatree"
             class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\View\DynatreeView"
@@ -20,6 +22,16 @@
             <argument type="service" id="twig"/>
             <argument type="service" id="router"/>
             <tag name="cmf_tree_ui.view" alias="dyna_tree"/>
+        </service>
+
+        <!-- ElFinder -->
+        <service
+            id="cmf_tree_ui.view.elfinder"
+            class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\View\ElFinderView"
+            >
+            <argument type="service" id="twig"/>
+            <argument type="service" id="router"/>
+            <tag name="cmf_tree_ui.view" alias="el_finder"/>
         </service>
     </services>
 </container>

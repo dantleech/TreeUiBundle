@@ -64,7 +64,7 @@ class CmfTreeUiExtension extends Extension
 
         foreach ($serviceIds as $serviceId => $tags) {
             $sAlias = $tags[0]['alias'];
-            if ($sAlias = $alias) {
+            if ($sAlias == $alias) {
                 return $serviceId;
             }
         }

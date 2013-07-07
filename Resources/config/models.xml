@@ -16,7 +16,7 @@
             class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\Model\PhpcrModel"
             >
             <argument type="service" id="doctrine_phpcr.session"/>
-            <tag name="cmf_tree_ui.model" alias="phpcr_odm"/>
+            <tag name="cmf_tree_ui.model" alias="phpcr"/>
         </service>
 
         <!-- PhpcrOdm Model !-->

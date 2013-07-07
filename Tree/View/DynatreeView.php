@@ -17,7 +17,6 @@ class DynatreeView implements ViewInterface
     protected $tree;
     protected $templating;
     protected $urlGenerator;
-    protected $optionsResolver;
     protected $config;
 
     public function __construct(
@@ -27,7 +26,6 @@ class DynatreeView implements ViewInterface
     {
         $this->templating = $templating;
         $this->urlGenerator = $urlGenerator;
-        $this->optionsResolver = $resolver;
     }
 
     public function getFeatures()
@@ -50,9 +48,9 @@ class DynatreeView implements ViewInterface
 
     public function getOutput($options = array())
     {
-        $options = $this->optionsResolver->resolve($options);
+        $options = $this->config->getOptions($options);
 
-        $basePath = $this->tree->getConfig()->getBasePath();
+        $basePath = $options['root_path'];
         $rootNode = $this->getModel()->getNode($basePath);
         $uniqId = uniqid();
 
@@ -121,5 +119,14 @@ class DynatreeView implements ViewInterface
 
     public function configure(ViewConfig $config)
     {
+        $config->setDefaults(array(
+            'root_path' => '/',
+        ));
+
+        $config->setRequired(array(
+            'root_path'
+        ));
+
+        $this->config = $config;
     }
 }

@@ -7,19 +7,23 @@ cmf_tree_ui:
     tree:
         # Model: PHPCR-ODM
         fancytree_phpcrodm:
-            model: cmf_tree_ui.model.phpcr_odm
-            view: cmf_tree_ui.view.fancy_tree
+            model: phpcr_odm
+            view: fancy_tree
 
         dynatree_phpcrodm:
-            model: cmf_tree_ui.model.phpcr_odm
-            view: cmf_tree_ui.view.dynatree
+            model: phpcr_odm
+            view: dyna_tree
 
         # Model: Filesystem
         fancytree_filesystem:
-            model: cmf_tree_ui.model.filesystem
-            view: cmf_tree_ui.view.fancy_tree
+            model: filesystem
+            view: fancy_tree
+
+        elfinder_filesystem:
+            model: filesystem
+            view: el_finder
 
         # Model: Phpcr
         fancytree_phpcr:
-            model: cmf_tree_ui.model.phpcr
-            view: cmf_tree_ui.view.fancy_tree
+            model: phpcr
+            view: fancy_tree

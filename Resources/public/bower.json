@@ -6,6 +6,7 @@
       "jquery": "latest",
       "jquery-ui": "latest",
       "fancytree": "latest",
-      "dynatree": "latest"
+      "dynatree": "latest",
+      "git://github.com/Studio-42/elFinder": "latest"
   }
 }

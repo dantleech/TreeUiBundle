@@ -1,0 +1,10 @@
+<div id="cmf_tree_{{ uniqId }}"></div>
+
+<script type="text/javascript">
+$(document).ready(function () {
+    $('#cmf_tree_{{ uniqId }}').elfinder({
+        url : '{{ asset('bundles/cmftreeui/components/elFinder/php/connector.minimal.php') }}'
+    });
+});
+
+</script>

@@ -8,6 +8,7 @@ use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewInterface;
 use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Tree;
 use Symfony\Bundle\TwigBundle\TwigEngine;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewConfig;
 
 class ElFinderView implements ViewInterface
 {
@@ -18,13 +19,11 @@ class ElFinderView implements ViewInterface
 
     public function __construct(
         \Twig_Environment $templating, 
-        UrlGeneratorInterface $urlGenerator,
-        ViewConfig $config
+        UrlGeneratorInterface $urlGenerator
     )
     {
         $this->templating = $templating;
         $this->urlGenerator = $urlGenerator;
-        $this->config = $config;
     }
 
     public function getFeatures()
@@ -44,16 +43,16 @@ class ElFinderView implements ViewInterface
         return $this->tree->getModel();
     }
 
-    public function getOutput()
+    public function getOutput($options = array())
     {
-        $rootNode = $this->getModel()->getNode($basePath);
+        $options = $this->config->getOptions($options);
+        $rootNode = $this->getModel()->getNode($options['root_path']);
         $uniqId = uniqid();
 
-        $content = $this->templating->render('CmfTreeUiBundle:FancyTree:view.html.twig', array(
+        $content = $this->templating->render('CmfTreeUiBundle:ElFinder:view.html.twig', array(
             'rootNode' => $rootNode,
             'tree' => $this->tree,
             'uniqId' => $uniqId,
-            'keyPath' => $keyPath,
         ));
 
         return $content;
@@ -89,15 +88,28 @@ class ElFinderView implements ViewInterface
     public function getJavascripts()
     {
         return array(
-            'bundles/cmftreeui/components/fancytree/src/jquery.fancytree.js',
+            'bundles/cmftreeui/components/elFinder/js/elfinder.min.js',
         );
     }
 
     public function getStylesheets()
     {
         return array(
-            'bundles/cmftreeui/components/fancytree/src/skin-xp/ui.fancytree.css',
+            'bundles/cmftreeui/components/elFinder/css/elfinder.min.css',
+            'bundles/cmftreeui/components/elFinder/css/theme.css',
         );
     }
-}
 
+    public function configure(ViewConfig $config)
+    {
+        $config->setDefaults(array(
+            'root_path' => '/',
+        ));
+
+        $config->setRequired(array(
+            'root_path'
+        ));
+
+        $this->config = $config;
+    }
+}

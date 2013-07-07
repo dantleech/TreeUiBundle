@@ -52,7 +52,7 @@ interface ViewInterface extends FeaturableInterface
      *
      * @return Symfony\Component\HttpFoundation\Response
      */
-    public function getOutput();
+    public function getOutput($output = array());
 
     /**
      * Return the response for a children request.
