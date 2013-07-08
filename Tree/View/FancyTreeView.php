@@ -4,13 +4,13 @@ namespace Symfony\Cmf\Bundle\TreeUiBundle\Tree\View;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewInterface;
 use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Tree;
 use Symfony\Bundle\TwigBundle\TwigEngine;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewConfig;
+use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewInterface;
 
-class FancyTreeView implements ViewInterface
+class FancyTreeView extends AbstractStandardView
 {
     protected $tree;
     protected $templating;

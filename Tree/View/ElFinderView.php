@@ -9,8 +9,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewInterface;
+use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Node;
 
-class ElFinderView implements ViewDelegatorInterface
+class ElFinderView implements ViewInterface
 {
     protected $tree;
     protected $templating;
@@ -58,37 +59,18 @@ class ElFinderView implements ViewDelegatorInterface
         return $content;
     }
 
-    public function getDelegatedResponse(Request $request)
+    public function processRequest(Request $request)
     {
-        // hmm should split the interfaces up into individual 
-        return new Response('');
-    }
+        $cmd = $request->get('cmd');
 
-    public function getChildrenResponse(Request $request)
-    {
-        $response = new Response;
-
-        $id = $request->get('node_id', '/');
-        $children = $this->getModel()->getChildren($id);
-
-        $out = array();
-        $treeName = $this->tree->getName();
-
-        foreach ($children as $child) {
-            $aNode['title'] = $child->getLabel();
-            $aNode['key'] = $child->getId();
-            $aNode['lazy'] = $child->hasChildren();
-            $aNode['folder'] = $child->hasChildren();
-            $aNode['children_url'] = $this->urlGenerator->generate('_cmf_tree_ui_children', array(
-                'tree_name' => $treeName,
-                'node_id' => $child->getId(),
+        if (!method_exists($this, $cmd)) {
+            throw new NotFoundHttpException(sprintf(
+                'Command "%s" does not exist',
+                $cmd
             ));
-            $out[] = $aNode;
         }
 
-        $response->setContent(json_encode($out));
-
-        return $response;
+        return $this->$cmd($request);
     }
 
     public function getJavascripts()
@@ -117,5 +99,90 @@ class ElFinderView implements ViewDelegatorInterface
         ));
 
         $this->config = $config;
+    }
+
+    protected function open(Request $request) 
+    {
+		$target = $request->get('target', 'v1_/');
+		$init   = $request->get('init', false);
+        $tree   = $request->get('tree', false);
+
+        $target = substr($target, 3);
+
+        $cwdNode = $this->getModel()->getNode($target);
+        $cwd = $this->nodeToArray($cwdNode);
+
+		if (!$cwd) {
+            return $this->jsonResponse(array(
+                'error' => $this->error(
+                    self::ERROR_OPEN, 
+                    $hash, 
+                    self::ERROR_DIR_NOT_FOUND
+                )
+            ));
+        }
+
+		if (!$cwd['read']) {
+            return $this->jsonResponse(array(
+                'error' => $this->error(
+                    self::ERROR_OPEN, 
+                    $hash, 
+                    self::ERROR_PERM_DENIED
+                )
+            ));
+		}
+
+        $files = array();
+
+		// get folders trees
+        if ($tree) {
+            $node = new Node;
+            $node->setLabel('Default');
+            $node->setId('/');
+            $node->setHasChildren(true);
+            $files = array_merge($files, array($this->nodeToArray($node)));
+		}
+
+        $children = $this->getModel()->getChildren($target);
+
+        foreach ($children as $node) {
+            $files[] = $this->nodeToArray($node, $cwdNode);
+		}
+		
+		$result = array(
+			'cwd'     => $cwd,
+			'options' => array(),
+			'files'   => $files
+		);
+
+		if ($init) {
+			$result['api'] = '2.0';
+			$result['uplMaxSize'] = ini_get('upload_max_filesize');
+		}
+		
+		return $this->jsonResponse($result);
+    }
+
+    protected function jsonResponse($array)
+    {
+        $json = json_encode($array, true);
+        return new Response($json);
+    }
+
+    protected function nodeToArray(Node $node, Node $parent = null)
+    {
+        $arr = array();
+        $arr['hash'] = 'v1_'.$node->getId();
+        $arr['mime'] = $node->hasChildren() ? 'directory' : 'text';
+        $arr['dirs'] = 1;
+        $arr['name'] = $node->getLabel();
+        $arr['phash'] = $parent ? 'v1_'.$parent->getId() : null;
+        $arr['read'] = 1;
+        $arr['write'] = 0;
+        $arr['size'] = 0;
+        $arr['ts'] = 0;
+        $arr['volumeid'] = 'v1_';
+
+        return $arr;
     }
 }

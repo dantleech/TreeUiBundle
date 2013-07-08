@@ -1,6 +1,6 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\CmfTreeUiBundle\Tree\View;
+namespace Symfony\Cmf\Bundle\TreeUiBundle\Tree\View;
 
 use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,7 +28,7 @@ abstract class AbstractStandardView implements ViewInterface
             ));
         }
 
-        return $this->{$commandMap[$command]};
+        return $this->{$commandMap[$command]}($request);
     }
 
     /**

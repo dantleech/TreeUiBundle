@@ -4,7 +4,7 @@
 $(document).ready(function () {
     var options = {
         initAjax: {
-            url: "{{ path('_cmf_tree_ui_children', {'tree_name': tree.name}) }}"
+            url: "{{ path('_cmf_tree_ui_children', {'cmf_tree_ui_tree_name': tree.name}) }}"
         },
         onPostInit: function () {
             {% if options.select_node != '/' %}

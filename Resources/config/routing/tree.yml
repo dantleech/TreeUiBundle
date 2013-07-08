@@ -4,7 +4,7 @@ _cmf_tree_ui_view:
         _controller: cmf_tree_ui.controller.tree:viewAction
 
 _cmf_tree_ui_process:
-    pattern: /_cmf_tree_ui/{cmf_tree_ui_tree_name}/do/{cmf_tree_ui_command}
+    pattern: /_cmf_tree_ui/{cmf_tree_ui_tree_name}/do
     defaults:
         _controller: cmf_tree_ui.controller.tree:processAction
 

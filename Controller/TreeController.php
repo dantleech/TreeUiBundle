@@ -35,7 +35,6 @@ class TreeController
      */
     public function processAction(Request $request)
     {
-        $action = $request->get('cmf_tree_ui_command');
         $tree = $this->getTree($request);
         $view = $tree->getView();
 

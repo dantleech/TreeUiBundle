@@ -41,7 +41,7 @@ class AllTreeTest extends BaseTestCase
     public function testTreeChildren($treeName)
     {
         $client = $this->createClient();
-        $client->request('get', '/_cmf_tree_ui/children/fancytree_phpcrodm///children');
+        $client->request('get', '/_cmf_tree_ui/fancytree_phpcrodm/children//');
         $res = $client->getResponse();
         $this->assertEquals(200, $res->getStatusCode());
     }

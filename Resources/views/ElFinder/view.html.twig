@@ -3,7 +3,7 @@
 <script type="text/javascript">
 $(document).ready(function () {
     $('#cmf_tree_{{ uniqId }}').elfinder({
-        url : '{{ path('_cmf_tree_ui_delegate', {'tree_name': tree.name}) }}'
+        url : '{{ path('_cmf_tree_ui_process', {'cmf_tree_ui_tree_name': tree.name}) }}'
     });
 });
 

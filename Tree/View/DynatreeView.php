@@ -80,7 +80,7 @@ class DynatreeView extends AbstractStandardView
     {
         $response = new Response;
 
-        $id = $request->get('node_id', '/');
+        $id = $request->get('cmf_tree_ui_node_id', '/');
         $children = $this->getModel()->getChildren($id);
 
         $out = array();
@@ -92,8 +92,8 @@ class DynatreeView extends AbstractStandardView
             $aNode['isLazy'] = $child->hasChildren();
             $aNode['isFolder'] = $child->hasChildren();
             $aNode['children_url'] = $this->urlGenerator->generate('_cmf_tree_ui_children', array(
-                'tree_name' => $treeName,
-                'node_id' => $child->getId(),
+                'cmf_tree_ui_tree_name' => $treeName,
+                'cmf_tree_ui_node_id' => $child->getId(),
             ));
             $out[] = $aNode;
         }

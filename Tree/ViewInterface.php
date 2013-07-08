@@ -55,6 +55,15 @@ interface ViewInterface extends FeaturableInterface
     public function getOutput($output = array());
 
     /**
+     * Process a backend command
+     *
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function processRequest(Request $request);
+
+    /**
      * Return an array of javascript assets required by
      * the plugin
      *
