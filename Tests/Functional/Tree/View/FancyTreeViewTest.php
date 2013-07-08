@@ -73,7 +73,7 @@ class FancyTreeViewTest extends BaseTestCase
             'key' => '/path/to/this/node',
             'lazy' => null,
             'folder' => null,
-            'children_url' => '/_cmf_tree_ui/children/foobar_Tree//path/to/this/node/children',
+            'children_url' => '/_cmf_tree_ui/tree/foobar_Tree//path/to/this/node/children',
         ), $node2);
     }
 }

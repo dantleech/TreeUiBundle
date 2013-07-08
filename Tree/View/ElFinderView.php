@@ -2,15 +2,15 @@
 
 namespace Symfony\Cmf\Bundle\TreeUiBundle\Tree\View;
 
+use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewDelegatorInterface;
+use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Tree;
+use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewConfig;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewInterface;
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Tree;
-use Symfony\Bundle\TwigBundle\TwigEngine;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewConfig;
+use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewInterface;
 
-class ElFinderView implements ViewInterface
+class ElFinderView implements ViewDelegatorInterface
 {
     protected $tree;
     protected $templating;
@@ -56,6 +56,12 @@ class ElFinderView implements ViewInterface
         ));
 
         return $content;
+    }
+
+    public function getDelegatedResponse(Request $request)
+    {
+        // hmm should split the interfaces up into individual 
+        return new Response('');
     }
 
     public function getChildrenResponse(Request $request)
