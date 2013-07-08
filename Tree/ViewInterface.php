@@ -55,14 +55,6 @@ interface ViewInterface extends FeaturableInterface
     public function getOutput($output = array());
 
     /**
-     * Return the response for a children request.
-     *
-     * @param Symfony\Component\HttpFoundation\Request
-     * @return Symfony\Component\HttpFoundation\Response
-     */
-    public function getChildrenResponse(Request $request);
-
-    /**
      * Return an array of javascript assets required by
      * the plugin
      *

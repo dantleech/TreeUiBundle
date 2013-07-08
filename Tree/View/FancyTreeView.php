@@ -89,7 +89,7 @@ class FancyTreeView implements ViewInterface
         return $content;
     }
 
-    public function getChildrenResponse(Request $request)
+    public function childrenResponse(Request $request)
     {
         $response = new Response;
 
@@ -105,8 +105,9 @@ class FancyTreeView implements ViewInterface
             $aNode['lazy'] = $child->hasChildren();
             $aNode['folder'] = $child->hasChildren();
             $aNode['children_url'] = $this->urlGenerator->generate('_cmf_tree_ui_children', array(
-                'tree_name' => $treeName,
-                'node_id' => $child->getId(),
+                'cmf_tree_ui_command' => 'children',
+                'cmf_tree_ui_tree_name' => $treeName,
+                'cmf_tree_ui_node_id' => $child->getId(),
             ));
             $out[] = $aNode;
         }

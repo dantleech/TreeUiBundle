@@ -62,7 +62,7 @@ class FancyTreeViewTest extends BaseTestCase
             ->method('getName')
             ->will($this->returnValue('foobar_Tree'));
 
-        $res = $this->view->getChildrenResponse($this->request);
+        $res = $this->view->childrenResponse($this->request);
         $obj = json_decode($res->getContent(), true);
         $this->assertCount(2, $obj);
 
@@ -73,7 +73,7 @@ class FancyTreeViewTest extends BaseTestCase
             'key' => '/path/to/this/node',
             'lazy' => null,
             'folder' => null,
-            'children_url' => '/_cmf_tree_ui/tree/foobar_Tree//path/to/this/node/children',
+            'children_url' => '/_cmf_tree_ui/foobar_Tree/children//path/to/this/node',
         ), $node2);
     }
 }

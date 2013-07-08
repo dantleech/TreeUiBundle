@@ -12,7 +12,7 @@ use Symfony\Cmf\Bundle\TreeUiBundle\Tree\TreeViewOptionsResolver;
 use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Config;
 use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewConfig;
 
-class DynatreeView implements ViewInterface
+class DynatreeView extends AbstractStandardView
 {
     protected $tree;
     protected $templating;
@@ -76,7 +76,7 @@ class DynatreeView implements ViewInterface
         return $content;
     }
 
-    public function getChildrenResponse(Request $request)
+    public function childrenResponse(Request $request)
     {
         $response = new Response;
 

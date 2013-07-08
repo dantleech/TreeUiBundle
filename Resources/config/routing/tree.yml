@@ -1,17 +1,17 @@
 _cmf_tree_ui_view:
-    pattern: /_cmf_tree_ui/tree/{tree_name}/view
+    pattern: /_cmf_tree_ui/{cmf_tree_ui_tree_name}/view
     defaults:
         _controller: cmf_tree_ui.controller.tree:viewAction
 
-_cmf_tree_ui_children:
-    pattern: /_cmf_tree_ui/tree/{tree_name}/{node_id}/children
+_cmf_tree_ui_process:
+    pattern: /_cmf_tree_ui/{cmf_tree_ui_tree_name}/do/{cmf_tree_ui_command}
     defaults:
-        _controller: cmf_tree_ui.controller.tree:childrenAction
-        node_id: /
-    requirements: { node_id: .* }
+        _controller: cmf_tree_ui.controller.tree:processAction
 
-_cmf_tree_ui_delegate:
-    pattern: /_cmf_tree_ui/tree/{tree_name}/delegate
+_cmf_tree_ui_children:
+    pattern: /_cmf_tree_ui/{cmf_tree_ui_tree_name}/children/{cmf_tree_ui_node_id}
     defaults:
-        _controller: cmf_tree_ui.controller.tree:delegateAction
-    requirements: { node_id: .* }
+        _controller: cmf_tree_ui.controller.tree:processAction
+        cmf_tree_ui_command: children
+        cmf_tree_ui_node_id: /
+    requirements: { cmf_tree_ui_node_id: .* }

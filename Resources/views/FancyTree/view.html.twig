@@ -6,7 +6,7 @@ $(document).ready(function () {
 
     var options = {
         source: {
-            url: "{{ path('_cmf_tree_ui_children', {'tree_name': tree.name}) }}"
+            url: "{{ path('_cmf_tree_ui_children', {'cmf_tree_ui_tree_name': tree.name}) }}"
         },
         init: function () {
             {% if keyPath %}

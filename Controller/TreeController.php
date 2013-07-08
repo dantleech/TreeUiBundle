@@ -21,32 +21,41 @@ class TreeController
 
     protected function getTree(Request $request)
     {
-        $name = $request->get('tree_name') ? : null;
+        $name = $request->get('cmf_tree_ui_tree_name') ? : null;
         return $this->treeFactory->getTree($name);
     }
 
-    public function delegateAction(Request $request)
+    /**
+     * Process a command, generally this is the backend
+     * interface to the tree.
+     *
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function processAction(Request $request)
     {
+        $action = $request->get('cmf_tree_ui_command');
         $tree = $this->getTree($request);
         $view = $tree->getView();
 
-        if (!$view instanceof ViewDelegatorInterface) {
-            throw new NotFoundHttpException('This model does not support delegating');
-        }
-
-        return $view->getDelegatedResponse($request);
+        return $view->processRequest($request);
     }
 
+    /**
+     * Render a tree - note that this is perhaps more commonly
+     * achieved through the twig helper and not through this
+     * controller.
+     *
+     * @param Request $request
+     *
+     * @return Response
+     */
     public function viewAction(Request $request)
     {
         $tree = $this->getTree($request);
         $content = $tree->getView()->getOutput();
 
         return new Response($content);
-    }
-
-    public function childrenAction(Request $request)
-    {
-        return $this->getTree($request)->getView()->getChildrenResponse($request);
     }
 }

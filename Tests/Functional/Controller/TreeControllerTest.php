@@ -19,7 +19,7 @@ class TreeControllerTest extends BaseTestCase
     {
         $controller = $this->getContainer()->get('cmf_tree_ui.controller.tree');
         $req = new Request(array(), array(
-            'tree_name' => 'fancytree_phpcrodm'
+            'cmf_tree_ui_tree_name' => 'fancytree_phpcrodm'
         ));
         $res = $controller->viewAction($req);
     }
