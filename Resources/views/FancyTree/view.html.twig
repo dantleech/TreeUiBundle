@@ -44,9 +44,6 @@ $(document).ready(function () {
     };
 
     {# Configure Extensions #}
-    {% if options.needsContextMenu %}
-    {% endif %}
-
     {% if options.drag_and_drop %}
         extensions.push('dnd');
         options['dnd'] = {

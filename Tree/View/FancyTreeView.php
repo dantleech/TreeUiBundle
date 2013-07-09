@@ -161,6 +161,7 @@ class FancyTreeView extends AbstractStandardView
         return array(
             'bundles/cmftreeui/components/fancytree/src/jquery.fancytree.js',
             'bundles/cmftreeui/components/fancytree/src/jquery.fancytree.dnd.js',
+            'bundles/cmftreeui/components/fancytree/src/jquery.fancytree.dnd.js',
         );
     }
 

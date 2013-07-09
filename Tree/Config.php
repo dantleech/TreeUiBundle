@@ -23,7 +23,19 @@ class Config extends OptionsResolver
         return in_array($feature, $this->features);
     }
 
-    public function configure()
+    protected function addFeatureDefaults($featureDefaults)
+    {
+        $newDefaults = array();
+        foreach ($featureDefaults as $featureName => $defaults) {
+            if ($this->hasFeature($featureName)) {
+                $newDefaults = array_merge($newDefaults, $defaults);
+            }
+        }
+
+        $this->setDefaults($newDefaults);
+    }
+
+    protected function configure()
     {
     }
 

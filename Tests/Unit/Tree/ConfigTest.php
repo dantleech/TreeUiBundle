@@ -44,4 +44,40 @@ class ConfigTest extends \PHPUnit_Framework_Testcase
 
         $this->assertEquals('zzzzz', $options['foobar']);
     }
+
+    public function testAddFeatureDefaults()
+    {
+        $this->featurable->expects($this->once())
+            ->method('getFeatures')
+            ->will($this->returnValue(array(
+                'foobar'
+            )));
+
+        $testConfig = new TestConfigClass(array(), $this->featurable);
+        $options = $testConfig->getOptions();
+
+        $this->assertFalse(isset($options['key1']));
+        $this->assertFalse(isset($options['key2']));
+        $this->assertTrue(isset($options['key3']));
+        $this->assertTrue(isset($options['key4']));
+
+
+    }
+}
+
+class TestConfigClass extends Config
+{
+    protected function configure()
+    {
+        $this->addFeatureDefaults(array(
+            'barfoo' => array(
+                'key1' => 'val1',
+                'key2' => 'val2',
+            ),
+            'foobar' => array(
+                'key3' => 'val3',
+                'key4' => 'val4',
+            ),
+        ));
+    }
 }
