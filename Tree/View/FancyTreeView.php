@@ -9,6 +9,7 @@ use Symfony\Bundle\TwigBundle\TwigEngine;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewConfig;
 use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewInterface;
+use PHPCR\Util\PathHelper;
 
 class FancyTreeView extends AbstractStandardView
 {
@@ -56,9 +57,17 @@ class FancyTreeView extends AbstractStandardView
         $this->tree = $tree;
     }
 
+    /**
+     * @return Symfony\Cmf\Bundle\TreeUiBundle\Tree\ModelInterface
+     */
     protected function getModel()
     {
         return $this->tree->getModel();
+    }
+
+    protected function jsonResponse($array)
+    {
+        return new Response(json_encode($array, true));
     }
 
     public function getOutput($options = array())
@@ -93,8 +102,6 @@ class FancyTreeView extends AbstractStandardView
 
     public function childrenResponse(Request $request)
     {
-        $response = new Response;
-
         $id = $request->get('cmf_tree_ui_node_id', '/');
         $children = $this->getModel()->getChildren($id);
 
@@ -119,9 +126,34 @@ class FancyTreeView extends AbstractStandardView
             $out[] = $aNode;
         }
 
-        $response->setContent(json_encode($out));
+        return $this->jsonResponse($out);
+    }
 
-        return $response;
+    public function moveResponse(Request $request)
+    {
+        $res = array(
+            'ok' => 1,
+        );
+
+        $nodeId = $request->get('cmf_tree_ui_node_id');
+        $targetNodeId = $request->get('cmf_tree_ui_target_node_id');
+        $before = (boolean) $request->get('cmf_tree_ui_target_before');
+
+        $targetParentPath = PathHelper::getParentPath($targetNodeId);
+        $targetNodeName = PathHelper::getNodeName($targetNodeId);
+        $nodeName = PathHelper::getNodeName($nodeId);
+        $targetPath = $targetParentPath.'/'.$nodeName;
+
+        try {
+            $this->getModel()->move($nodeId, $targetPath);
+            $this->getModel()->reorder($targetParentPath, $nodeName, $targetNodeName, $before);
+        } catch (\Exception $e) {
+            $message = $e->getMessage();
+            $res['ok'] = 0;
+            $res['message'] = $message;
+        }
+
+        return $this->jsonResponse($res);
     }
 
     public function getJavascripts()

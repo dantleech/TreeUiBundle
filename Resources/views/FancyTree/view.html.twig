@@ -55,12 +55,15 @@ $(document).ready(function () {
                     'cmf_tree_ui_target_before=' + beforeInt
                 ];
 
-                console.log(sourceNode);
-
                 var moveUrl = sourceNode.data.move_url;
                 var res = $.ajax({
                     url: moveUrl + '?' + params.join('&'),
-                    dataType: "json"
+                    dataType: "json",
+                    success: function (data) {
+                        if (data.ok == 0) {
+                            alert('Error: ' + data.message);
+                        }
+                    },
                 });
                 sourceNode.moveTo(node, hitMode);
             }

@@ -19,6 +19,7 @@ abstract class AbstractStandardView implements ViewInterface
 
         $commandMap = array(
             'children' => 'childrenResponse',
+            'move' => 'moveResponse',
         );
 
         if (!isset($commandMap[$command])) {
