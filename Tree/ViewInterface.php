@@ -44,6 +44,37 @@ interface ViewInterface extends FeaturableInterface
     const FEATURE_DRAG_AND_DROP = 'drag_and_drop';
 
     /**
+     * Supports a context menu of the kind where you right
+     * click on a node to get a list of possible actions
+     */
+    const FEATURE_CONTEXT_MENU = 'context_menu';
+
+    /**
+     * Supports a rename action from the context menu
+     */
+    const FEATURE_CONTEXT_RENAME = 'context_rename';
+
+    /**
+     * Supports a copy action from the context menu
+     */
+    const FEATURE_CONTEXT_COPY = 'context_copy';
+
+    /**
+     * Supports a paste action from the context menu
+     */
+    const FEATURE_CONTEXT_PASTE = 'context_paste';
+
+    /**
+     * Supports a cut action from the context menu
+     */
+    const FEATURE_CONTEXT_CUT = 'context_cut';
+
+    /**
+     * Supports a delete action from the context menu
+     */
+    const FEATURE_CONTEXT_DELETE = 'context_delete';
+
+    /**
      * Return the set of supported features
      */
     public function getFeatures();

@@ -8,14 +8,19 @@ class Config extends OptionsResolver
 {
     protected $userOptions = array();
     protected $resolved = false;
-    protected $featurable;
+    protected $features;
 
     public function __construct($userOptions = array(), FeaturableInterface $featurable)
     {
         parent::__construct();
         $this->userOptions = $userOptions;
-        $this->featurable = $featurable;
+        $this->features = $featurable->getFeatures();
         $this->configure();
+    }
+
+    public function hasFeature($feature)
+    {
+        return in_array($feature, $this->features);
     }
 
     public function configure()

@@ -1,5 +1,14 @@
 <div id="cmf_tree_{{ uniqId }}"></div>
 
+<!-- Definition of context menu -->
+<ul id="myMenu" class="contextMenu ui-helper-hidden">
+    <li class="edit"><a href="#edit">Edit</a></li>
+    <li class="cut"><a href="#cut">Cut</a></li>
+    <li class="copy"><a href="#copy">Copy</a></li>
+    <li class="paste"><a href="#paste">Paste</a></li>
+    <li class="ui-state-disabled"><a href="#delete">Delete</a></li>
+</ul>
+
 <script type="text/javascript">
 $(document).ready(function () {
     var treeEl = $('#cmf_tree_{{ uniqId }}');
@@ -35,6 +44,9 @@ $(document).ready(function () {
     };
 
     {# Configure Extensions #}
+    {% if options.needsContextMenu %}
+    {% endif %}
+
     {% if options.drag_and_drop %}
         extensions.push('dnd');
         options['dnd'] = {
@@ -71,7 +83,6 @@ $(document).ready(function () {
     {% endif %}
 
     options.extensions = extensions;
-
 
     {% if options.form_input %}
         {% if options.form_input_multiple %}
