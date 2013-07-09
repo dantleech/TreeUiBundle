@@ -50,7 +50,11 @@ class FilesystemModel implements ModelInterface
      */
     public function getFeatures()
     {
-        return array();
+        return array(
+            ModelInterface::FEATURE_GET_CHILDREN,
+            ModelInterface::FEATURE_GET_ANCESTORS,
+            ModelInterface::FEATURE_GET_NODE,
+        );
     }
 
     /**

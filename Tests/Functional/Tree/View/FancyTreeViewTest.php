@@ -43,7 +43,7 @@ class FancyTreeViewTest extends BaseTestCase
     {
         $this->request->expects($this->once())
             ->method('get')
-            ->with('node_id')
+            ->with('cmf_tree_ui_node_id')
             ->will($this->returnValue('/'));
 
         $this->model->expects($this->once())
@@ -74,6 +74,7 @@ class FancyTreeViewTest extends BaseTestCase
             'lazy' => null,
             'folder' => null,
             'children_url' => '/_cmf_tree_ui/foobar_Tree/children//path/to/this/node',
+            'move_url' => '/_cmf_tree_ui/foobar_Tree/move//path/to/this/node',
         ), $node2);
     }
 }

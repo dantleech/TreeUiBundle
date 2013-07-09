@@ -39,6 +39,11 @@ interface ViewInterface extends FeaturableInterface
     const FEATURE_FORM_INPUT_MULTIPLE = 'form_input_multiple';
 
     /**
+     * Supports drag and drop move and resort
+     */
+    const FEATURE_DRAG_AND_DROP = 'drag_and_drop';
+
+    /**
      * Return the set of supported features
      */
     public function getFeatures();

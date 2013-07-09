@@ -15,3 +15,13 @@ _cmf_tree_ui_children:
         cmf_tree_ui_command: children
         cmf_tree_ui_node_id: /
     requirements: { cmf_tree_ui_node_id: .* }
+
+_cmf_tree_ui_move:
+    pattern: /_cmf_tree_ui/{cmf_tree_ui_tree_name}/move/{cmf_tree_ui_node_id}
+    defaults:
+        _controller: cmf_tree_ui.controller.tree:processAction
+        cmf_tree_ui_command: move
+        # cmf_tree_ui_node_id
+        # cmf_tree_ui_target_node_id
+        # cmf_tree_ui_before
+    requirements: { cmf_tree_ui_node_id: .* }

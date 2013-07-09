@@ -4,6 +4,8 @@
 $(document).ready(function () {
     var treeEl = $('#cmf_tree_{{ uniqId }}');
 
+    var extensions = [];
+
     var options = {
         source: {
             url: "{{ path('_cmf_tree_ui_children', {'cmf_tree_ui_tree_name': tree.name}) }}"
@@ -28,8 +30,45 @@ $(document).ready(function () {
                 dataType: "json"
             });
         },
-        keyPathSeparator: "&"
+        keyPathSeparator: "&",
+        debugLevel: 0
     };
+
+    {# Configure Extensions #}
+    {% if options.drag_and_drop %}
+        extensions.push('dnd');
+        options['dnd'] = {
+            preventVoidMoves: true,
+            preventRecursiveMoves: true,
+            autoExpandMs: 400,
+            onDragStart: function (node) {
+                return true;
+            },
+            onDragEnter: function (node, sourceNode) {
+                return true;
+            },
+            onDrop: function (node, sourceNode, hitMode, ui, draggable) {
+
+                var beforeInt = hitMode == 'before' ? 1 : 0;
+                var params = [
+                    'cmf_tree_ui_target_node_id=' + node.key,
+                    'cmf_tree_ui_target_before=' + beforeInt
+                ];
+
+                console.log(sourceNode);
+
+                var moveUrl = sourceNode.data.move_url;
+                var res = $.ajax({
+                    url: moveUrl + '?' + params.join('&'),
+                    dataType: "json"
+                });
+                sourceNode.moveTo(node, hitMode);
+            }
+        }
+    {% endif %}
+
+    options.extensions = extensions;
+
 
     {% if options.form_input %}
         {% if options.form_input_multiple %}

@@ -30,6 +30,7 @@ class FancyTreeView extends AbstractStandardView
     {
         $config->setDefaults(array(
             'root_path' => '/',
+            'drag_and_drop' => false
         ));
 
         $config->setRequired(array(
@@ -42,10 +43,11 @@ class FancyTreeView extends AbstractStandardView
     public function getFeatures()
     {
         return array(
-            ViewInterface::FEATURE_BROWSE,
-            ViewInterface::FEATURE_PRE_SELECT_NODE,
-            ViewInterface::FEATURE_FORM_INPUT,
-            ViewInterface::FEATURE_FORM_INPUT_MULTIPLE,
+            //ViewInterface::FEATURE_BROWSE,
+            //ViewInterface::FEATURE_PRE_SELECT_NODE,
+            //ViewInterface::FEATURE_FORM_INPUT,
+            //ViewInterface::FEATURE_FORM_INPUT_MULTIPLE,
+            ViewInterface::FEATURE_DRAG_AND_DROP
         );
     }
 
@@ -93,7 +95,7 @@ class FancyTreeView extends AbstractStandardView
     {
         $response = new Response;
 
-        $id = $request->get('node_id', '/');
+        $id = $request->get('cmf_tree_ui_node_id', '/');
         $children = $this->getModel()->getChildren($id);
 
         $out = array();
@@ -109,6 +111,11 @@ class FancyTreeView extends AbstractStandardView
                 'cmf_tree_ui_tree_name' => $treeName,
                 'cmf_tree_ui_node_id' => $child->getId(),
             ));
+            $aNode['move_url'] = $this->urlGenerator->generate('_cmf_tree_ui_move', array(
+                'cmf_tree_ui_command' => 'move',
+                'cmf_tree_ui_tree_name' => $treeName,
+                'cmf_tree_ui_node_id' => $child->getId(),
+            ));
             $out[] = $aNode;
         }
 
@@ -121,6 +128,7 @@ class FancyTreeView extends AbstractStandardView
     {
         return array(
             'bundles/cmftreeui/components/fancytree/src/jquery.fancytree.js',
+            'bundles/cmftreeui/components/fancytree/src/jquery.fancytree.dnd.js',
         );
     }
 

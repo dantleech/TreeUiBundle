@@ -6,6 +6,12 @@ use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ModelConfig;
 
 interface ModelInterface extends FeaturableInterface
 {
+    const FEATURE_GET_CHILDREN = 'get_children';
+    const FEATURE_GET_ANCESTORS = 'get_ancestors';
+    const FEATURE_REORDER = 'reorder';
+    const FEATURE_MOVE = 'move';
+    const FEATURE_GET_NODE = 'get_node';
+
     public function getChildren($path);
 
     public function getAncestors($path);

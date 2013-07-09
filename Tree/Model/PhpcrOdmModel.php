@@ -31,8 +31,15 @@ class PhpcrOdmModel implements ModelInterface
      */
     public function getFeatures()
     {
-        return array();
+        return array(
+            ModelInterface::FEATURE_GET_CHILDREN,
+            ModelInterface::FEATURE_GET_ANCESTORS,
+            ModelInterface::FEATURE_GET_NODE,
+            ModelInterface::FEATURE_MOVE,
+            ModelInterface::FEATURE_REORDER,
+        );
     }
+
 
     protected function getMetadata($object)
     {
@@ -127,15 +134,15 @@ class PhpcrOdmModel implements ModelInterface
     {
         $rootDoc = $this->getDocument($sourceId);
         $this->getDm()->move($rootDoc, $targetId);
+        $this->getDm()->flush();
     }
 
 
     public function reorder($parentId, $sourceId, $targetId, $before = false)
     {
-        throw new \Exception('This probably will not work. SourceID is full path or just name??');
-
         $parentDoc = $this->getDocument($parentId);
         $this->getDm()->reorder($parentDoc, $sourceId, $targetId, $before);
+        $this->getDm()->flush();
     }
 
     public function getNode($path)
