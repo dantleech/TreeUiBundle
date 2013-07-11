@@ -43,7 +43,7 @@ abstract class BaseTest extends BaseTestCase
         $this->assertCount(1, $nodes);
 
         $nodes = $this->model->getChildren('/test/menu');
-        $this->assertCount(4, $nodes);
+        $this->assertCount(5, $nodes);
     }
 
     public function testMove()
@@ -58,6 +58,15 @@ abstract class BaseTest extends BaseTestCase
 
         $children = $this->model->getChildren('/test/menu/item2');
         $this->assertCount(3, $children);
+    }
+
+    public function testDelete()
+    {
+        $this->requiresFeature(ModelInterface::FEATURE_DELETE);
+
+        $this->model->delete('/test/menu/delete-me');
+        $children = $this->model->getChildren('/test/menu');
+        $this->assertCount(4, $children);
     }
 
     public function provideReorder()

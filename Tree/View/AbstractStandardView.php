@@ -20,6 +20,7 @@ abstract class AbstractStandardView implements ViewInterface
         $commandMap = array(
             'children' => 'childrenResponse',
             'move' => 'moveResponse',
+            'delete' => 'deleteResponse',
         );
 
         if (!isset($commandMap[$command])) {
@@ -38,4 +39,8 @@ abstract class AbstractStandardView implements ViewInterface
      * @return Symfony\Component\HttpFoundation\Response 
      */
     abstract public function childrenResponse(Request $request);
+
+    abstract public function moveResponse(Request $request);
+
+    abstract public function deleteResponse(Request $request);
 }

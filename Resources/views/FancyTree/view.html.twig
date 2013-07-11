@@ -1,16 +1,61 @@
 <div id="cmf_tree_{{ uniqId }}"></div>
 
 <!-- Definition of context menu -->
-<ul id="myMenu" class="contextMenu ui-helper-hidden">
-    <li class="edit"><a href="#edit">Edit</a></li>
+<ul id="cmf_tree_ui_menu_{{ uniqId }}" class="contextMenu ui-helper-hidden">
+    <li class="edit"><a href="#edit">Edit in new window</a></li>
     <li class="cut"><a href="#cut">Cut</a></li>
-    <li class="copy"><a href="#copy">Copy</a></li>
-    <li class="paste"><a href="#paste">Paste</a></li>
-    <li class="ui-state-disabled"><a href="#delete">Delete</a></li>
+    <li class="paste ui-state-disabled"><a href="#paste_in">Paste in</a></li>
+    <li class="paste ui-state-disabled"><a href="#paste_before">Paste before</a></li>
+    <li class="paste ui-state-disabled"><a href="#paste_after">Paste after</a></li>
+    <li class="delete"><a href="#delete">Delete</a></li>
 </ul>
 
 <script type="text/javascript">
 $(document).ready(function () {
+    var clipboard = {};
+
+    var funcs = {
+        set_clip: function (node) {
+            clipboard = node;
+            $('#cmf_tree_ui_menu_{{ uniqId }} .paste').removeClass('ui-state-disabled');
+        },
+        reset_clip: function () {
+            clipboard = null;
+            $('#cmf_tree_ui_menu_{{ uniqId }} .paste').addClass('ui-state-disabled');
+        },
+        delete_node: function (node) {
+            var deleteUrl = node.data.delete_url;
+            var res = $.ajax({
+                url: deleteUrl,
+                dataType: "json",
+                success: function (data) {
+                    if (data.ok == 0) {
+                        alert('Error: ' + data.message);
+                    }
+                },
+            });
+            node.remove();
+        },
+        move_node: function (sourceNode, node, hitMode) {
+            var params = [
+                'cmf_tree_ui_target_node_id=' + node.key,
+                'cmf_tree_ui_target_mode=' + hitMode
+            ];
+
+            var moveUrl = sourceNode.data.move_url;
+            var res = $.ajax({
+                url: moveUrl + '?' + params.join('&'),
+                dataType: "json",
+                success: function (data) {
+                    if (data.ok == 0) {
+                        alert('Error: ' + data.message);
+                    }
+                },
+            });
+            sourceNode.moveTo(node, hitMode);
+        }
+    }
+
     var treeEl = $('#cmf_tree_{{ uniqId }}');
 
     var extensions = [];
@@ -44,6 +89,48 @@ $(document).ready(function () {
     };
 
     {# Configure Extensions #}
+
+    {% if options.context_menu_enable %}
+        extensions.push('menu');
+        options['menu'] = {
+            selector: '#cmf_tree_ui_menu_{{ uniqId }}',
+            position: { my: 'center' },
+            select: function (event, data) {
+                switch (data.menuId) {
+                    case '#edit':
+                        window.location = data.node.data.edit_url;
+                        return false;
+                    case '#cut':
+                        funcs.set_clip(data.node);
+                        break;
+                    case '#paste_in':
+                        funcs.move_node(clipboard, data.node, 'over');
+                        clipboard.moveTo(data.node, 'over');
+                        funcs.reset_clip();
+                        break;
+                    case '#paste_before':
+                        funcs.move_node(clipboard, data.node, 'before');
+                        clipboard.moveTo(data.node, 'before');
+                        funcs.reset_clip();
+                        break;
+                    case '#paste_after':
+                        funcs.move_node(clipboard, data.node, 'after');
+                        clipboard.moveTo(data.node, 'after');
+                        funcs.reset_clip();
+                        break;
+                    case '#delete':
+                        var res = confirm('{{ 'tree_delete_node_confirmation'|trans({}, 'CmfTreeUi') }}'.replace('__NODE_ID__', data.node.key));
+                        if (res) {
+                            funcs.delete_node(data.node);
+                        }
+                        break;
+                    default:
+                        alert('Unknown menu action "' + data.menuId + '"');
+                }
+            },
+        };
+    {% endif %}
+
     {% if options.drag_and_drop %}
         extensions.push('dnd');
         options['dnd'] = {
@@ -58,23 +145,7 @@ $(document).ready(function () {
             },
             onDrop: function (node, sourceNode, hitMode, ui, draggable) {
 
-                var beforeInt = hitMode == 'before' ? 1 : 0;
-                var params = [
-                    'cmf_tree_ui_target_node_id=' + node.key,
-                    'cmf_tree_ui_target_before=' + beforeInt
-                ];
-
-                var moveUrl = sourceNode.data.move_url;
-                var res = $.ajax({
-                    url: moveUrl + '?' + params.join('&'),
-                    dataType: "json",
-                    success: function (data) {
-                        if (data.ok == 0) {
-                            alert('Error: ' + data.message);
-                        }
-                    },
-                });
-                sourceNode.moveTo(node, hitMode);
+                funcs.move_node(sourceNode, node, hitMode);
             }
         }
     {% endif %}
@@ -104,7 +175,6 @@ $(document).ready(function () {
             }
 
 			var nodeList = tree.getSelectedNodes( tree.options.selectMode === 3 );
-
             var inputName = "{{ options.form_input_name }}";
 
             if (options.selectMode = 2) {

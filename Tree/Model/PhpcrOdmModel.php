@@ -36,6 +36,7 @@ class PhpcrOdmModel implements ModelInterface
             ModelInterface::FEATURE_GET_ANCESTORS,
             ModelInterface::FEATURE_GET_NODE,
             ModelInterface::FEATURE_MOVE,
+            ModelInterface::FEATURE_DELETE,
             ModelInterface::FEATURE_REORDER,
         );
     }
@@ -142,6 +143,13 @@ class PhpcrOdmModel implements ModelInterface
     {
         $parentDoc = $this->getDocument($parentId);
         $this->getDm()->reorder($parentDoc, $sourceId, $targetId, $before);
+        $this->getDm()->flush();
+    }
+
+    public function delete($nodeId)
+    {
+        $node = $this->getDocument($nodeId);
+        $this->getDm()->remove($node);
         $this->getDm()->flush();
     }
 

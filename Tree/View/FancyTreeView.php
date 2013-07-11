@@ -44,11 +44,12 @@ class FancyTreeView extends AbstractStandardView
     public function getFeatures()
     {
         return array(
-            //ViewInterface::FEATURE_BROWSE,
-            //ViewInterface::FEATURE_PRE_SELECT_NODE,
-            //ViewInterface::FEATURE_FORM_INPUT,
-            //ViewInterface::FEATURE_FORM_INPUT_MULTIPLE,
-            ViewInterface::FEATURE_DRAG_AND_DROP
+            ViewInterface::FEATURE_BROWSE,
+            ViewInterface::FEATURE_PRE_SELECT_NODE,
+            ViewInterface::FEATURE_FORM_INPUT,
+            ViewInterface::FEATURE_FORM_INPUT_MULTIPLE,
+            ViewInterface::FEATURE_DRAG_AND_DROP,
+            ViewInterface::FEATURE_CONTEXT_MENU,
         );
     }
 
@@ -114,12 +115,14 @@ class FancyTreeView extends AbstractStandardView
             $aNode['lazy'] = $child->hasChildren();
             $aNode['folder'] = $child->hasChildren();
             $aNode['children_url'] = $this->urlGenerator->generate('_cmf_tree_ui_children', array(
-                'cmf_tree_ui_command' => 'children',
                 'cmf_tree_ui_tree_name' => $treeName,
                 'cmf_tree_ui_node_id' => $child->getId(),
             ));
             $aNode['move_url'] = $this->urlGenerator->generate('_cmf_tree_ui_move', array(
-                'cmf_tree_ui_command' => 'move',
+                'cmf_tree_ui_tree_name' => $treeName,
+                'cmf_tree_ui_node_id' => $child->getId(),
+            ));
+            $aNode['delete_url'] = $this->urlGenerator->generate('_cmf_tree_ui_delete', array(
                 'cmf_tree_ui_tree_name' => $treeName,
                 'cmf_tree_ui_node_id' => $child->getId(),
             ));
@@ -137,16 +140,45 @@ class FancyTreeView extends AbstractStandardView
 
         $nodeId = $request->get('cmf_tree_ui_node_id');
         $targetNodeId = $request->get('cmf_tree_ui_target_node_id');
-        $before = (boolean) $request->get('cmf_tree_ui_target_before');
+        $mode = $request->get('cmf_tree_ui_target_mode');
+        $before = $mode == 'before';
 
         $targetParentPath = PathHelper::getParentPath($targetNodeId);
         $targetNodeName = PathHelper::getNodeName($targetNodeId);
         $nodeName = PathHelper::getNodeName($nodeId);
-        $targetPath = $targetParentPath.'/'.$nodeName;
+        $reorder = true;
+
+        if ($mode == 'over') {
+            $targetPath = $targetNodeId.'/'.$nodeName;
+            $reorder = false;
+        } else {
+            $targetPath = $targetParentPath.'/'.$nodeName;
+        }
 
         try {
             $this->getModel()->move($nodeId, $targetPath);
-            $this->getModel()->reorder($targetParentPath, $nodeName, $targetNodeName, $before);
+            if ($reorder) {
+                $this->getModel()->reorder($targetParentPath, $nodeName, $targetNodeName, $before);
+            }
+        } catch (\Exception $e) {
+            $message = $e->getMessage();
+            $res['ok'] = 0;
+            $res['message'] = $message;
+        }
+
+        return $this->jsonResponse($res);
+    }
+
+    public function deleteResponse(Request $request)
+    {
+        $res = array(
+            'ok' => 1
+        );
+
+        $nodeId = $request->get('cmf_tree_ui_node_id');
+
+        try {
+            $this->getModel()->delete($nodeId);
         } catch (\Exception $e) {
             $message = $e->getMessage();
             $res['ok'] = 0;
@@ -161,7 +193,7 @@ class FancyTreeView extends AbstractStandardView
         return array(
             'bundles/cmftreeui/components/fancytree/src/jquery.fancytree.js',
             'bundles/cmftreeui/components/fancytree/src/jquery.fancytree.dnd.js',
-            'bundles/cmftreeui/components/fancytree/src/jquery.fancytree.dnd.js',
+            'bundles/cmftreeui/components/fancytree/src/jquery.fancytree.menu.js',
         );
     }
 

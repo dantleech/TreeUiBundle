@@ -6,9 +6,10 @@
     <script type="text/javascript" src="{{ asset('bundles/cmftreeui/components/jquery-ui/ui/jquery-ui.js') }}"></script>
     {% for javascript in cmf_tree_ui_javascripts() %}
         <script type="text/javascript" src="{{ asset(javascript) }}?asd"></script>
+    {% endfor %}
 
     <link rel="stylesheet" type="text/css" media="screen" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.14/themes/smoothness/jquery-ui.css" />
-    {% endfor %}
+
     {% for stylesheet in cmf_tree_ui_stylesheets() %}
         <link rel="stylesheet" href="{{ asset(stylesheet) }}"/>
     {% endfor %}

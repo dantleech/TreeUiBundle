@@ -76,6 +76,14 @@ class DynatreeView extends AbstractStandardView
         return $content;
     }
 
+    public function moveResponse(Request $request)
+    {
+    }
+
+    public function deleteResponse(Request $request)
+    {
+    }
+
     public function childrenResponse(Request $request)
     {
         $response = new Response;

@@ -29,6 +29,11 @@ class LoadTreeData implements DependentFixtureInterface, FixtureInterface
         $item1->setTitle('Item 1');
         $dm->persist($item1);
 
+        $deleteMe = new MenuItem;
+        $deleteMe->setId('/test/menu/delete-me');
+        $deleteMe->setTitle('Delete Me');
+        $dm->persist($deleteMe);
+
         $item2 = new MenuItem;
         $item2->setId('/test/menu/item2');
         $item2->setTitle('Item 2');

@@ -126,5 +126,10 @@ class PhpcrModel implements ModelInterface
     {
         throw new \Exception('Not supported yet');
     }
+
+    public function delete($nodeId)
+    {
+        throw new \Exception('Not supported yet');
+    }
 }
 

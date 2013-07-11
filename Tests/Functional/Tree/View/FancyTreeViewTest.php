@@ -75,6 +75,47 @@ class FancyTreeViewTest extends BaseTestCase
             'folder' => null,
             'children_url' => '/_cmf_tree_ui/foobar_Tree/children//path/to/this/node',
             'move_url' => '/_cmf_tree_ui/foobar_Tree/move//path/to/this/node',
+            'delete_url' => '/_cmf_tree_ui/foobar_Tree/delete//path/to/this/node',
         ), $node2);
+    }
+
+    public function provideMoveResponse()
+    {
+        return array(
+            array('before', '/target/node/foobar'),
+            array('after', '/target/node/foobar'),
+            array('over', '/target/node/barfoo/foobar'),
+        );
+    }
+
+    /**
+     * @dataProvider provideMoveResponse
+     */
+    public function testMoveResponse($mode, $moveTarget)
+    {
+        $this->request->expects($this->exactly(3))
+            ->method('get')
+            ->will($this->returnCallback(function ($key) use ($mode) {
+                switch ($key) {
+                    case 'cmf_tree_ui_node_id':
+                        return '/some/node/foobar';
+                    case 'cmf_tree_ui_target_node_id':
+                        return '/target/node/barfoo';
+                    case 'cmf_tree_ui_target_mode':
+                        return $mode;
+                }
+            }));
+
+        $this->model->expects($this->once())
+            ->method('move')
+            ->with('/some/node/foobar', $moveTarget);
+
+        if ($mode != 'over') {
+            $this->model->expects($this->once())
+                ->method('reorder')
+                ->with('/target/node', 'foobar', 'barfoo', $mode == 'before');
+        }
+
+        $this->view->moveResponse($this->request);
     }
 }

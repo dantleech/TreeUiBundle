@@ -34,6 +34,6 @@ class PhpcrModelTest extends BaseTest
         $this->assertCount(3, $nodes);
 
         $nodes = $this->model->getChildren('/test/menu');
-        $this->assertCount(9, $nodes);
+        $this->assertCount(10, $nodes);
     }
 }

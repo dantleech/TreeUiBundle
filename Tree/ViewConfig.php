@@ -14,27 +14,31 @@ class ViewConfig extends Config
             'form_input' => false,
             'form_input_multiple' => false,
             'form_input_name' => 'cmf_tree_ui',
+            'translation_domain' => 'CmfTreeUi',
         ));
 
         $this->addFeatureDefaults(array(
             ViewInterface::FEATURE_CONTEXT_MENU => array(
-                'context_menu.enable' => false,
+                'context_menu_enable' => false,
             ),
             ViewInterface::FEATURE_CONTEXT_RENAME => array(
-                'context.rename.enable' => false,
+                'context_rename_enable' => false,
             ),
             ViewInterface::FEATURE_CONTEXT_COPY => array(
-                'context.copy.enable' => false,
+                'context_copy_enable' => false,
+            ),
+            ViewInterface::FEATURE_CONTEXT_EDIT => array(
+                'context_edit_enable' => false,
             ),
             ViewInterface::FEATURE_CONTEXT_PASTE => array(
-                'context.paste.enable' => false,
+                'context_paste_enable' => false,
             ),
             ViewInterface::FEATURE_CONTEXT_CUT => array(
-                'context.cut.enable' => false,
+                'context_cut_enable' => false,
             ),
             ViewInterface::FEATURE_CONTEXT_DELETE=> array(
-                'context.delete.enable' => false,
-                'context.delete.confirm' => true,
+                'context_delete_enable' => false,
+                'context_delete_confirm' => true,
             ),
         ));
     }

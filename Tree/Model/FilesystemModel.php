@@ -54,6 +54,7 @@ class FilesystemModel implements ModelInterface
             ModelInterface::FEATURE_GET_CHILDREN,
             ModelInterface::FEATURE_GET_ANCESTORS,
             ModelInterface::FEATURE_GET_NODE,
+            ModelInterface::FEATURE_DELETE,
         );
     }
 
@@ -176,11 +177,11 @@ class FilesystemModel implements ModelInterface
 //        tempnam($this->getRealPath($path), 'Tree');
 //    }
 //
-//    public function delete($path)
-//    {
-//        $this->filesystem->remove($this->getRealPath($path));
-//    }
-//
+    public function delete($path)
+    {
+        $this->filesystem->remove($this->getRealPath($path));
+    }
+
 //    public function getProperties($path)
 //    {
 //        $info = new \SplFileInfo($this->getRealPath($path));

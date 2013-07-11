@@ -10,6 +10,7 @@ interface ModelInterface extends FeaturableInterface
     const FEATURE_GET_ANCESTORS = 'get_ancestors';
     const FEATURE_REORDER = 'reorder';
     const FEATURE_MOVE = 'move';
+    const FEATURE_DELETE = 'delete';
     const FEATURE_GET_NODE = 'get_node';
 
     public function getChildren($path);
@@ -19,6 +20,8 @@ interface ModelInterface extends FeaturableInterface
     public function move($sourcePath, $targetPath);
 
     public function reorder($parentId, $sourceId, $targetId, $before = false);
+
+    public function delete($nodeId);
 
     public function getNode($path);
 

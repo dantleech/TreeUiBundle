@@ -50,26 +50,6 @@ interface ViewInterface extends FeaturableInterface
     const FEATURE_CONTEXT_MENU = 'context_menu';
 
     /**
-     * Supports a rename action from the context menu
-     */
-    const FEATURE_CONTEXT_RENAME = 'context_rename';
-
-    /**
-     * Supports a copy action from the context menu
-     */
-    const FEATURE_CONTEXT_COPY = 'context_copy';
-
-    /**
-     * Supports a paste action from the context menu
-     */
-    const FEATURE_CONTEXT_PASTE = 'context_paste';
-
-    /**
-     * Supports a cut action from the context menu
-     */
-    const FEATURE_CONTEXT_CUT = 'context_cut';
-
-    /**
      * Supports a delete action from the context menu
      */
     const FEATURE_CONTEXT_DELETE = 'context_delete';
