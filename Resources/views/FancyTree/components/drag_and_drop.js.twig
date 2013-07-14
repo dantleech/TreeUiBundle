@@ -1,0 +1,17 @@
+// enable the dnd extension
+extensions.push('dnd');
+
+options['dnd'] = {
+    preventVoidMoves: true,
+    preventRecursiveMoves: true,
+    autoExpandMs: 400,
+    onDragStart: function (node) {
+        return true;
+    },
+    onDragEnter: function (node, sourceNode) {
+        return true;
+    },
+    onDrop: function (node, sourceNode, hitMode, ui, draggable) {
+        funcs.move_node(sourceNode, node, hitMode);
+    }
+}

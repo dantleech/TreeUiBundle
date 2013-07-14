@@ -21,25 +21,6 @@ class ViewConfig extends Config
             ViewInterface::FEATURE_CONTEXT_MENU => array(
                 'context_menu_enable' => false,
             ),
-            ViewInterface::FEATURE_CONTEXT_RENAME => array(
-                'context_rename_enable' => false,
-            ),
-            ViewInterface::FEATURE_CONTEXT_COPY => array(
-                'context_copy_enable' => false,
-            ),
-            ViewInterface::FEATURE_CONTEXT_EDIT => array(
-                'context_edit_enable' => false,
-            ),
-            ViewInterface::FEATURE_CONTEXT_PASTE => array(
-                'context_paste_enable' => false,
-            ),
-            ViewInterface::FEATURE_CONTEXT_CUT => array(
-                'context_cut_enable' => false,
-            ),
-            ViewInterface::FEATURE_CONTEXT_DELETE=> array(
-                'context_delete_enable' => false,
-                'context_delete_confirm' => true,
-            ),
         ));
     }
 }

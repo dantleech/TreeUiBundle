@@ -1,0 +1,52 @@
+// ============================ //
+// ===== various functions ==== //
+// ============================ //
+
+funcs = $.extend(funcs, {
+    // put the given node on the clipboard
+    set_clip: function (node) {
+        clipboard = node;
+        $('#cmf_tree_ui_menu_{{ uniqId }} .paste').removeClass('ui-state-disabled');
+    },
+
+    // nullify the clipboard
+    reset_clip: function () {
+        clipboard = null;
+        $('#cmf_tree_ui_menu_{{ uniqId }} .paste').addClass('ui-state-disabled');
+    },
+
+    // send ajax request to delete node
+    delete_node: function (node) {
+        var deleteUrl = node.data.delete_url;
+        var res = $.ajax({
+            url: deleteUrl,
+            dataType: "json",
+            success: function (data) {
+                if (data.ok == 0) {
+                    alert('Error: ' + data.message);
+                }
+            },
+        });
+        node.remove();
+    },
+
+    // send ajax request to move node
+    move_node: function (sourceNode, node, hitMode) {
+        var params = [
+            'cmf_tree_ui_target_node_id=' + node.key,
+            'cmf_tree_ui_target_mode=' + hitMode
+        ];
+
+        var moveUrl = sourceNode.data.move_url;
+        var res = $.ajax({
+            url: moveUrl + '?' + params.join('&'),
+            dataType: "json",
+            success: function (data) {
+                if (data.ok == 0) {
+                    alert('Error: ' + data.message);
+                }
+            },
+        });
+        sourceNode.moveTo(node, hitMode);
+    }
+});

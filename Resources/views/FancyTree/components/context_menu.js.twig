@@ -1,0 +1,41 @@
+// enable the fancytree menu extension
+extensions.push('menu');
+
+options['menu'] = {
+    selector: '#cmf_tree_ui_menu_{{ uniqId }}',
+    position: { my: 'center' },
+    select: function (event, data) {
+        switch (data.menuId) {
+            case '#edit':
+                window.location = data.node.data.edit_url;
+                return false;
+            case '#cut':
+                funcs.set_clip(data.node);
+                break;
+            case '#paste_in':
+                funcs.move_node(clipboard, data.node, 'over');
+                clipboard.moveTo(data.node, 'over');
+                funcs.reset_clip();
+                break;
+            case '#paste_before':
+                funcs.move_node(clipboard, data.node, 'before');
+                clipboard.moveTo(data.node, 'before');
+                funcs.reset_clip();
+                break;
+            case '#paste_after':
+                funcs.move_node(clipboard, data.node, 'after');
+                clipboard.moveTo(data.node, 'after');
+                funcs.reset_clip();
+                break;
+            case '#delete':
+                var res = confirm('{{ 'tree_delete_node_confirmation'|trans({}, 'CmfTreeUi') }}'.replace('__NODE_ID__', data.node.key));
+                if (res) {
+                    funcs.delete_node(data.node);
+                }
+                break;
+            default:
+                alert('Unknown menu action "' + data.menuId + '"');
+        }
+    },
+};
+
