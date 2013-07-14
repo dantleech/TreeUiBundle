@@ -1,3 +1,24 @@
+// establish some translations
+
+var trans = {
+    'edit_in_new': '{% trans from "CmfTreeUi" %}context_menu.edit_in_new{% endtrans %}',
+    'cut': '{% trans from "CmfTreeUi" %}context_menu.cut{% endtrans %}',
+    'paste_in': '{% trans from "CmfTreeUi" %}context_menu.paste_in{% endtrans %}',
+    'paste_after': '{% trans from "CmfTreeUi" %}context_menu.paste_after{% endtrans %}',
+    'paste_before': '{% trans from "CmfTreeUi" %}context_menu.paste_before{% endtrans %}',
+    'delete': '{% trans from "CmfTreeUi" %}context_menu.delete{% endtrans %}'
+};
+
+// build menu
+var menuEl = $('<ul id="cmf_tree_ui_menu_{{ uniqId }}" class="contextMenu ui-helper-hidden"/>');
+menuEl.append('<li class="edit"><a href="#edit">' + trans.edit_in_new + '</a></li>');
+menuEl.append('<li class="cut"><a href="#cut">' + trans.cut + '</a></li>');
+menuEl.append('<li class="paste ui-state-disabled"><a href="#paste_in">' + trans.paste_in + '</a></li>');
+menuEl.append('<li class="paste ui-state-disabled"><a href="#paste_before">' + trans.paste_before + '</a></li>');
+menuEl.append('<li class="paste ui-state-disabled"><a href="#paste_after">' + trans.paste_after + '</a></li>');
+menuEl.append('<li class="delete"><a href="#delete">' + trans.delete + '</a></li>');
+treeEl.after(menuEl);
+
 // enable the fancytree menu extension
 extensions.push('menu');
 
@@ -35,7 +56,9 @@ options['menu'] = {
                 break;
             default:
                 alert('Unknown menu action "' + data.menuId + '"');
+
+            return false;
         }
-    },
+    }
 };
 

@@ -21,6 +21,7 @@ abstract class AbstractStandardView implements ViewInterface
             'children' => 'childrenResponse',
             'move' => 'moveResponse',
             'delete' => 'deleteResponse',
+            'rename' => 'renameResponse',
         );
 
         if (!isset($commandMap[$command])) {
@@ -34,13 +35,34 @@ abstract class AbstractStandardView implements ViewInterface
     }
 
     /**
-     * Return children of a given node.
+     * Return response for children request
      *
      * @return Symfony\Component\HttpFoundation\Response 
      */
     abstract public function childrenResponse(Request $request);
 
+    /**
+     * Return response for move request
+     *
+     * A move operation in this context involves the 
+     * repositioning of a node. It MUST not be used
+     * for renaming.
+     *
+     * @return Symfony\Component\HttpFoundation\Response 
+     */
     abstract public function moveResponse(Request $request);
 
+    /**
+     * Return response for delete request
+     *
+     * @return Symfony\Component\HttpFoundation\Response 
+     */
     abstract public function deleteResponse(Request $request);
+
+    /**
+     * Return response for rename request
+     *
+     * @return Symfony\Component\HttpFoundation\Response 
+     */
+    abstract public function renameResponse(Request $request);
 }

@@ -118,4 +118,24 @@ class FancyTreeViewTest extends BaseTestCase
 
         $this->view->moveResponse($this->request);
     }
+
+    public function testRenameResponse()
+    {
+        $this->request->expects($this->exactly(2))
+            ->method('get')
+            ->will($this->returnCallback(function ($key) {
+                switch ($key) {
+                    case 'cmf_tree_ui_node_id':
+                        return '/some/node/foobar';
+                    case 'cmf_tree_ui_new_name':
+                        return 'barfoo';
+                }
+            }));
+
+        $this->model->expects($this->once())
+            ->method('move')
+            ->with('/some/node/foobar', '/some/node/barfoo');
+
+        $this->view->renameResponse($this->request);
+    }
 }
