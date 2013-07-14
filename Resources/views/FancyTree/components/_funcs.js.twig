@@ -48,5 +48,60 @@ funcs = $.extend(funcs, {
             },
         });
         sourceNode.moveTo(node, hitMode);
-    }
+    },
+
+    // send ajax request to rename node
+    rename_node: function (node, newName) {
+        var params = [
+            'cmf_tree_ui_new_name=' + newName
+        ];
+
+        var renameUrl = node.data.rename_url;
+        var res = $.ajax({
+            url: renameUrl + '?' + params.join('&'),
+            dataType: "json",
+            success: function (data) {
+                if (data.ok == 0) {
+                    alert('Error: ' + data.message);
+                }
+            },
+        });
+    },
+
+    ui_rename_node: function (node) {
+        var tree = node.tree;
+        var prevTitle = node.title
+        var funcs = this;
+
+        // Disable dynatree mouse- and key handling
+        tree.widget._unbind();
+
+        // Replace node with <input>
+        $(".fancytree-title", node.span).html("<input id='editNode' value='" + prevTitle + "'>");
+
+        // Focus <input> and bind keyboard handler
+        $("input#editNode")
+            .focus()
+            .keydown(function(event){
+                switch( event.which ) {
+                    case 27: // [esc]
+                        // discard changes on [esc]
+                        $("input#editNode").val(prevTitle);
+                    $(this).blur();
+                    break;
+                    case 13: // [enter]
+                        // simulate blur to accept new value
+                        $(this).blur();
+                    break;
+                }
+            }).blur(function(event){
+                // Accept new value, when user leaves <input>
+                var title = $("input#editNode").val();
+                funcs.rename_node(node, title);
+                node.setTitle(title);
+                // Re-enable mouse and keyboard handlling
+                tree.widget._bind();
+                node.setFocus(true);
+            });
+    },
 });

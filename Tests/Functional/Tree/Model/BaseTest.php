@@ -14,6 +14,20 @@ abstract class BaseTest extends BaseTestCase
 
     abstract protected function getModel();
 
+    protected function loadFixtures()
+    {
+    }
+
+    /**
+     * Call this for every test case. This will
+     * skip the test if the model doesn't support
+     * the named feature.
+     *
+     * If the model /does/ support the feature we
+     * load the fixtures - this is an optimization
+     * to prevent the fixtures loading even on skipped
+     * tests
+     */
     protected function requiresFeature($featureName)
     {
         $features = $this->model->getFeatures();
@@ -22,7 +36,10 @@ abstract class BaseTest extends BaseTestCase
                 'Model does not support "%s" feature',
                 $featureName
             ));
+            return;
         }
+
+        $this->loadFixtures();
     }
 
     public function testGetNode()
@@ -67,6 +84,17 @@ abstract class BaseTest extends BaseTestCase
         $this->model->delete('/test/menu/delete-me');
         $children = $this->model->getChildren('/test/menu');
         $this->assertCount(4, $children);
+    }
+
+    public function testRename()
+    {
+        $this->requiresFeature(ModelInterface::FEATURE_RENAME);
+
+        // This item should be a menu node
+        $this->model->rename('/test/menu/delete-me', 'foobar');
+        $node = $this->model->getNode('/test/menu/delete-me');
+        $this->assertNotNull($node);
+        $this->assertEquals('foobar', $node->getLabel());
     }
 
     public function provideReorder()

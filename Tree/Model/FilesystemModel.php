@@ -98,6 +98,15 @@ class FilesystemModel implements ModelInterface
     }
 
     /**
+     * Rename
+     */
+    public function rename($path, $newName)
+    {
+        $target = dirname($path).DIRECTORY_SEPARATOR.$newName;
+        return $this->move($path, $target);
+    }
+
+    /**
      * Reorder $moved (child of $parent) before or after $target
      *
      * @param string $parent the id of the parent

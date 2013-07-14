@@ -84,6 +84,10 @@ class DynatreeView extends AbstractStandardView
     {
     }
 
+    public function renameResponse(Request $request)
+    {
+    }
+
     public function childrenResponse(Request $request)
     {
         $response = new Response;

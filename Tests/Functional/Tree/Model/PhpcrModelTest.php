@@ -8,9 +8,8 @@ use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ModelInterface;
 
 class PhpcrModelTest extends BaseTest
 {
-    public function setUp()
+    protected function loadFixtures()
     {
-        parent::setUp();
         $this->db('PHPCR')->loadFixtures(array(
             'Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\DataFixtures\LoadTreeData'
         ));

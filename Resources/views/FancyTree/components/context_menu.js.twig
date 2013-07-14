@@ -1,6 +1,7 @@
 // establish some translations
 
 var trans = {
+    'rename': '{% trans from "CmfTreeUi" %}context_menu.rename{% endtrans %}',
     'edit_in_new': '{% trans from "CmfTreeUi" %}context_menu.edit_in_new{% endtrans %}',
     'cut': '{% trans from "CmfTreeUi" %}context_menu.cut{% endtrans %}',
     'paste_in': '{% trans from "CmfTreeUi" %}context_menu.paste_in{% endtrans %}',
@@ -11,6 +12,7 @@ var trans = {
 
 // build menu
 var menuEl = $('<ul id="cmf_tree_ui_menu_{{ uniqId }}" class="contextMenu ui-helper-hidden"/>');
+menuEl.append('<li class="rename"><a href="#rename">' + trans.rename + '</a></li>');
 menuEl.append('<li class="edit"><a href="#edit">' + trans.edit_in_new + '</a></li>');
 menuEl.append('<li class="cut"><a href="#cut">' + trans.cut + '</a></li>');
 menuEl.append('<li class="paste ui-state-disabled"><a href="#paste_in">' + trans.paste_in + '</a></li>');
@@ -53,6 +55,9 @@ options['menu'] = {
                 if (res) {
                     funcs.delete_node(data.node);
                 }
+                break;
+            case '#rename':
+                funcs.ui_rename_node(data.node);
                 break;
             default:
                 alert('Unknown menu action "' + data.menuId + '"');

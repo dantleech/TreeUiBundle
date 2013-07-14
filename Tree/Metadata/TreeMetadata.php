@@ -7,11 +7,17 @@ use Metadata\ClassMetadata;
 class TreeMetadata extends ClassMetadata
 {
     public $idMethod = 'getId';
-    public $labelMethod = '__toString';
+    public $getLabelMethod = '__toString';
+    public $setLabelMethod = null;
 
     public function getLabel($object)
     {
-        return $object->{$this->labelMethod}();
+        return $object->{$this->getLabelMethod}();
+    }
+
+    public function setLabel($object, $label)
+    {
+        return $object->{$this->setLabelMethod}($label);
     }
 
     public function getId($object)

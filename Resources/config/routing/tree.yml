@@ -32,3 +32,11 @@ _cmf_tree_ui_delete:
         _controller: cmf_tree_ui.controller.tree:processAction
         cmf_tree_ui_command: delete
     requirements: { cmf_tree_ui_node_id: .* }
+
+_cmf_tree_ui_rename:
+    pattern: /_cmf_tree_ui/{cmf_tree_ui_tree_name}/rename/{cmf_tree_ui_node_id}
+    defaults:
+        _controller: cmf_tree_ui.controller.tree:processAction
+        cmf_tree_ui_command: rename
+        # cmf_tree_ui_new_name
+    requirements: { cmf_tree_ui_node_id: .* }

@@ -126,6 +126,10 @@ class FancyTreeView extends AbstractStandardView
                 'cmf_tree_ui_tree_name' => $treeName,
                 'cmf_tree_ui_node_id' => $child->getId(),
             ));
+            $aNode['rename_url'] = $this->urlGenerator->generate('_cmf_tree_ui_rename', array(
+                'cmf_tree_ui_tree_name' => $treeName,
+                'cmf_tree_ui_node_id' => $child->getId(),
+            ));
             $out[] = $aNode;
         }
 
@@ -141,11 +145,8 @@ class FancyTreeView extends AbstractStandardView
         $nodeId = $request->get('cmf_tree_ui_node_id');
         $newName = $request->get('cmf_tree_ui_new_name');
 
-        $nodeParentPath = PathHelper::getParentPath($nodeId);
-        $targetPath = $nodeParentPath.'/'.$newName;
-
         try {
-            $this->getModel()->move($nodeId, $targetPath);
+            $this->getModel()->rename($nodeId, $newName);
         } catch (\Exception $e) {
             $message = $e->getMessage();
             $res['ok'] = 0;
@@ -153,7 +154,6 @@ class FancyTreeView extends AbstractStandardView
         }
 
         return $this->jsonResponse($res);
-
     }
 
     public function moveResponse(Request $request)

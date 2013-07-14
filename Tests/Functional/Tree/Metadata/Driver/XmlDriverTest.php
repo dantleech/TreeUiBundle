@@ -20,7 +20,8 @@ class XmlDriverTest extends BaseTestCase
         $meta = $driver->loadMetadataForClass($this->refl);
 
         $this->assertEquals('getId', $meta->idMethod);
-        $this->assertEquals('getNodename', $meta->labelMethod);
+        $this->assertEquals('getNodename', $meta->getLabelMethod);
+        $this->assertEquals('setNodename', $meta->setLabelMethod);
     }
 }
 

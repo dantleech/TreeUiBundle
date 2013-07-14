@@ -3,7 +3,8 @@
 <cmf-tree-ui-mapping>
     <tree-object
         name="Doctrine\ODM\PHPCR\Document\Generic"
-        label-method="getNodename"
+        get-label-method="getNodename"
+        set-label-method="setNodename"
         id-method="getId"
         />
 </cmf-tree-ui-mapping>

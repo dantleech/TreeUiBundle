@@ -121,6 +121,11 @@ class PhpcrModel implements ModelInterface
         throw new \Exception('Not supported yet');
     }
 
+    public function rename($nodeId, $newName)
+    {
+        throw new \Exception('Not supported yet');
+    }
+
 
     public function reorder($parentId, $sourceId, $targetId, $before = false)
     {

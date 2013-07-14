@@ -76,6 +76,7 @@ class FancyTreeViewTest extends BaseTestCase
             'children_url' => '/_cmf_tree_ui/foobar_Tree/children//path/to/this/node',
             'move_url' => '/_cmf_tree_ui/foobar_Tree/move//path/to/this/node',
             'delete_url' => '/_cmf_tree_ui/foobar_Tree/delete//path/to/this/node',
+            'rename_url' => '/_cmf_tree_ui/foobar_Tree/rename//path/to/this/node',
         ), $node2);
     }
 
@@ -133,8 +134,8 @@ class FancyTreeViewTest extends BaseTestCase
             }));
 
         $this->model->expects($this->once())
-            ->method('move')
-            ->with('/some/node/foobar', '/some/node/barfoo');
+            ->method('rename')
+            ->with('/some/node/foobar', 'barfoo');
 
         $this->view->renameResponse($this->request);
     }

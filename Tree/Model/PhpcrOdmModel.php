@@ -38,6 +38,7 @@ class PhpcrOdmModel implements ModelInterface
             ModelInterface::FEATURE_MOVE,
             ModelInterface::FEATURE_DELETE,
             ModelInterface::FEATURE_REORDER,
+            ModelInterface::FEATURE_RENAME,
         );
     }
 
@@ -135,6 +136,24 @@ class PhpcrOdmModel implements ModelInterface
     {
         $rootDoc = $this->getDocument($sourceId);
         $this->getDm()->move($rootDoc, $targetId);
+        $this->getDm()->flush();
+    }
+
+    /**
+     * Rename operation. This is required because the "label" field
+     * exposed in the tree might not correspond to the underlying PHPCR
+     * NodeName and so a move operation would be insufficient.
+     *
+     * @param object $document    an already registered document
+     * @param string $newName     new name for node.
+     */
+    public function rename($nodeId, $newName)
+    {
+        $doc = $this->getDocument($nodeId);
+
+        $metadata = $this->getMetadata($doc);
+        $metadata->setLabel($doc, $newName);
+        $this->getDm()->persist($doc);
         $this->getDm()->flush();
     }
 

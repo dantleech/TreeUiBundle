@@ -2,6 +2,8 @@
 
 namespace Symfony\Cmf\Bundle\TreeUiBundle\Tree;
 
+use PHPCR\Util\PathHelper;
+
 /**
  * Model agnostic node class which can be used
  * by the tree views.
@@ -29,7 +31,12 @@ class Node
     {
         return $this->label;
     }
-    
+
+    public function getName()
+    {
+        return PathHelper::getNodeName($this->id);
+    }
+
     public function setLabel($label)
     {
         $this->label = $label;
@@ -39,7 +46,7 @@ class Node
     {
         return $this->hasChildren;
     }
-    
+
     public function setHasChildren($hasChildren)
     {
         $this->hasChildren = $hasChildren;

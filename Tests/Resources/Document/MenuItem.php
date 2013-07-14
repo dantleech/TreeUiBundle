@@ -9,7 +9,8 @@ use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Metadata\Annotations as CmfTreeUi;
  * @PHPCRODM\Document()
  * @CmfTreeUi\Node(
  *    idMethod="getId",
- *    labelMethod="getTitle",
+ *    getLabelMethod="getTitle",
+ *    setLabelMethod="setTitle",
  *    validChildren={
  *      "Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Document\MenuItem"
  *    },
