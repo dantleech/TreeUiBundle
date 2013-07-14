@@ -44,10 +44,12 @@ funcs = $.extend(funcs, {
             success: function (data) {
                 if (data.ok == 0) {
                     alert('Error: ' + data.message);
+                    return;
                 }
+
+                sourceNode.moveTo(node, hitMode);
             },
         });
-        sourceNode.moveTo(node, hitMode);
     },
 
     // send ajax request to rename node
@@ -63,7 +65,10 @@ funcs = $.extend(funcs, {
             success: function (data) {
                 if (data.ok == 0) {
                     alert('Error: ' + data.message);
+                    return;
                 }
+
+                node.setTitle(newName);
             },
         });
     },
@@ -98,7 +103,6 @@ funcs = $.extend(funcs, {
                 // Accept new value, when user leaves <input>
                 var title = $("input#editNode").val();
                 funcs.rename_node(node, title);
-                node.setTitle(title);
                 // Re-enable mouse and keyboard handlling
                 tree.widget._bind();
                 node.setFocus(true);
