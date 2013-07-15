@@ -8,9 +8,11 @@ namespace Symfony\Cmf\Bundle\TreeUiBundle\Tree\Metadata\Annotations;
  */
 class Node
 {
-    public $idMethod;
+    public $getIdMethod;
     public $getLabelMethod;
     public $setLabelMethod;
-    public $validChildren;
     public $icon;
+    public $classLabel;
+    public $childClasses;
+    public $childMode;
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+
+<cmf-tree-ui-mapping>
+    <tree-object
+        name="Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Document\Menu"
+        get-id-method="getId"
+        get-label-method="getTitle"
+        set-label-method="setTitle"
+        class-label="Menu"
+        icon="bundles/cmftreeui/icons/:size/menu.png"
+        >
+        <children mode="include">
+            <class>Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Document\Menu</class>
+        </children>
+    </tree-object>
+</cmf-tree-ui-mapping>
+

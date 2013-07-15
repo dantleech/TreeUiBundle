@@ -6,9 +6,24 @@ use Metadata\ClassMetadata;
 
 class TreeMetadata extends ClassMetadata
 {
-    public $idMethod = 'getId';
+    public $getIdMethod = 'getId';
     public $getLabelMethod = '__toString';
     public $setLabelMethod = null;
+    public $classLabel;
+    public $childClasses = array();
+    public $childMode = 'include';
+    public $icon;
+
+    public function setChildMode($mode)
+    {
+        $validModes = array('include', 'any');
+        if (!in_array($mode, $validModes)) {
+            throw new \InvalidArgumentException('ChildMode must be one of (%s), "%s" given.',
+                $mode, implode(',', $validModes)
+            );
+        }
+        $this->childMode = $mode;
+    }
 
     public function getLabel($object)
     {
@@ -22,6 +37,6 @@ class TreeMetadata extends ClassMetadata
 
     public function getId($object)
     {
-        return $object->{$this->idMethod}();
+        return $object->{$this->getIdMethod}();
     }
 }

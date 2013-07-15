@@ -28,12 +28,21 @@ class AnnotationDriver implements DriverInterface
 
         $this->checkMethodExists($class, $annotation->getLabelMethod);
         $this->checkMethodExists($class, $annotation->setLabelMethod);
-        $this->checkMethodExists($class, $annotation->idMethod);
+        $this->checkMethodExists($class, $annotation->getIdMethod);
 
         $meta = new TreeMetadata($class->name);
         $meta->getLabelMethod = $annotation->getLabelMethod;;
         $meta->setLabelMethod = $annotation->setLabelMethod;;
-        $meta->idMethod = $annotation->idMethod;
+        $meta->getIdMethod = $annotation->getIdMethod;
+        $meta->classLabel = $annotation->classLabel;
+
+        if (null !== $annotation->childClasses) {
+            $meta->childClasses = $annotation->childClasses;
+        }
+
+        if (null !== $annotation->childMode) {
+            $meta->childMode = $annotation->childMode;
+        }
 
         return $meta;
     }

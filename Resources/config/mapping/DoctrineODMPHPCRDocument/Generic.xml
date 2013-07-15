@@ -3,8 +3,12 @@
 <cmf-tree-ui-mapping>
     <tree-object
         name="Doctrine\ODM\PHPCR\Document\Generic"
+        get-id-method="getId"
         get-label-method="getNodename"
         set-label-method="setNodename"
-        id-method="getId"
-        />
+        class-label="Generic"
+        icon="bundles/cmftreeui/icons/:size/generic.png"
+        >
+        <children mode="any"/>
+    </tree-object>
 </cmf-tree-ui-mapping>
