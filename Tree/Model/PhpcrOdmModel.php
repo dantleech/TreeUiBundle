@@ -66,6 +66,7 @@ class PhpcrOdmModel implements ModelInterface
         $node = new Node;
         $node->setId($metadata->getId($object));
         $node->setLabel($metadata->getLabel($object));
+        $node->setClassLabel($metadata->classLabel);
         $node->setHasChildren($phpcrNode->hasNodes());
 
         return $node;

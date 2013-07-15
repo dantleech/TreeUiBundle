@@ -14,8 +14,8 @@ class Node
 {
     protected $id;
     protected $label;
-
     protected $hasChildren;
+    protected $classLabel;
 
     public function getId() 
     {
@@ -51,4 +51,15 @@ class Node
     {
         $this->hasChildren = $hasChildren;
     }
+
+    public function getClassLabel() 
+    {
+        return $this->classLabel;
+    }
+    
+    public function setClassLabel($classLabel)
+    {
+        $this->classLabel = $classLabel;
+    }
+    
 }

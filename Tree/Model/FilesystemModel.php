@@ -170,6 +170,7 @@ class FilesystemModel implements ModelInterface
         $node->setId($id);
         $node->setLabel($iFilename);
         $node->setHasChildren($info->isDir());
+        $node->setClassLabel($info->isDir() ? 'directory' : 'file');
 
         return $node;
     }

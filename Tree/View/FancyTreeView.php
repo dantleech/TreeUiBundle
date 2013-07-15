@@ -111,6 +111,7 @@ class FancyTreeView extends AbstractStandardView
 
         foreach ($children as $child) {
             $aNode['title'] = $child->getLabel();
+            $aNode['tooltip'] = $child->getClassLabel();
             $aNode['key'] = $child->getId();
             $aNode['lazy'] = $child->hasChildren();
             $aNode['folder'] = $child->hasChildren();

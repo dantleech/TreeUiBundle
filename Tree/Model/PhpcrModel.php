@@ -41,6 +41,7 @@ class PhpcrModel implements ModelInterface
         $node->setId($phpcrNode->getPath());
         $node->setLabel(PathHelper::getNodeName($phpcrNode->getPath()));
         $node->setHasChildren($phpcrNode->hasNodes());
+        $node->setClassLabel($phpcrNode->getPrimaryNodeType()->getName());
 
         return $node;
     }

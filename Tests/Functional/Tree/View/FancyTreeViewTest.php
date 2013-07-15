@@ -73,6 +73,7 @@ class FancyTreeViewTest extends BaseTestCase
             'key' => '/path/to/this/node',
             'lazy' => null,
             'folder' => null,
+            'tooltip' => null,
             'children_url' => '/_cmf_tree_ui/foobar_Tree/children//path/to/this/node',
             'move_url' => '/_cmf_tree_ui/foobar_Tree/move//path/to/this/node',
             'delete_url' => '/_cmf_tree_ui/foobar_Tree/delete//path/to/this/node',
