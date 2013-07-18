@@ -6,7 +6,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Tree;
 use Symfony\Bundle\TwigBundle\TwigEngine;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Node\UrlGeneratorInterface;
 use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewConfig;
 use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewInterface;
 use PHPCR\Util\PathHelper;
@@ -115,22 +115,15 @@ class FancyTreeView extends AbstractStandardView
             $aNode['key'] = $child->getId();
             $aNode['lazy'] = $child->hasChildren();
             $aNode['folder'] = $child->hasChildren();
-            $aNode['children_url'] = $this->urlGenerator->generate('_cmf_tree_ui_children', array(
-                'cmf_tree_ui_tree_name' => $treeName,
-                'cmf_tree_ui_node_id' => $child->getId(),
-            ));
-            $aNode['move_url'] = $this->urlGenerator->generate('_cmf_tree_ui_move', array(
-                'cmf_tree_ui_tree_name' => $treeName,
-                'cmf_tree_ui_node_id' => $child->getId(),
-            ));
-            $aNode['delete_url'] = $this->urlGenerator->generate('_cmf_tree_ui_delete', array(
-                'cmf_tree_ui_tree_name' => $treeName,
-                'cmf_tree_ui_node_id' => $child->getId(),
-            ));
-            $aNode['rename_url'] = $this->urlGenerator->generate('_cmf_tree_ui_rename', array(
-                'cmf_tree_ui_tree_name' => $treeName,
-                'cmf_tree_ui_node_id' => $child->getId(),
-            ));
+
+            $aNode['children_url'] = $this->urlGenerator->fromTreeNode('children', $treeName, $child);
+
+            $aNode['move_url'] = $this->urlGenerator->fromTreeNode('move', $treeName, $child);
+
+            $aNode['delete_url'] = $this->urlGenerator->fromTreeNode('delete', $treeName, $child);
+
+            $aNode['rename_url'] = $this->urlGenerator->fromTreeNode('rename', $treeName, $child);
+
             $out[] = $aNode;
         }
 

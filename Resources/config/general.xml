@@ -37,6 +37,14 @@
                 />
         </service>
 
+        <!-- Url Generator: Default -->
+        <service
+            id="cmf_tree_ui.node.url_generator.default"
+            class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\Node\UrlGenerator\DefaultUrlGenerator"
+            >
+            <argument type="service" id="router"/>
+        </service>
+
     </services>
 </container>
 

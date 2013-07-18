@@ -10,7 +10,7 @@
             class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\View\FancyTreeView"
             >
             <argument type="service" id="twig"/>
-            <argument type="service" id="router"/>
+            <argument type="service" id="cmf_tree_ui.node.url_generator.default"/>
             <tag name="cmf_tree_ui.view" alias="fancy_tree"/>
         </service>
 

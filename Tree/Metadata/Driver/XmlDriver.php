@@ -43,8 +43,10 @@ class XmlDriver extends AbstractFileDriver implements DriverInterface
 
         $childClasses = array();
 
-        foreach ($xmlMapping->children as $classEl) {
-            $childClasses[] = (string) $classEl->class;
+        foreach ($xmlMapping->children as $childrenEl) {
+            foreach ($childrenEl->class as $classEl) {
+                $childClasses[] = (string) $classEl;
+            }
         }
 
         if ($childClasses) {

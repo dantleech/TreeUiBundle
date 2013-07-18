@@ -27,6 +27,6 @@ class GenericTest extends BaseTestCase
         $this->assertEquals('setNodename', $meta->setLabelMethod);
         $this->assertEquals('Generic', $meta->classLabel);
         $this->assertEquals(array(), $meta->childClasses);
-        $this->assertEquals('exclude', $meta->childMode);
+        $this->assertEquals('any', $meta->childMode);
     }
 }

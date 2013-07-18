@@ -16,6 +16,7 @@ class Node
     protected $label;
     protected $hasChildren;
     protected $classLabel;
+    protected $classFqn;
 
     public function getId() 
     {
@@ -61,5 +62,14 @@ class Node
     {
         $this->classLabel = $classLabel;
     }
+
+    public function getClassFqn() 
+    {
+        return $this->classFqn;
+    }
     
+    public function setClassFqn($classFqn)
+    {
+        $this->classFqn = $classFqn;
+    }
 }
