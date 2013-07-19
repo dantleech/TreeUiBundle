@@ -225,6 +225,7 @@ class FancyTreeView extends AbstractStandardView
         return array(
             'bundles/cmftreeui/components/fancytree/src/skin-xp/ui.fancytree.css',
             'bundles/cmftreeui/components/jquery-ui/themes/smoothness/jquery-ui.min.css',
+            'bundles/cmftreeui/components/jquery-ui/themes/smoothness/jquery.ui.theme.css',
         );
     }
 }

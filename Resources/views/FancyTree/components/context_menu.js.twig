@@ -14,15 +14,15 @@ var trans = {
 
 // build menu
 var menuEl = $('<ul id="cmf_tree_ui_menu_{{ uniqId }}" class="contextMenu ui-helper-hidden"/>');
-menuEl.append('<li class="create_in"><a href="#create_in">' + trans.create_in + '</a><ul></ul></li>');
-menuEl.append('<li class="create_before"><a href="#create_before">' + trans.create_before + '</a><ul></ul></li>');
-menuEl.append('<li class="rename"><a href="#rename">' + trans.rename + '</a></li>');
-menuEl.append('<li class="edit"><a href="#edit">' + trans.edit_in_new + '</a></li>');
-menuEl.append('<li class="cut"><a href="#cut">' + trans.cut + '</a></li>');
-menuEl.append('<li class="paste ui-state-disabled"><a href="#paste_in">' + trans.paste_in + '</a></li>');
-menuEl.append('<li class="paste ui-state-disabled"><a href="#paste_before">' + trans.paste_before + '</a></li>');
-menuEl.append('<li class="paste ui-state-disabled"><a href="#paste_after">' + trans.paste_after + '</a></li>');
-menuEl.append('<li class="delete"><a href="#delete">' + trans.delete + '</a></li>');
+menuEl.append('<li class="create_in"><a href="#create_in"><span class="ui-icon ui-icon-plusthick"></span>' + trans.create_in + '</a><ul></ul></li>');
+menuEl.append('<li class="create_before"><a href="#create_before"><span class="ui-icon ui-icon-plusthick"></span>' + trans.create_before + '</a><ul></ul></li>');
+menuEl.append('<li class="rename"><a href="#rename"><span class="ui-icon ui-icon-pencil"></span>' + trans.rename + '</a></li>');
+menuEl.append('<li class="edit"><a href="#edit"><span class="ui-icon ui-icon-wrench"></span>' + trans.edit_in_new + '</a></li>');
+menuEl.append('<li class="cut"><a href="#cut"><span class="ui-icon ui-icon-scissors"></span>' + trans.cut + '</a></li>');
+menuEl.append('<li class="paste ui-state-disabled"><a href="#paste_in"><span class="ui-icon ui-icon-pencil"></span>' + trans.paste_in + '</a></li>');
+menuEl.append('<li class="paste ui-state-disabled"><a href="#paste_before"><span class="ui-icon ui-icon-clipboard"></span>' + trans.paste_before + '</a></li>');
+menuEl.append('<li class="paste ui-state-disabled"><a href="#paste_after"><span class="ui-icon ui-icon-clipboard"></span>' + trans.paste_after + '</a></li>');
+menuEl.append('<li class="delete"><a href="#delete"><span class="ui-icon ui-icon-close"></span>' + trans.delete + '</a></li>');
 treeEl.after(menuEl);
 
 // enable the fancytree menu extension
@@ -39,7 +39,7 @@ options['menu'] = {
                 var itemEl = $(event.currentTarget).find('ul');
                 itemEl.empty();
                 $.each(childClasses, function (fqn, classLabel) {
-                    itemEl.append('<li><a href="#create_class" class="create_class" fqn="' + fqn + '">' + classLabel + '</a></li>');
+                    itemEl.append('<li><a href="#create_class" class="create_class" fqn="' + fqn + '"><span class="ui-icon ui-icon-document"></span>' + classLabel + '</a></li>');
                 });
                 $('#cmf_tree_ui_menu_{{ uniqId }}').menu('refresh');
         }
