@@ -13,6 +13,7 @@ class Node
     public $setLabelMethod;
     public $icon;
     public $classLabel;
+    public $parentClasses;
     public $childClasses;
     public $childMode;
 }

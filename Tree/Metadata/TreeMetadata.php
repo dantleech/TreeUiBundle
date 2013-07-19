@@ -10,6 +10,7 @@ class TreeMetadata extends ClassMetadata
     public $getLabelMethod = '__toString';
     public $setLabelMethod = null;
     public $classLabel;
+    public $parentClasses = array();
     public $childClasses = array();
     public $childMode = 'include';
     public $icon;

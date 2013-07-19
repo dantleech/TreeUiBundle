@@ -8,7 +8,7 @@
         set-label-method="setNodename"
         class-label="Generic"
         icon="bundles/cmftreeui/icons/:size/generic.png"
+        children-mode="any"
         >
-        <children mode="any"/>
     </tree-object>
 </cmf-tree-ui-mapping>

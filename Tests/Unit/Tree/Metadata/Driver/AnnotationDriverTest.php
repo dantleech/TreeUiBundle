@@ -29,8 +29,11 @@ class AnnotationDriverTest extends \PHPUnit_Framework_TestCase
             'getLabelMethod' => 'getTitle',
             'setLabelMethod' => 'setTitle',
             'classLabel' => 'Menu',
-            'childClasses' => array(
+            'parentClasses' => array(
                 'Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Document\Menu',
+            ),
+            'childClasses' => array(
+                'Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Document\MenuNode',
             ),
             'childMode' => 'any',
             'icon' => '',

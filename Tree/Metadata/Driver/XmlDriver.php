@@ -36,21 +36,27 @@ class XmlDriver extends AbstractFileDriver implements DriverInterface
         $meta->setLabelMethod = (string) $xmlMapping['set-label-method'][0];
         $meta->idMethod = (string) $xmlMapping['id-method'][0];
         $meta->classLabel = (string) $xmlMapping['class-label'][0];
-
-        if (isset($xmlMapping->children)) {
-            $meta->childMode = (string) $xmlMapping->children['mode'];
-        }
+        $meta->childMode = (string) $xmlMapping['child-mode'][0];
 
         $childClasses = array();
 
-        foreach ($xmlMapping->children as $childrenEl) {
-            foreach ($childrenEl->class as $classEl) {
-                $childClasses[] = (string) $classEl;
-            }
+        foreach ($xmlMapping->child as $childEl) {
+            $childClasses[] = (string) $childEl;
         }
 
         if ($childClasses) {
             $meta->childClasses = $childClasses;
+        }
+
+
+        $parentClasses = array();
+
+        foreach ($xmlMapping->parent as $parentEl) {
+            $parentClasses[] = (string) $parentEl;
+        }
+
+        if ($parentClasses) {
+            $meta->parentClasses = $parentClasses;
         }
 
         return $meta;

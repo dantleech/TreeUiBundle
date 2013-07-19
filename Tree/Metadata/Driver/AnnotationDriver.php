@@ -2,15 +2,16 @@
 
 namespace Symfony\Cmf\Bundle\TreeUiBundle\Tree\Metadata\Driver;
 
-use Metadata\Driver\DriverInterface;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Metadata\TreeMetadata;
+use Metadata\Driver\AdvancedDriverInterface;
 
-class AnnotationDriver implements DriverInterface
+class AnnotationDriver implements AdvancedDriverInterface
 {
     protected $reader;
+    protected $paths;
 
-    public function __construct(AnnotationReader $reader)
+    public function __construct(AnnotationReader $reader, $paths = array())
     {
         $this->reader = $reader;
     }
@@ -40,6 +41,10 @@ class AnnotationDriver implements DriverInterface
             $meta->childClasses = $annotation->childClasses;
         }
 
+        if (null !== $annotation->parentClasses) {
+            $meta->parentClasses = $annotation->parentClasses;
+        }
+
         if (null !== $annotation->childMode) {
             $meta->childMode = $annotation->childMode;
         }
@@ -56,5 +61,9 @@ class AnnotationDriver implements DriverInterface
                 $class->name
             ));
         }
+    }
+
+    public function getAllClassNames()
+    {
     }
 }

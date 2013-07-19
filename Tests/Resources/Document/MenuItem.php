@@ -12,6 +12,9 @@ use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Metadata\Annotations as CmfTreeUi;
  *    getLabelMethod="getTitle",
  *    setLabelMethod="setTitle",
  *    classLabel="Menu Item",
+ *    parentClasses={
+ *      "Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Document\Menu"
+ *    },
  *    childClasses={
  *      "Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Document\MenuItem"
  *    },

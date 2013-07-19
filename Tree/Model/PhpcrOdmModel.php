@@ -16,6 +16,8 @@ class PhpcrOdmModel implements ModelInterface
 
     protected $managerName;
 
+    protected $childrenMap;
+
     public function __construct(ManagerRegistry $mr, MetadataFactory $mdf) 
     {
         $this->mr = $mr;
@@ -42,6 +44,69 @@ class PhpcrOdmModel implements ModelInterface
         );
     }
 
+    /**
+     * This function builds a map of valid children for
+     * each mapped object.
+     *
+     * OPTIMIZE: This should be cached
+     *
+     * @return void
+     */
+    private function buildChildrenMap()
+    {
+        $allClasses = $this->mdf->getAllClassNames();
+        $allClasses2 = $allClasses;
+        $blacklist = array();
+
+        foreach ($allClasses as $className) {
+            $this->childrenMap[$className] = array();
+        }
+
+        foreach ($allClasses as $className) {
+            $meta = $this->mdf->getMetadataForClass($className);
+
+            if ($meta->parentClasses) {
+                // if class explicitly specifies parent classes, do
+                // not show this class in "all" children lists.
+                $blacklist[$meta->name] = true;
+                foreach ($meta->parentClasses as $parentClass) {
+                    if (!isset($this->childrenMap[$className][$parentClass])) {
+                        $this->childrenMap[$parentClass][$meta->name] = $meta;
+                    }
+                }
+            }
+
+            if ($meta->childMode == 'include') {
+                if ($meta->childClasses) {
+                    foreach ($meta->childClasses as $childClass) {
+                        if (!isset($this->childrenMap[$className][$childClass])) {
+                            $this->childrenMap[$className][$childClass] = $this->mdf->getMetadata($childClass);
+                        }
+                    }
+                }
+            } elseif ($meta->childMode == 'any') {
+                foreach ($allClasses2 as $childClass) {
+                    if (isset($blacklist[$className][$childClass])) {
+                        continue;
+                    }
+
+                    if (!isset($this->childrenMap[$className][$childClass])) {
+                        $this->childrenMap[$className][$childClass] = $this->getMetadataForClass($childClass);
+                    }
+                }
+            }
+        }
+    }
+
+    protected function getChildClasses($object)
+    {
+        if (empty($this->childrenMap)) {
+            $this->buildChildrenMap();
+        }
+
+        $className = ClassUtils::getClass($object);
+        return $this->childrenMap[$className];
+    }
 
     protected function getMetadata($object)
     {
@@ -67,6 +132,8 @@ class PhpcrOdmModel implements ModelInterface
         $node->setId($metadata->getId($object));
         $node->setLabel($metadata->getLabel($object));
         $node->setClassLabel($metadata->classLabel);
+        $node->setClassFqn($metadata->name);
+        $node->setChildClasses($this->getChildClasses($object));
         $node->setHasChildren($phpcrNode->hasNodes());
 
         return $node;

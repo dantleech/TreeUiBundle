@@ -9,7 +9,7 @@ class XmlDriverTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->locator = $this->getMock('Metadata\Driver\FileLocatorInterface');
-        $this->file = __DIR__.'/config/Menu.xml';
+        $this->file = __DIR__.'/config/MenuNode.xml';
         $this->refl = new \ReflectionClass('Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Document\Menu');
     }
 
@@ -23,10 +23,12 @@ class XmlDriverTest extends \PHPUnit_Framework_TestCase
             'getLabelMethod' => 'getTitle',
             'setLabelMethod' => 'setTitle',
             'classLabel' => 'Menu',
-            'childClasses' => array(
+            'parentClasses' => array(
                 'Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Document\Menu',
             ),
-            'childMode' => 'include',
+            'childClasses' => array(
+                'Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Document\MenuNode',
+            ),
             'icon' => '',
         );
 

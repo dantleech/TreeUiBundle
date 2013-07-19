@@ -17,6 +17,7 @@ class Node
     protected $hasChildren;
     protected $classLabel;
     protected $classFqn;
+    protected $childClasses;
 
     public function getId() 
     {
@@ -72,4 +73,15 @@ class Node
     {
         $this->classFqn = $classFqn;
     }
+
+    public function getChildClasses() 
+    {
+        return $this->childClasses;
+    }
+    
+    public function setChildClasses($childClasses)
+    {
+        $this->childClasses = $childClasses;
+    }
+    
 }
