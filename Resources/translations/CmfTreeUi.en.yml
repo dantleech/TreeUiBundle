@@ -1,6 +1,8 @@
 tree_delete_node_confirmation: You are about to delete __NODE_ID__ and any children it may have. Are you sure?
 context_menu_edit_in_new: Edit in new window
 context_menu:
+    create_in: Create in
+    create_before: Create before
     rename: Rename
     edit_in_new: Edit in new window
     cut: Cut

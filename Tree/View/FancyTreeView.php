@@ -44,12 +44,12 @@ class FancyTreeView extends AbstractStandardView
     public function getFeatures()
     {
         return array(
-            ViewInterface::FEATURE_BROWSE,
-            ViewInterface::FEATURE_PRE_SELECT_NODE,
-            ViewInterface::FEATURE_FORM_INPUT,
-            ViewInterface::FEATURE_FORM_INPUT_MULTIPLE,
-            ViewInterface::FEATURE_DRAG_AND_DROP,
             ViewInterface::FEATURE_CONTEXT_MENU,
+            //ViewInterface::FEATURE_BROWSE,
+            //ViewInterface::FEATURE_PRE_SELECT_NODE,
+            //ViewInterface::FEATURE_FORM_INPUT,
+            //ViewInterface::FEATURE_FORM_INPUT_MULTIPLE,
+            //ViewInterface::FEATURE_DRAG_AND_DROP,
         );
     }
 
@@ -123,6 +123,11 @@ class FancyTreeView extends AbstractStandardView
             $aNode['delete_url'] = $this->urlGenerator->fromTreeNode('delete', $treeName, $child);
 
             $aNode['rename_url'] = $this->urlGenerator->fromTreeNode('rename', $treeName, $child);
+            $aNode['childClasses'] = array();
+
+            foreach ($child->getChildClasses() as $childClassFqn => $childClassMeta) {
+                $aNode['childClasses'][$childClassFqn] = $childClassMeta->classLabel;
+            }
 
             $out[] = $aNode;
         }
@@ -219,6 +224,7 @@ class FancyTreeView extends AbstractStandardView
     {
         return array(
             'bundles/cmftreeui/components/fancytree/src/skin-xp/ui.fancytree.css',
+            'bundles/cmftreeui/components/jquery-ui/themes/smoothness/jquery-ui.min.css',
         );
     }
 }

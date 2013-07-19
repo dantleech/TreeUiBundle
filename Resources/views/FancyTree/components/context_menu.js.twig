@@ -1,6 +1,8 @@
 // establish some translations
 
 var trans = {
+    'create_in': '{% trans from "CmfTreeUi" %}context_menu.create_in{% endtrans %}',
+    'create_before': '{% trans from "CmfTreeUi" %}context_menu.create_before{% endtrans %}',
     'rename': '{% trans from "CmfTreeUi" %}context_menu.rename{% endtrans %}',
     'edit_in_new': '{% trans from "CmfTreeUi" %}context_menu.edit_in_new{% endtrans %}',
     'cut': '{% trans from "CmfTreeUi" %}context_menu.cut{% endtrans %}',
@@ -12,6 +14,8 @@ var trans = {
 
 // build menu
 var menuEl = $('<ul id="cmf_tree_ui_menu_{{ uniqId }}" class="contextMenu ui-helper-hidden"/>');
+menuEl.append('<li class="create_in"><a href="#create_in">' + trans.create_in + '</a><ul></ul></li>');
+menuEl.append('<li class="create_before"><a href="#create_before">' + trans.create_before + '</a><ul></ul></li>');
 menuEl.append('<li class="rename"><a href="#rename">' + trans.rename + '</a></li>');
 menuEl.append('<li class="edit"><a href="#edit">' + trans.edit_in_new + '</a></li>');
 menuEl.append('<li class="cut"><a href="#cut">' + trans.cut + '</a></li>');
@@ -27,6 +31,21 @@ extensions.push('menu');
 options['menu'] = {
     selector: '#cmf_tree_ui_menu_{{ uniqId }}',
     position: { my: 'center' },
+    focus: function (event, data) {
+        switch (data.menuId) {
+            case '#create_in':
+            case '#create_before':
+                var childClasses = data.node.data.childClasses;
+                var itemEl = $(event.currentTarget).find('ul');
+                itemEl.empty();
+                $.each(childClasses, function (fqn, classLabel) {
+                    itemEl.append('<li><a href="#create_class" class="create_class" fqn="' + fqn + '">' + classLabel + '</a></li>');
+                });
+                $('#cmf_tree_ui_menu_{{ uniqId }}').menu('refresh');
+        }
+
+        return false;
+    },
     select: function (event, data) {
         switch (data.menuId) {
             case '#edit':

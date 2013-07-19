@@ -11,6 +11,11 @@ class AnnotationDriver implements AdvancedDriverInterface
     protected $reader;
     protected $annotatedClasses;
 
+    /**
+     * @param AnnotationReader $reader           - AnnorationReader implementation
+     * @param array            $annotatedClasses - List of all known annotated classes 
+     *     (determined in DI builder)
+     */
     public function __construct(AnnotationReader $reader, $annotatedClasses = array())
     {
         $this->reader = $reader;

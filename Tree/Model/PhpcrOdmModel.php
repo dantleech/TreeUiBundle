@@ -58,12 +58,15 @@ class PhpcrOdmModel implements ModelInterface
         $allClasses2 = $allClasses;
         $blacklist = array();
 
+        // initialize the array
         foreach ($allClasses as $className) {
             $this->childrenMap[$className] = array();
         }
 
+        // first pass: sort out parent classes, blacklisting from "any" lists
+        //             if specified.
         foreach ($allClasses as $className) {
-            $meta = $this->mdf->getMetadataForClass($className);
+            $meta = $this->mdf->getMetadataForClass($className)->getOutsideClassMetadata();
 
             if ($meta->parentClasses) {
                 // if class explicitly specifies parent classes, do
@@ -75,23 +78,28 @@ class PhpcrOdmModel implements ModelInterface
                     }
                 }
             }
+        }
+
+        // second pass: sort out *include* and *any* - take into account blacklist
+        foreach ($allClasses as $className) {
+            $meta = $this->mdf->getMetadataForClass($className)->getOutsideClassMetadata();
 
             if ($meta->childMode == 'include') {
                 if ($meta->childClasses) {
                     foreach ($meta->childClasses as $childClass) {
                         if (!isset($this->childrenMap[$className][$childClass])) {
-                            $this->childrenMap[$className][$childClass] = $this->mdf->getMetadata($childClass);
+                            $this->childrenMap[$className][$childClass] = $this->mdf->getMetadataForClass($childClass)->getOutsideClassMetadata();
                         }
                     }
                 }
             } elseif ($meta->childMode == 'any') {
                 foreach ($allClasses2 as $childClass) {
-                    if (isset($blacklist[$className][$childClass])) {
+                    if (isset($blacklist[$childClass])) {
                         continue;
                     }
 
                     if (!isset($this->childrenMap[$className][$childClass])) {
-                        $this->childrenMap[$className][$childClass] = $this->getMetadataForClass($childClass);
+                        $this->childrenMap[$className][$childClass] = $this->mdf->getMetadataForClass($childClass)->getOutsideClassMetadata();
                     }
                 }
             }
@@ -105,6 +113,7 @@ class PhpcrOdmModel implements ModelInterface
         }
 
         $className = ClassUtils::getClass($object);
+
         return $this->childrenMap[$className];
     }
 
