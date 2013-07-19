@@ -9,11 +9,12 @@ use Metadata\Driver\AdvancedDriverInterface;
 class AnnotationDriver implements AdvancedDriverInterface
 {
     protected $reader;
-    protected $paths;
+    protected $annotatedClasses;
 
-    public function __construct(AnnotationReader $reader, $paths = array())
+    public function __construct(AnnotationReader $reader, $annotatedClasses = array())
     {
         $this->reader = $reader;
+        $this->annotatedClasses = $annotatedClasses;
     }
 
     public function loadMetadataForClass(\ReflectionClass $class)
@@ -65,5 +66,6 @@ class AnnotationDriver implements AdvancedDriverInterface
 
     public function getAllClassNames()
     {
+        return $this->annotatedClasses;
     }
 }

@@ -40,6 +40,7 @@
             class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\Metadata\Driver\AnnotationDriver"
             >
             <argument type="service" id="annotations.reader"/>
+            <argument type="collection"/>
         </service>
 
         <!-- XML Driver !-->

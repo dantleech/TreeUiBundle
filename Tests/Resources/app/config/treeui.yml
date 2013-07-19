@@ -1,4 +1,7 @@
 cmf_tree_ui:
+    metadata:
+        annotated_document_paths:
+            CmfTreeUiBundle: Tests/Resources/Document
     model:
         phpcr_odm:
             root: /test
