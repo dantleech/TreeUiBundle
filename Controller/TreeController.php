@@ -13,10 +13,12 @@ use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewDelegatorInterface;
 class TreeController
 {
     protected $treeModel;
+    protected $twig;
 
-    public function __construct(Factory $treeFactory)
+    public function __construct(Factory $treeFactory, \Twig_Environment $twig)
     {
         $this->treeFactory = $treeFactory;
+        $this->twig = $twig;
     }
 
     protected function getTree(Request $request)
@@ -56,5 +58,44 @@ class TreeController
         $content = $tree->getView()->getOutput();
 
         return new Response($content);
+    }
+
+    /**
+     * Process an EDIT request for a given node in HTML.
+     * This is currently a stubb feature - actual edition
+     * should be done by something else, i.e. Sonata.
+     *
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function editHtmlAction(Request $request)
+    {
+        $tree = $this->getTree($request);
+        $node = $tree->getModel()->getNode($request->get('cmf_tree_ui_node_id'));
+        $childClassName = $request->get('child_class_name', null);
+        $mode = $request->get('mode', null);
+        $res = $this->twig->render('CmfTreeUiBundle:Crud:defaultHtml.html.twig', array(
+            'node' => $node,
+            'tree' => $tree,
+            'childClassName' => $childClassName,
+            'mode' => $mode,
+        ));
+
+        return new Response($res);
+    }
+
+    /**
+     * Process an CREATE request for a given node in HTML.
+     * This is currently a stubb feature - actual edition
+     * should be done by something else, i.e. Sonata.
+     *
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function createHtmlAction(Request $request)
+    {
+        return $this->editHtmlAction($request);
     }
 }

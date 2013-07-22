@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>Default HTML Create/Edit page</title>
+    </head>
+    <body>
+        <h1>Default HTML Create/Edit Page</h1>
+        <p>
+            This is a stubb create/edit page, this is surely not much use to you.
+        </p>
+        <p>
+            You probably want to override the default URL generator to generate
+            more useful URLs for editing and creating nodes.
+        </p>
+        <p>
+            You referenced a <b>{{ node.classLabel }}</b> node with ID <b>{{ node.id }}</b> from tree <b>{{ tree.name }}</b>
+        </p>
+
+        {% if childClassName %}
+            <p>
+            You wanted to create a new node of type <b>{{ childClassName }}</b> and you wanted to create it <b>{{ mode }}</b> the reference node.
+            </p>
+        {% endif %}
+    </body>
+</html>
+
+

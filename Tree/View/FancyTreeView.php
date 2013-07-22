@@ -115,18 +115,18 @@ class FancyTreeView extends AbstractStandardView
             $aNode['key'] = $child->getId();
             $aNode['lazy'] = $child->hasChildren();
             $aNode['folder'] = $child->hasChildren();
-
-            $aNode['children_url'] = $this->urlGenerator->fromTreeNode('children', $treeName, $child);
-
-            $aNode['move_url'] = $this->urlGenerator->fromTreeNode('move', $treeName, $child);
-
-            $aNode['delete_url'] = $this->urlGenerator->fromTreeNode('delete', $treeName, $child);
-
-            $aNode['rename_url'] = $this->urlGenerator->fromTreeNode('rename', $treeName, $child);
-            $aNode['childClasses'] = array();
+            $aNode['children_url'] = $this->urlGenerator->children($treeName, $child);
+            $aNode['move_url'] = $this->urlGenerator->move($treeName, $child);
+            $aNode['delete_url'] = $this->urlGenerator->delete($treeName, $child);
+            $aNode['rename_url'] = $this->urlGenerator->rename($treeName, $child);
+            $aNode['edit_url_html'] = $this->urlGenerator->editHtml($treeName, $child);
+            $aNode['child_classes'] = array();
 
             foreach ($child->getChildClasses() as $childClassFqn => $childClassMeta) {
-                $aNode['childClasses'][$childClassFqn] = $childClassMeta->classLabel;
+                $aNode['child_classes'][$childClassFqn] = array(
+                    'label' => $childClassMeta->classLabel,
+                    'create_url_html' => $this->urlGenerator->createHtml($treeName, $child, $childClassFqn),
+                );
             }
 
             $out[] = $aNode;

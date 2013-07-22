@@ -17,11 +17,11 @@ class DefaultUrlGeneratorTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testForTreeNode()
+    public function testChildren()
     {
         $this->baseUrlGenerator->expects($this->once())
             ->method('generate')
-            ->with('_cmf_tree_ui_noop', array(
+            ->with('_cmf_tree_ui_children', array(
                 'cmf_tree_ui_tree_name' => 'footree',
                 'cmf_tree_ui_node_id' => '/tree/bar',
             ))
@@ -31,6 +31,24 @@ class DefaultUrlGeneratorTest extends \PHPUnit_Framework_TestCase
             ->method('getId')
             ->will($this->returnValue('/tree/bar'));
 
-        $this->nodeUrlGenerator->fromTreeNode('noop', 'footree', $this->node);
+        $this->nodeUrlGenerator->children('footree', $this->node);
+    }
+
+    public function testCreateHtml()
+    {
+        $this->baseUrlGenerator->expects($this->once())
+            ->method('generate')
+            ->with('_cmf_tree_ui_create_html', array(
+                'cmf_tree_ui_tree_name' => 'footree',
+                'cmf_tree_ui_node_id' => '/tree/bar',
+                'child_class_name' => '/Abb/Baa',
+            ))
+            ->will($this->returnValue('foo_url'));
+
+        $this->node->expects($this->once())
+            ->method('getId')
+            ->will($this->returnValue('/tree/bar'));
+
+        $this->nodeUrlGenerator->createHtml('footree', $this->node, '/Abb/Baa');
     }
 }

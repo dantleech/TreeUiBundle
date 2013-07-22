@@ -40,3 +40,17 @@ _cmf_tree_ui_rename:
         cmf_tree_ui_command: rename
         # cmf_tree_ui_new_name
     requirements: { cmf_tree_ui_node_id: .* }
+
+_cmf_tree_ui_create_html:
+    pattern: /_cmf_tree_ui/{cmf_tree_ui_tree_name}/create_html/{child_class_name}/near/{cmf_tree_ui_node_id}
+    defaults:
+        _controller: cmf_tree_ui.controller.tree:createHtmlAction
+    requirements: 
+        cmf_tree_ui_node_id: .*
+        # mode: "[inside|before]"
+
+_cmf_tree_ui_edit_html:
+    pattern: /_cmf_tree_ui/{cmf_tree_ui_tree_name}/edit_html/{cmf_tree_ui_node_id}
+    defaults:
+        _controller: cmf_tree_ui.controller.tree:editHtmlAction
+    requirements: { cmf_tree_ui_node_id: .* }

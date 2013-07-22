@@ -30,11 +30,10 @@
         <!-- Tree Controller -->
         <service
             id="cmf_tree_ui.controller.tree"
-            class="Symfony\Cmf\Bundle\TreeUiBundle\Controller\TreeController">
-            <argument 
-                type="service" 
-                id="cmf_tree_ui.tree_factory"
-                />
+            class="Symfony\Cmf\Bundle\TreeUiBundle\Controller\TreeController"
+            >
+            <argument type="service" id="cmf_tree_ui.tree_factory"/>
+            <argument type="service" id="twig"/>
         </service>
 
         <!-- Url Generator: Default -->
