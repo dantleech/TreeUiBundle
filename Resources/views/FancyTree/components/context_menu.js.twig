@@ -3,6 +3,7 @@
 var trans = {
     'create_in': '{% trans from "CmfTreeUi" %}context_menu.create_in{% endtrans %}',
     'create_before': '{% trans from "CmfTreeUi" %}context_menu.create_before{% endtrans %}',
+    'reload': '{% trans from "CmfTreeUi" %}context_menu.reload{% endtrans %}',
     'rename': '{% trans from "CmfTreeUi" %}context_menu.rename{% endtrans %}',
     'edit_in_new': '{% trans from "CmfTreeUi" %}context_menu.edit_in_new{% endtrans %}',
     'cut': '{% trans from "CmfTreeUi" %}context_menu.cut{% endtrans %}',
@@ -16,6 +17,7 @@ var trans = {
 var menuEl = $('<ul id="cmf_tree_ui_menu_{{ uniqId }}" class="contextMenu ui-helper-hidden"/>');
 menuEl.append('<li class="create_in"><a href="#create_in"><span class="ui-icon ui-icon-plusthick"></span>' + trans.create_in + '</a><ul></ul></li>');
 menuEl.append('<li class="create_before"><a href="#create_before"><span class="ui-icon ui-icon-plusthick"></span>' + trans.create_before + '</a><ul></ul></li>');
+menuEl.append('<li class="reload"><a href="#reload"><span class="ui-icon ui-icon-refresh"></span>' + trans.reload + '</a></li>');
 menuEl.append('<li class="rename"><a href="#rename"><span class="ui-icon ui-icon-pencil"></span>' + trans.rename + '</a></li>');
 menuEl.append('<li class="edit"><a href="#edit"><span class="ui-icon ui-icon-wrench"></span>' + trans.edit_in_new + '</a></li>');
 menuEl.append('<li class="cut"><a href="#cut"><span class="ui-icon ui-icon-scissors"></span>' + trans.cut + '</a></li>');
@@ -39,7 +41,7 @@ options['menu'] = {
                 var childClasses = data.node.data.child_classes;
                 var itemEl = $(event.currentTarget).find('ul');
                 itemEl.empty();
-                $.each(child_classes, function (fqn, classInfo) {
+                $.each(childClasses, function (fqn, classInfo) {
                     itemEl.append('<li><a href="#create_class" mode="' + mode + '" class="create_class" fqn="' + fqn + '"><span class="ui-icon ui-icon-document"></span>' + classInfo.label + '</a></li>');
                 });
                 $('#cmf_tree_ui_menu_{{ uniqId }}').menu('refresh');
@@ -49,8 +51,12 @@ options['menu'] = {
     },
     select: function (event, data) {
         switch (data.menuId) {
+            case '#reload':
+                data.node.lazyLoad(true);
+                break;
             case '#edit':
                 window.open(data.node.data.edit_url_html, '_blank');
+                break;
             case '#cut':
                 funcs.set_clip(data.node);
                 break;

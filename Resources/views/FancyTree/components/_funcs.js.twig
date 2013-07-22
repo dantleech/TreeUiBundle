@@ -3,6 +3,12 @@
 // ============================ //
 
 funcs = $.extend(funcs, {
+    // reloda the tree from source
+    reload_tree: function () {
+        var tree = $('#cmf_tree_{{ uniqId }}').fancytree('getTree');
+        tree.reload();
+    },
+
     // put the given node on the clipboard
     set_clip: function (node) {
         clipboard = node;

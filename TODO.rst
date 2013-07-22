@@ -8,3 +8,4 @@ Fancytree
 ---------
 
 * Prevent CUT/PASTE of nodes into descendants
+* Pagination? Performance v.bad from jackalope
