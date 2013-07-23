@@ -27,6 +27,7 @@ class CmfTreeUiExtension extends Extension
         $loader->load('views.xml');
         $loader->load('metadata.xml');
         $loader->load('twig.xml');
+        $loader->load('form.xml');
 
         $config = $processor->processConfiguration($configuration, $configs);
 

@@ -1,11 +1,15 @@
 {% extends "::layout.html.twig" %}
 {% block content %}
-<h2>Tree View Implementations</h2>
+<h2>Form Type</h2>
+<ul>
+    <li><a href="{{ path('test_form') }}">Form Type Test Page</a></li>
+</ul>
+<h2>Tree Implementations</h2>
 <ul>
     {% for tree in trees %}
-    <li>
-    <a href="{{ path('test_tree', {'tree_name': tree.name}) }}">{{ tree.name }}</a>
-    </li>
+        <li>
+            <a href="{{ path('test_tree', {'tree_name': tree.name}) }}">{{ tree.name }}</a>
+        </li>
     {% endfor %}
 </ul>
 {% endblock %}

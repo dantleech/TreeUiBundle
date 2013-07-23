@@ -30,5 +30,18 @@ class TestController extends Controller
             'factory' => $tf,
         ));
     }
-}
 
+    public function formTestAction(Request $request)
+    {
+        $builder = $this->createFormBuilder();
+        $builder->add('title', 'text');
+        $builder->add('parent', 'cmf_tree_ui_tree', array(
+            'tree_name' => 'fancytree_phpcrodm',
+        ));
+        $form = $builder->getForm();
+
+        return $this->render('::form/form.html.twig', array(
+            'form' => $form->createView(),
+        ));
+    }
+}

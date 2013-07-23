@@ -17,7 +17,7 @@ class Node
     protected $hasChildren;
     protected $classLabel;
     protected $classFqn;
-    protected $childClasses;
+    protected $childClasses = array();
 
     public function getId() 
     {
@@ -83,5 +83,4 @@ class Node
     {
         $this->childClasses = $childClasses;
     }
-    
 }

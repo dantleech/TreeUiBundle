@@ -7,3 +7,9 @@ test_tree:
      pattern: /tree/{tree_name}
      defaults:
          _controller: Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Controller\TestController::treeAction
+
+test_form:
+     pattern: /form-test
+     defaults:
+         _controller: Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Controller\TestController::formTestAction
+
