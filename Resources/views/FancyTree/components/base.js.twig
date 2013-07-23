@@ -1,6 +1,6 @@
 options = $.extend(options, {
     source: {
-        url: "{{ path('_cmf_tree_ui_children', {'cmf_tree_ui_tree_name': tree.name}) }}"
+        url: "{{ path('_cmf_tree_ui_children', {'cmf_tree_ui_tree_name': tree.name}) }}?cmf_tree_ui_node_id={{ options['root_path'] }}"
     },
     init: function () {
         // The key path is generated in the controller and contains
@@ -11,6 +11,7 @@ options = $.extend(options, {
                 if(state == "loaded") {
                 } else if (state == "ok") {
                     node.setActive(true);
+                    node.setSelected(true);
                 }
             });
 

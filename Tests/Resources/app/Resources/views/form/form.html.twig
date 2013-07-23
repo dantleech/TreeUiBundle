@@ -1,5 +1,31 @@
 {% extends "::layout.html.twig" %}
 {% block content %}
 <h2>Single Field</h2>
+<p>This demonstrates the rendering of a `cmf_tree_ui_tree` form type</p>
+<fieldset>
 {{ form_widget(form) }}
+</fieldset>
+<p>Controller code used in this example:</p>
+<pre>
+{{ "public function formTestAction(Request $request)
+{
+    $menuItem = $this->getDm()->find(null, '/test/menu/item1');;
+
+    $builder = $this->createFormBuilder($menuItem);
+    $builder->add('title', 'text');
+    $builder->add('menu', 'cmf_tree_ui_tree', array(
+        'tree_name' => 'fancytree_phpcrodm',
+        'options' => array(
+            'context_menu_enable' => true,
+            'drag_and_drop' => true,
+        ),
+    ));
+    $form = $builder->getForm();
+
+    return $this->render('::form/form.html.twig', array(
+        'form' => $form->createView(),
+    ));
+}" }}
+</pre>
+
 {% endblock %}

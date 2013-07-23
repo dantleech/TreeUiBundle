@@ -75,23 +75,34 @@ class FancyTreeView extends AbstractStandardView
     {
         $options = $this->config->getOptions($options);
 
-        $basePath = $options['root_path'];
-        $rootNode = $this->getModel()->getNode($basePath);
         $uniqId = uniqid();
 
         // sort out key path
         $keyPath = '';
         if ($options['select_node'] != '/') {
+            $rootPath = $options['root_path'];
+
+            if ($rootPath != '/') {
+                $rootEls = explode('/', $rootPath);
+            } else {
+                // explode will return 2 elements for "/" we just want one.
+                $rootEls = array('');
+            }
+
             $ancestors = $this->getModel()->getAncestors($options['select_node']);
-            // we don't like the root element ...
-            array_shift($ancestors);
+
+            // use the number of elements in the root_path to determine how
+            // many ancestors to drop...
+            for ($i = 0; $i < count($rootEls); $i++) {
+                array_shift($ancestors);
+            }
+
             foreach ($ancestors as $ancestor) {
                 $keyPath .= '&'.$ancestor->getId();
             }
         }
 
         $content = $this->templating->render('CmfTreeUiBundle:FancyTree:view.html.twig', array(
-            'rootNode' => $rootNode,
             'tree' => $this->tree,
             'uniqId' => $uniqId,
             'options' => $options,

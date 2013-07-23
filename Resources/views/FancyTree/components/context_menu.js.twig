@@ -33,6 +33,9 @@ extensions.push('menu');
 options['menu'] = {
     selector: '#cmf_tree_ui_menu_{{ uniqId }}',
     position: { my: 'center' },
+    beforeOpen: function (event, data) {
+        data.node.setActive(true);
+    },
     focus: function (event, data) {
         switch (data.menuId) {
             case '#create_in':

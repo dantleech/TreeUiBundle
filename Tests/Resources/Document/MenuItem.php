@@ -33,6 +33,21 @@ class MenuItem
      */
     protected $title;
 
+    /**
+     * @PHPCRODM\ParentDocument()
+     */
+    protected $parent;
+
+    public function setMenu(Menu $menu)
+    {
+        $this->parent = $menu;
+    }
+
+    public function getMenu()
+    {
+        return $this->parent;
+    }
+
     public function getId() 
     {
         return $this->id;
