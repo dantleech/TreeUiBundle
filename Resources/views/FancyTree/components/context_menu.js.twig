@@ -41,7 +41,12 @@ options['menu'] = {
             case '#create_in':
             case '#create_before':
                 var mode = data.menuId == '#create_in' ? 'inside' : 'before';
-                var childClasses = data.node.data.child_classes;
+
+                if (mode == 'inside') {
+                    var childClasses = data.node.data.child_classes;
+                } else {
+                    var childClasses = data.node.data.node_classes;
+                }
                 var itemEl = $(event.currentTarget).find('ul');
                 itemEl.empty();
                 $.each(childClasses, function (fqn, classInfo) {
@@ -92,7 +97,11 @@ options['menu'] = {
                 var childFqn = menuLink.attr('fqn');
                 var mode = menuLink.attr('mode');
 
-                var url = data.node.data.child_classes[childFqn]['create_url_html'];
+                if (mode == 'inside') {
+                    var url = data.node.data.child_classes[childFqn]['create_url_html'];
+                } else {
+                    var url = data.node.data.node_classes[childFqn]['create_url_html'];
+                }
                 url += '?mode=' + mode;
                 window.open(url, '_blank');
                 break;

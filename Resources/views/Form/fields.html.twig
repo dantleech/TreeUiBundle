@@ -1,0 +1,7 @@
+{% block cmf_tree_ui_tree_widget %}
+{% set options = options|merge({
+    'select_node': '/test/menu'
+}) %}
+{{ cmf_tree_ui_render(tree_name, options) }}
+{% endblock %}
+

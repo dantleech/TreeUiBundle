@@ -116,9 +116,20 @@ class FancyTreeView extends AbstractStandardView
     {
         $id = $request->get('cmf_tree_ui_node_id', '/');
         $children = $this->getModel()->getChildren($id);
+        $treeName = $this->tree->getName();
+
+        $node = $this->getModel()->getNode($id);
+        // build list of valid children for the root node
+        $nodeClasses = array();
+
+        foreach ($node->getChildClasses() as $childClassFqn => $childClassMeta) {
+            $nodeClasses[$childClassFqn] = array(
+                'label' => $childClassMeta->classLabel,
+                'create_url_html' => $this->urlGenerator->createHtml($treeName, $node, $node->getClassFqn()),
+            );
+        }
 
         $out = array();
-        $treeName = $this->tree->getName();
 
         foreach ($children as $child) {
             $aNode['title'] = $child->getLabel();
@@ -131,6 +142,7 @@ class FancyTreeView extends AbstractStandardView
             $aNode['delete_url'] = $this->urlGenerator->delete($treeName, $child);
             $aNode['rename_url'] = $this->urlGenerator->rename($treeName, $child);
             $aNode['edit_url_html'] = $this->urlGenerator->editHtml($treeName, $child);
+            $aNode['node_classes'] = $nodeClasses;
             $aNode['child_classes'] = array();
 
             foreach ($child->getChildClasses() as $childClassFqn => $childClassMeta) {
