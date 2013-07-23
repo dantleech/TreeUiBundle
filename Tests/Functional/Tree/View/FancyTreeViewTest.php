@@ -51,6 +51,15 @@ class FancyTreeViewTest extends BaseTestCase
             ->with('/')
             ->will($this->returnValue(array($this->node2, $this->node3)));
 
+        $this->model->expects($this->once())
+            ->method('getNode')
+            ->with('/')
+            ->will($this->returnValue($this->node1));
+
+        $this->node1->expects($this->once())
+            ->method('getChildClasses')
+            ->will($this->returnValue(array()));
+
         $this->node2->expects($this->once())
             ->method('getLabel')
             ->will($this->returnValue('Node 1'));
@@ -86,6 +95,7 @@ class FancyTreeViewTest extends BaseTestCase
             'delete_url' => '/_cmf_tree_ui/foobar_Tree/delete//path/to/this/node',
             'rename_url' => '/_cmf_tree_ui/foobar_Tree/rename//path/to/this/node',
             'child_classes' => array(),
+            'node_classes' => array(),
             'edit_url_html' => '/_cmf_tree_ui/foobar_Tree/edit_html//path/to/this/node',
         ), $node2);
     }

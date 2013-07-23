@@ -19,17 +19,17 @@ class LoadTreeData implements DependentFixtureInterface, FixtureInterface
 
     public function load(ObjectManager $dm)
     {
-        $menu = new Menu;
-        $menu->setId('/test/menu-big');
-        $menu->setTitle('Big Menu');
-        $dm->persist($menu);
-
-        for ($i = 0; $i <= 100; $i++) {
-            $item = new MenuItem;
-            $item->setId('/test/menu-big/item'.$i);
-            $item->setTitle('Item '.$i);
-            $dm->persist($item);
-        }
+#        $menu = new Menu;
+#        $menu->setId('/test/menu-big');
+#        $menu->setTitle('Big Menu');
+#        $dm->persist($menu);
+#
+#        for ($i = 0; $i <= 100; $i++) {
+#            $item = new MenuItem;
+#            $item->setId('/test/menu-big/item'.$i);
+#            $item->setTitle('Item '.$i);
+#            $dm->persist($item);
+#        }
 
         $menu = new Menu;
         $menu->setId('/test/menu');
