@@ -15,7 +15,13 @@
     "require": {
         "php": ">=5.3.3",
         "symfony/framework-bundle": "~2.2",
-        "jms/metadata": "1.4.x-dev"
+        "jms/metadata": "1.4.x-dev",
+
+        "dantleech/fancytree": "dev-master",
+        "components/jqueryui": "1.10.3"
+    },
+    "config": {
+        "component-dir": "Resources/public/components"
     },
     "require-dev": {
         "symfony-cmf/testing": "1.0.*"
