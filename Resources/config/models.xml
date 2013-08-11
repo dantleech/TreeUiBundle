@@ -10,25 +10,6 @@
     </parameters>
 
     <services>
-        <!-- Phpcr Model !-->
-        <service 
-            id="cmf_tree_ui.model.phpcr" 
-            class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\Model\PhpcrModel"
-            >
-            <argument type="service" id="doctrine_phpcr.session"/>
-            <tag name="cmf_tree_ui.model" alias="phpcr"/>
-        </service>
-
-        <!-- PhpcrOdm Model !-->
-        <service 
-            id="cmf_tree_ui.model.phpcr_odm" 
-            class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\Model\PhpcrOdmModel"
-            >
-            <argument type="service" id="doctrine_phpcr"/>
-            <argument type="service" id="cmf_tree_ui.metadata.factory"/>
-            <tag name="cmf_tree_ui.model" alias="phpcr_odm"/>
-        </service>
-
         <!-- Filesystem Model !-->
         <service 
             id="cmf_tree_ui.model.filesystem" 
@@ -38,7 +19,6 @@
             <argument type="service" id="filesystem"/>
             <tag name="cmf_tree_ui.model" alias="filesystem"/>
         </service>
-
     </services>
 </container>
 

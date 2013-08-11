@@ -9,11 +9,6 @@ use Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Document\Menu;
 
 class TestController extends Controller
 {
-    protected function getDm()
-    {
-        return $this->get('doctrine_phpcr.odm.document_manager');
-    }
-
     public function indexAction(Request $request)
     {
         $tf = $this->get('cmf_tree_ui.tree_factory');
@@ -39,17 +34,15 @@ class TestController extends Controller
 
     public function formTestAction(Request $request)
     {
-        $menuItem = $this->getDm()->find(null, '/test/menu/item1');;
+        $tf = $this->get('cmf_tree_ui.tree_factory');
+        $tree = $tf->getTree($name);
+        $node = $tree->getModel()->getNode('/foobar');
 
-        $builder = $this->createFormBuilder($menuItem);
+        $builder = $this->createFormBuilder($node);
         $builder->add('title', 'text');
         $builder->add('menu', 'cmf_tree_ui_tree', array(
-            'tree_name' => 'fancytree_phpcrodm',
+            'tree_name' => 'default', // should be default by default.
             'options' => array(
-                'context_menu_enable' => true,
-                'drag_and_drop' => true,
-
-                'root_path' => '/test',
             ),
         ));
         $form = $builder->getForm();

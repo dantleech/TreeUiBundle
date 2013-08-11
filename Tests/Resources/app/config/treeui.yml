@@ -8,34 +8,9 @@ cmf_tree_ui:
         annotated_document_paths:
             CmfTreeUiBundle: Tests/Resources/Document
     model:
-        phpcr_odm:
-            root: /test
         filesystem:
             root: %kernel.root_dir%
     tree:
-        # Model: PHPCR-ODM
-        fancytree_phpcrodm:
-            model: phpcr_odm
-            view: fancy_tree
-
-        dynatree_phpcrodm:
-            model: phpcr_odm
-            view: dyna_tree
-
-        elfinder_phpcrodm:
-            model: phpcr_odm
-            view: el_finder
-
-        # Model: Filesystem
-        fancytree_filesystem:
+        default:
             model: filesystem
-            view: fancy_tree
-
-        elfinder_filesystem:
-            model: filesystem
-            view: el_finder
-
-        # Model: Phpcr
-        fancytree_phpcr:
-            model: phpcr
-            view: fancy_tree
+            view: static_html

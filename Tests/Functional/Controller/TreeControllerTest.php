@@ -7,19 +7,11 @@ use Symfony\Component\HttpFoundation\Request;
 
 class TreeControllerTest extends BaseTestCase
 {
-    public function setUp()
-    {
-        parent::setUp();
-        $this->db('PHPCR')->loadFixtures(array(
-            'Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\DataFixtures\LoadTreeData'
-        ));
-    }
-
     public function testController()
     {
         $controller = $this->getContainer()->get('cmf_tree_ui.controller.tree');
         $req = new Request(array(), array(
-            'cmf_tree_ui_tree_name' => 'fancytree_phpcrodm'
+            'cmf_tree_ui_tree_name' => 'default'
         ));
         $res = $controller->viewAction($req);
     }

@@ -16,9 +16,6 @@ class AnnotationDriverTest extends BaseTestCase
     public function setUp()
     {
         parent::setUp();
-        $this->db('PHPCR')->loadFixtures(array(
-            'Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\DataFixtures\LoadTreeData'
-        ));
 
         $this->driver = $this->getContainer()->get('cmf_tree_ui.metadata.driver.annotation');
     }

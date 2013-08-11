@@ -4,34 +4,13 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-        <!-- Fancytree -->
+        <!-- Static HTML -->
         <service
-            id="cmf_tree_ui.view.fancy_tree"
-            class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\View\FancyTreeView"
+            id="cmf_tree_ui.view.static_html"
+            class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\View\StaticHtmlView"
             >
             <argument type="service" id="twig"/>
-            <argument type="service" id="cmf_tree_ui.node.url_generator.default"/>
-            <tag name="cmf_tree_ui.view" alias="fancy_tree"/>
-        </service>
-
-        <!-- Dynatree -->
-        <service
-            id="cmf_tree_ui.view.dynatree"
-            class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\View\DynatreeView"
-            >
-            <argument type="service" id="twig"/>
-            <argument type="service" id="router"/>
-            <tag name="cmf_tree_ui.view" alias="dyna_tree"/>
-        </service>
-
-        <!-- ElFinder -->
-        <service
-            id="cmf_tree_ui.view.elfinder"
-            class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\View\ElFinderView"
-            >
-            <argument type="service" id="twig"/>
-            <argument type="service" id="router"/>
-            <tag name="cmf_tree_ui.view" alias="el_finder"/>
+            <tag name="cmf_tree_ui.view" alias="static_html"/>
         </service>
     </services>
 </container>

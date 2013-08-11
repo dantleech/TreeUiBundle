@@ -23,7 +23,6 @@ interface ModelInterface extends FeaturableInterface
     public function rename($nodePath, $newName);
 
     public function reorder($parentId, $sourceId, $targetId, $before = false);
-
     public function delete($nodeId);
 
     public function getNode($path);

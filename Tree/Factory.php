@@ -29,6 +29,11 @@ class Factory
         return $trees;
     }
 
+    public function getTreeNames()
+    {
+        return array_keys($this->treeServiceMap);
+    }
+
     public function getTree($name = null)
     {
         if (null === $name) {

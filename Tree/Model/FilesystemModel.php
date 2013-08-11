@@ -11,6 +11,9 @@ use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ModelConfig;
 /**
  * A TreeInterface implementation for the file system
  *
+ * This is the only model available by default, other models
+ * must be included as bundles, e.g. TreeUiPhpcrOdmModelBundle.
+ *
  * @author Uwe Jäger <uwe.jaeger@valiton.com>
  * @author Daniel Leech <daniel@dantleech.com>
  */

@@ -4,6 +4,7 @@ namespace Symfony\Cmf\Bundle\TreeUiBundle\Tree\View;
 
 use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Tree;
 
 /**
  * Abstract class which processes requests in a standard way. This model
@@ -13,6 +14,8 @@ use Symfony\Component\HttpFoundation\Request;
  */
 abstract class AbstractStandardView implements ViewInterface
 {
+    protected $tree;
+
     public function processRequest(Request $request)
     {
         $command = $request->get('cmf_tree_ui_command');
@@ -65,4 +68,9 @@ abstract class AbstractStandardView implements ViewInterface
      * @return Symfony\Component\HttpFoundation\Response 
      */
     abstract public function renameResponse(Request $request);
+
+    public function setTree(Tree $tree)
+    {
+        $this->tree = $tree;
+    }
 }
