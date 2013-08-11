@@ -1,5 +1,5 @@
 {
-    "name": "dantleech/tree-ui-bundle",
+    "name": "dantleech/tree-ui-core-bundle",
     "type": "symfony-bundle",
     "description": "Symfony CMF Tree UI Bundle",
     "keywords": ["Symfony CMF", "tree", "phpcr"],
@@ -15,16 +15,15 @@
     "require": {
         "php": ">=5.3.3",
         "symfony/framework-bundle": "~2.2",
-        "jms/metadata": "1.4.x-dev",
-
-        "dantleech/fancytree": "dev-master",
-        "components/jqueryui": "1.10.3"
+        "jms/metadata": "1.4.x-dev"
     },
     "config": {
         "component-dir": "Resources/public/components"
     },
     "require-dev": {
-        "symfony-cmf/testing": "1.0.*"
+        "symfony-cmf/testing": "1.0.*",
+        "dantleech/fancytree": "dev-master",
+        "components/jqueryui": "1.10.3"
     },
     "autoload":{
         "psr-0":{
