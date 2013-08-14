@@ -21,9 +21,7 @@
         "component-dir": "Resources/public/components"
     },
     "require-dev": {
-        "symfony-cmf/testing": "1.0.*",
-        "dantleech/fancytree": "dev-master",
-        "components/jqueryui": "1.10.3"
+        "symfony-cmf/testing": "1.0.*"
     },
     "autoload":{
         "psr-0":{
