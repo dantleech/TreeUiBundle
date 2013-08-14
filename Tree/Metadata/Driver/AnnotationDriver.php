@@ -1,9 +1,9 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\TreeUiBundle\Tree\Metadata\Driver;
+namespace Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Metadata\Driver;
 
 use Doctrine\Common\Annotations\AnnotationReader;
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Metadata\TreeMetadata;
+use Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Metadata\TreeMetadata;
 use Metadata\Driver\AdvancedDriverInterface;
 
 class AnnotationDriver implements AdvancedDriverInterface
@@ -26,7 +26,7 @@ class AnnotationDriver implements AdvancedDriverInterface
     {
         $annotation = $this->reader->getClassAnnotation(
             $class,
-            'Symfony\Cmf\Bundle\TreeUiBundle\Tree\Metadata\Annotations\Node'
+            'Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Metadata\Annotations\Node'
         );
 
         if (!$annotation) {

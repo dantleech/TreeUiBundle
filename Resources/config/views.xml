@@ -7,7 +7,7 @@
         <!-- Static HTML -->
         <service
             id="cmf_tree_ui.view.static_html"
-            class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\View\StaticHtmlView"
+            class="Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\View\StaticHtmlView"
             >
             <argument type="service" id="twig"/>
             <tag name="cmf_tree_ui.view" alias="static_html"/>

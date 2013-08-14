@@ -1,8 +1,8 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\TreeUiBundle\Tree\Node;
+namespace Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Node;
 
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Node;
+use Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Node;
 
 /**
  * Tree URL Generator Interface

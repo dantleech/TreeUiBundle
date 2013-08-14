@@ -1,6 +1,6 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\TreeUiBundle\Tree\Metadata\Exception;
+namespace Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Metadata\Exception;
 
 class MissingMappingException extends \RuntimeException
 {

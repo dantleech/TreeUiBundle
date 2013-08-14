@@ -4,7 +4,7 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="cmf_tree_ui.tree_type_class">Symfony\Cmf\Bundle\TreeUiBundle\Form\Type\TreeUiType</parameter>
+        <parameter key="cmf_tree_ui.tree_type_class">Symfony\Cmf\Bundle\TreeUi\CoreBundle\Form\Type\TreeUiType</parameter>
     </parameters>
 
     <services>

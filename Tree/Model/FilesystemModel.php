@@ -1,12 +1,12 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\TreeUiBundle\Tree\Model;
+namespace Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Model;
 
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ModelInterface;
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Node;
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ModelConfig;
+use Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\ModelInterface;
+use Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Node;
+use Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\ModelConfig;
 
 /**
  * A TreeInterface implementation for the file system

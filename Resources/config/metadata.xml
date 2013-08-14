@@ -37,7 +37,7 @@
         <!-- Annotations Driver -->
         <service
             id="cmf_tree_ui.metadata.driver.annotation"
-            class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\Metadata\Driver\AnnotationDriver"
+            class="Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Metadata\Driver\AnnotationDriver"
             >
             <argument type="service" id="annotations.reader"/>
             <argument type="collection"/>
@@ -46,7 +46,7 @@
         <!-- XML Driver !-->
         <service
             id="cmf_tree_ui.metadata.driver.xml"
-            class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\Metadata\Driver\XmlDriver"
+            class="Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Metadata\Driver\XmlDriver"
             >
             <argument type="service" id="cmf_tree_ui.metadata.file_locator"/>
         </service>

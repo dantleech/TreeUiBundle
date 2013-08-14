@@ -13,7 +13,7 @@
         <!-- Filesystem Model !-->
         <service 
             id="cmf_tree_ui.model.filesystem" 
-            class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\Model\FilesystemModel"
+            class="Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Model\FilesystemModel"
             >
             <argument>%cmf_tree_ui.model.filesystem.root_path%</argument>
             <argument type="service" id="filesystem"/>

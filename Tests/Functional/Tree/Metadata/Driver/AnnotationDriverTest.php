@@ -1,6 +1,6 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\TreeUiBundle\Tests\Functional\Tree\Metadata\Driver;
+namespace Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tests\Functional\Tree\Metadata\Driver;
 
 use Symfony\Cmf\Component\Testing\Functional\BaseTestCase;
 use Symfony\Component\HttpFoundation\Request;
@@ -9,7 +9,7 @@ use Doctrine\ODM\PHPCR\Document\Generic;
 class AnnotationDriverTest extends BaseTestCase
 {
     /**
-     * @var \Symfony\Cmf\Bundle\TreeUiBundle\Tree\Metadata\Driver\AnnotationDriver
+     * @var \Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Metadata\Driver\AnnotationDriver
      */
     protected $driver;
 
@@ -23,8 +23,8 @@ class AnnotationDriverTest extends BaseTestCase
     public function testGetAllClassNames()
     {
         $expected = array(
-            'Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Document\Menu',
-            'Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Document\MenuItem',
+            'Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tests\Resources\Document\Menu',
+            'Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tests\Resources\Document\MenuItem',
         );
 
         $start = microtime(true);

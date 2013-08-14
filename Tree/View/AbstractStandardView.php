@@ -1,10 +1,10 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\TreeUiBundle\Tree\View;
+namespace Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\View;
 
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewInterface;
+use Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\ViewInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Tree;
+use Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Tree;
 
 /**
  * Abstract class which processes requests in a standard way. This model

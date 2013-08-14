@@ -1,11 +1,11 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\TreeUiBundle\Tree;
+namespace Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ModelInterface;
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Tree;
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewConfig;
+use Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\ModelInterface;
+use Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Tree;
+use Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\ViewConfig;
 
 /**
  * This interface will be implemented by classes which

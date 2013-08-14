@@ -1,8 +1,8 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\TreeUiBundle\Unit\Tree\Node\UrlGenerator;
+namespace Symfony\Cmf\Bundle\TreeUi\CoreBundle\Unit\Tree\Node\UrlGenerator;
 
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Node\UrlGenerator\DefaultUrlGenerator;
+use Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Node\UrlGenerator\DefaultUrlGenerator;
 
 class DefaultUrlGeneratorTest extends \PHPUnit_Framework_TestCase
 {
@@ -13,7 +13,7 @@ class DefaultUrlGeneratorTest extends \PHPUnit_Framework_TestCase
         );
         $this->nodeUrlGenerator = new DefaultUrlGenerator($this->baseUrlGenerator);
         $this->node = $this->getMock(
-            'Symfony\Cmf\Bundle\TreeUiBundle\Tree\Node'
+            'Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Node'
         );
     }
 

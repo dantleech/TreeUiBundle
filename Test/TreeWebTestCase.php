@@ -1,6 +1,6 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\TreeUiBundle\Test;
+namespace Symfony\Cmf\Bundle\TreeUi\CoreBundle\Test;
 
 use Symfony\Cmf\Component\Testing\Functional\BaseTestCase;
 

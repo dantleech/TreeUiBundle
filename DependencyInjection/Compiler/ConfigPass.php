@@ -1,6 +1,6 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\TreeUiBundle\DependencyInjection\Compiler;
+namespace Symfony\Cmf\Bundle\TreeUi\CoreBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
@@ -33,7 +33,7 @@ class ConfigPass implements CompilerPassInterface
             $configId = sprintf('cmf_tree_ui.config.%s.%s', $type, $alias);
 
             $configDef = $this->builder->register($configId, sprintf(
-                'Symfony\Cmf\Bundle\TreeUiBundle\Tree\%sConfig',
+                'Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\%sConfig',
                 ucfirst($type)
             ));
 

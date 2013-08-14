@@ -2,7 +2,7 @@
 
 namespace Symfony\Cmf\Bundle\TreeUi\Tests\Unit\Tree\Metadata\Driver;
 
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Metadata\Driver\XmlDriver;
+use Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Metadata\Driver\XmlDriver;
 
 class XmlDriverTest extends \PHPUnit_Framework_TestCase
 {
@@ -10,7 +10,7 @@ class XmlDriverTest extends \PHPUnit_Framework_TestCase
     {
         $this->locator = $this->getMock('Metadata\Driver\FileLocatorInterface');
         $this->file = __DIR__.'/config/MenuNode.xml';
-        $this->refl = new \ReflectionClass('Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Document\Menu');
+        $this->refl = new \ReflectionClass('Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tests\Resources\Document\Menu');
     }
 
     public function testLoadMetadataFromFile()
@@ -24,10 +24,10 @@ class XmlDriverTest extends \PHPUnit_Framework_TestCase
             'setLabelMethod' => 'setTitle',
             'classLabel' => 'Menu',
             'parentClasses' => array(
-                'Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Document\Menu',
+                'Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tests\Resources\Document\Menu',
             ),
             'childClasses' => array(
-                'Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Document\MenuNode',
+                'Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tests\Resources\Document\MenuNode',
             ),
             'icon' => '',
         );

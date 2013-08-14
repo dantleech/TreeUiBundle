@@ -1,15 +1,15 @@
 test_home:
      pattern: /
      defaults:
-         _controller: Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Controller\TestController::indexAction
+         _controller: Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tests\Resources\Controller\TestController::indexAction
 
 test_tree:
      pattern: /tree/{tree_name}
      defaults:
-         _controller: Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Controller\TestController::treeAction
+         _controller: Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tests\Resources\Controller\TestController::treeAction
 
 test_form:
      pattern: /form-test
      defaults:
-         _controller: Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Controller\TestController::formTestAction
+         _controller: Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tests\Resources\Controller\TestController::formTestAction
 

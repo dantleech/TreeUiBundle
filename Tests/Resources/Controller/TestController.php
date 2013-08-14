@@ -1,11 +1,11 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Controller;
+namespace Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tests\Resources\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Document\Menu;
+use Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tests\Resources\Document\Menu;
 
 class TestController extends Controller
 {

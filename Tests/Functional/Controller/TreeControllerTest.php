@@ -1,6 +1,6 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\TreeUiBundle\Tests\Functional\Controller;
+namespace Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tests\Functional\Controller;
 
 use Symfony\Cmf\Component\Testing\Functional\BaseTestCase;
 use Symfony\Component\HttpFoundation\Request;

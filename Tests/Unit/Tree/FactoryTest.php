@@ -1,8 +1,8 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\TreeUiBundle\Tests\Unit\Tree;
+namespace Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tests\Unit\Tree;
 
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Factory;
+use Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Factory;
 
 class FactoryTest extends \PHPUnit_Framework_Testcase
 {
@@ -13,20 +13,20 @@ class FactoryTest extends \PHPUnit_Framework_Testcase
         )->disableOriginalConstructor()->getMock();
 
         $this->tree1 = $this->getMockBuilder(
-            'Symfony\Cmf\Bundle\TreeUiBundle\Tree\Tree'
+            'Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Tree'
         )->disableOriginalConstructor()->getMock();
         $this->tree1View = $this->getMock(
-            'Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewInterface'
+            'Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\ViewInterface'
         );
 
         $this->tree2 = $this->getMockBuilder(
-            'Symfony\Cmf\Bundle\TreeUiBundle\Tree\Tree'
+            'Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Tree'
         )->disableOriginalConstructor()->getMock();
         $this->tree2View = $this->getMock(
-            'Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewInterface'
+            'Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\ViewInterface'
         );
         $this->tree2Model = $this->getMock(
-            'Symfony\Cmf\Bundle\TreeUiBundle\Tree\ModelInterface'
+            'Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\ModelInterface'
         );
 
         $this->factory = new Factory($this->container);

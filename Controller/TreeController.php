@@ -1,14 +1,14 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\TreeUiBundle\Controller;
+namespace Symfony\Cmf\Bundle\TreeUi\CoreBundle\Controller;
 
 use Symfony\Cmf\Bundle\TreeBrowserBundle\Tree\ModelInterface;
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewInterface;
+use Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\ViewInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Factory;
+use Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Factory;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewDelegatorInterface;
+use Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\ViewDelegatorInterface;
 
 class TreeController
 {

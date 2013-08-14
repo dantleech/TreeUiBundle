@@ -1,6 +1,6 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\TreeUiBundle\Tree\Metadata\Annotations;
+namespace Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Metadata\Annotations;
 
 /**
  * @Annotation

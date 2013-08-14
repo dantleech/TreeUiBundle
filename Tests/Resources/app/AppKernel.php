@@ -12,7 +12,7 @@ class AppKernel extends TestKernel
         ));
 
         $this->addBundles(array(
-            new \Symfony\Cmf\Bundle\TreeUiBundle\CmfTreeUiBundle(),
+            new \Symfony\Cmf\Bundle\TreeUi\CoreBundle\CmfTreeUiBundle(),
         ));
     }
 

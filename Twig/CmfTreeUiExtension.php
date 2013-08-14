@@ -1,8 +1,8 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\TreeUiBundle\Twig;
+namespace Symfony\Cmf\Bundle\TreeUi\CoreBundle\Twig;
 
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Factory;
+use Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Factory;
 
 class CmfTreeUiExtension extends \Twig_Extension
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Document;
+namespace Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tests\Resources\Document;
 
 use Doctrine\ODM\PHPCR\Mapping\Annotations as PHPCRODM;
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Metadata\Annotations as CmfTreeUi;
+use Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Metadata\Annotations as CmfTreeUi;
 
 /**
  * @PHPCRODM\Document()
@@ -13,10 +13,10 @@ use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Metadata\Annotations as CmfTreeUi;
  *    setLabelMethod="setTitle",
  *    classLabel="Menu Item",
  *    parentClasses={
- *      "Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Document\Menu"
+ *      "Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tests\Resources\Document\Menu"
  *    },
  *    childClasses={
- *      "Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Document\MenuItem"
+ *      "Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tests\Resources\Document\MenuItem"
  *    },
  *    icon="bundles/cmftreeuibundle/themes/famfamsilk/directory.png"
  *  )

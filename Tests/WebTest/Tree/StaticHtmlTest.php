@@ -1,9 +1,9 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\TreeUiBundle\Tests\WebTest\Trees;
+namespace Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tests\WebTest\Trees;
 
 use Symfony\Cmf\Component\Testing\Functional\BaseTestCase;
-use Symfony\Cmf\Bundle\TreeUiBundle\Test\TreeWebTestCase;
+use Symfony\Cmf\Bundle\TreeUi\CoreBundle\Test\TreeWebTestCase;
 
 class StaticHtmlTest extends TreeWebTestCase
 {

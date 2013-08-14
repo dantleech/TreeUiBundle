@@ -2,14 +2,14 @@
 
 namespace Symfony\Cmf\Bundle\TreeUi\Tests\Unit\Tree\Metadata\Driver;
 
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Metadata\Driver\AnnotationDriver;
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Metadata\Annotations\Node as NodeAnnotation;
+use Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Metadata\Driver\AnnotationDriver;
+use Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Metadata\Annotations\Node as NodeAnnotation;
 
 class AnnotationDriverTest extends \PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
-        $this->refl = new \ReflectionClass('Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Document\Menu');
+        $this->refl = new \ReflectionClass('Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tests\Resources\Document\Menu');
 
         $this->reader = $this->getMockBuilder(
             'Doctrine\Common\Annotations\AnnotationReader'
@@ -30,10 +30,10 @@ class AnnotationDriverTest extends \PHPUnit_Framework_TestCase
             'setLabelMethod' => 'setTitle',
             'classLabel' => 'Menu',
             'parentClasses' => array(
-                'Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Document\Menu',
+                'Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tests\Resources\Document\Menu',
             ),
             'childClasses' => array(
-                'Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Document\MenuNode',
+                'Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tests\Resources\Document\MenuNode',
             ),
             'childMode' => 'any',
             'icon' => '',

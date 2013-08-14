@@ -1,8 +1,8 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\TreeUiBundle\Tests\Unit\Twig;
+namespace Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tests\Unit\Twig;
 
-use Symfony\Cmf\Bundle\TreeUiBundle\Twig\CmfTreeUiExtension;
+use Symfony\Cmf\Bundle\TreeUi\CoreBundle\Twig\CmfTreeUiExtension;
 
 class CmfTreeUiExtensionTest extends \PHPUnit_Framework_Testcase
 {
@@ -10,14 +10,14 @@ class CmfTreeUiExtensionTest extends \PHPUnit_Framework_Testcase
     {
         /** @var \PHPUnit_Framework_MockObject_MockObject */
         $this->factory = $this->getMockBuilder(
-            'Symfony\Cmf\Bundle\TreeUiBundle\Tree\Factory'
+            'Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Factory'
         )->disableOriginalConstructor()->getMock();
 
         $this->ext = new CmfTreeUiExtension($this->factory);
         $this->tree = $this->getMockBuilder(
-            'Symfony\Cmf\Bundle\TreeUiBundle\Tree\Tree'
+            'Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Tree'
         )->disableOriginalConstructor()->getMock();
-        $this->view = $this->getMock('Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewInterface');
+        $this->view = $this->getMock('Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\ViewInterface');
     }
 
     public function provideFunctionRegistration()

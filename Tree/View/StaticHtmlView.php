@@ -1,10 +1,10 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\TreeUiBundle\Tree\View;
+namespace Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\View;
 
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewInterface;
+use Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\ViewInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewConfig;
+use Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\ViewConfig;
 use Symfony\Component\HttpFoundation\Response;
 
 /**

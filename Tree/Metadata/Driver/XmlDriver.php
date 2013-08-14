@@ -1,9 +1,9 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\TreeUiBundle\Tree\Metadata\Driver;
+namespace Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Metadata\Driver;
 
 use Metadata\Driver\DriverInterface;
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Metadata\TreeMetadata;
+use Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Metadata\TreeMetadata;
 use Metadata\Driver\AbstractFileDriver;
 
 class XmlDriver extends AbstractFileDriver implements DriverInterface

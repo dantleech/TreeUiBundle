@@ -2,15 +2,15 @@
 
 <cmf-tree-ui-mapping>
     <tree-object
-        name="Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Document\Menu"
+        name="Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tests\Resources\Document\Menu"
         get-id-method="getId"
         get-label-method="getTitle"
         set-label-method="setTitle"
         class-label="Menu"
         icon="bundles/cmftreeui/icons/:size/menu.png"
         >
-        <parent>Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Document\Menu</parent>
-        <child>Symfony\Cmf\Bundle\TreeUiBundle\Tests\Resources\Document\MenuNode</child>
+        <parent>Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tests\Resources\Document\Menu</parent>
+        <child>Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tests\Resources\Document\MenuNode</child>
     </tree-object>
 </cmf-tree-ui-mapping>
 

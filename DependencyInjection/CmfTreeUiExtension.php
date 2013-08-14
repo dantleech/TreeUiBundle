@@ -1,6 +1,6 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\TreeUiBundle\DependencyInjection;
+namespace Symfony\Cmf\Bundle\TreeUi\CoreBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -42,7 +42,7 @@ class CmfTreeUiExtension extends Extension
         $factory = $container->getDefinition('cmf_tree_ui.tree_factory');
 
         foreach ($config['tree'] as $name => $treeConfig) {
-            $treeDef = new Definition('Symfony\Cmf\Bundle\TreeUiBundle\Tree\Tree');
+            $treeDef = new Definition('Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Tree');
             $treeDef->setScope('prototype');
             $treeDef->addArgument($name);
 

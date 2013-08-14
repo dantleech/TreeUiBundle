@@ -1,11 +1,11 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\TreeUiBundle\Tree\Node\UrlGenerator;
+namespace Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Node\UrlGenerator;
 
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface as BaseUrlGeneratorInterface;
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Node\UrlGeneratorInterface;
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Node;
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Metadata\TreeMetadata;
+use Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Node\UrlGeneratorInterface;
+use Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Node;
+use Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Metadata\TreeMetadata;
 
 /**
  * URLs generated with this node url generator are directed

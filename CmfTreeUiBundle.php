@@ -1,10 +1,10 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\TreeUiBundle;
+namespace Symfony\Cmf\Bundle\TreeUi\CoreBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Cmf\Bundle\TreeUiBundle\DependencyInjection\Compiler\ConfigPass;
+use Symfony\Cmf\Bundle\TreeUi\CoreBundle\DependencyInjection\Compiler\ConfigPass;
 
 class CmfTreeUiBundle extends Bundle
 {

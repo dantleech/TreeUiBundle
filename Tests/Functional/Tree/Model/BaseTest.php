@@ -1,9 +1,9 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\TreeUiBundle\Tests\Functional\Tree\Model;
+namespace Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tests\Functional\Tree\Model;
 
 use Symfony\Cmf\Component\Testing\Functional\BaseTestCase;
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ModelInterface;
+use Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\ModelInterface;
 
 abstract class BaseTest extends BaseTestCase
 {

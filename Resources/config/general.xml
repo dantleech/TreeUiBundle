@@ -6,7 +6,7 @@
 
     <parameters>
 
-        <parameter key="cmf_tree_ui.node_factory">Symfony\Cmf\Bundle\TreeUiBundle\Tree\NodeFactory</parameter>
+        <parameter key="cmf_tree_ui.node_factory">Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\NodeFactory</parameter>
 
     </parameters>
 
@@ -14,7 +14,7 @@
         <!-- Tree Factory -->
         <service 
             id="cmf_tree_ui.tree_factory" 
-            class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\Factory"
+            class="Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Factory"
             >
             <argument type="service" id="service_container"/>
         </service>
@@ -22,7 +22,7 @@
         <!-- Node Factory -->
         <service 
             id="cmf_tree_ui.node_factory" 
-            class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\NodeFactory"
+            class="Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\NodeFactory"
             >
             <argument type="service" id="cmf_tree_ui.metadata.factory"/>
         </service>
@@ -30,7 +30,7 @@
         <!-- Tree Controller -->
         <service
             id="cmf_tree_ui.controller.tree"
-            class="Symfony\Cmf\Bundle\TreeUiBundle\Controller\TreeController"
+            class="Symfony\Cmf\Bundle\TreeUi\CoreBundle\Controller\TreeController"
             >
             <argument type="service" id="cmf_tree_ui.tree_factory"/>
             <argument type="service" id="twig"/>
@@ -39,7 +39,7 @@
         <!-- Url Generator: Default -->
         <service
             id="cmf_tree_ui.node.url_generator.default"
-            class="Symfony\Cmf\Bundle\TreeUiBundle\Tree\Node\UrlGenerator\DefaultUrlGenerator"
+            class="Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Node\UrlGenerator\DefaultUrlGenerator"
             >
             <argument type="service" id="router"/>
         </service>

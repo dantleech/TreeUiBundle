@@ -1,14 +1,14 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\TreeUiBundle\Tests\Tree;
+namespace Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tests\Tree;
 
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Config;
+use Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Config;
 
 class ConfigTest extends \PHPUnit_Framework_Testcase
 {
     public function setUp()
     {
-        $this->featurable = $this->getMock('Symfony\Cmf\Bundle\TreeUiBundle\Tree\FeaturableInterface');
+        $this->featurable = $this->getMock('Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\FeaturableInterface');
     }
 
     protected function getConfig($userOptions = array())

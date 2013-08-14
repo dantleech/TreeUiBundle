@@ -1,6 +1,6 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\TreeUiBundle\Tests\Functional\Tree\Model;
+namespace Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tests\Functional\Tree\Model;
 
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\ODM\PHPCR\Document\Generic;

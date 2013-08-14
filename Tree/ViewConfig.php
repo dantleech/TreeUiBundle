@@ -1,9 +1,9 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\TreeUiBundle\Tree;
+namespace Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ModelInterface;
+use Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\ModelInterface;
 
 class ViewConfig extends Config
 {

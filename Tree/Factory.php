@@ -1,6 +1,6 @@
 <?php
 
-namespace Symfony\Cmf\Bundle\TreeUiBundle\Tree;
+namespace Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 

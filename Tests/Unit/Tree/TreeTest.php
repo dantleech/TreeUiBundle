@@ -2,8 +2,8 @@
 
 namespace Symfony\Cmf\Bundle\CmfTreeUiBundle\Tests\Unit\Tree;
 
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\ModelInterface;
-use Symfony\Cmf\Bundle\TreeUiBundle\Tree\Tree;
+use Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\ModelInterface;
+use Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\Tree;
 
 class TreeTest extends \PHPUnit_Framework_TestCase
 {
@@ -11,8 +11,8 @@ class TreeTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->model = $this->getMock('Symfony\Cmf\Bundle\TreeUiBundle\Tree\ModelInterface');
-        $this->view = $this->getMock('Symfony\Cmf\Bundle\TreeUiBundle\Tree\ViewInterface');
+        $this->model = $this->getMock('Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\ModelInterface');
+        $this->view = $this->getMock('Symfony\Cmf\Bundle\TreeUi\CoreBundle\Tree\ViewInterface');
         $this->tree = new Tree('Foobar', $this->model, $this->view);
     }
 
